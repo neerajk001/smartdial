@@ -22,6 +22,7 @@ const Header = () => {
           <p className="hidden sm:block">Opening Hours : Mon - Sat 10:00 AM To 07:30 PM</p>
         </div>
       </div>
+
       {/* Reduce vertical padding slightly so increasing logo size doesn't grow the header */}
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:py-4">
         {/* Left: Brand (Logo) */}

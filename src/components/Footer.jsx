@@ -1,106 +1,98 @@
 // footer.jsx
 import React from "react";
-import { motion } from "framer-motion";
-
-const links = {
-  Product: ["Overview", "Pricing", "Changelog", "Status"],
-  Company: ["About", "Careers", "Press", "Contact"],
-  Resources: ["Docs", "Guides", "Blog", "Support"],
-  Legal: ["Privacy", "Terms", "Security", "DPA"],
-};
 
 const Footer = () => {
   return (
-    <footer className="relative isolate overflow-hidden bg-slate-950 text-slate-300">
-      {/* background grid + glow */}
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:22px_22px]"
-      />
-      <div className="pointer-events-none absolute -top-20 left-1/2 -z-10 h-80 w-80 -translate-x-1/2 rounded-full bg-fuchsia-500/20 blur-3xl" />
-
-      <div className="mx-auto max-w-7xl px-4 py-14">
-        {/* Top row */}
-        <div className="grid gap-10 md:grid-cols-5">
-          {/* Brand + newsletter */}
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-lg bg-white" />
-              <span className="text-lg font-semibold text-white">Smart Dial</span>
+    <footer className="w-full bg-slate-900 text-white">
+      <div className="mx-auto max-w-7xl px-4 py-12 md:py-16">
+        {/* Top section */}
+        <div className="grid gap-8 md:grid-cols-4">
+          {/* Brand */}
+          <div className="md:col-span-1">
+            <div className="mb-4 flex items-center gap-2">
+              <img src="/Smart-Dial-Final-01.png" alt="Smart Dial" className="h-8 w-auto" />
             </div>
-            <p className="mt-4 text-sm text-slate-400">
-              Modern telecalling and lead management to help teams connect faster and close more.
-            </p>
+            <p className="text-sm text-gray-400">Smarter CRM. Smarter Results.</p>
+          </div>
 
-            <motion.form
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              onSubmit={(e) => e.preventDefault()}
-              className="mt-5 flex max-w-md items-center gap-2"
-            >
-              <input
-                type="email"
-                placeholder="Work email"
-                className="w-full rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white placeholder:text-slate-400 outline-none focus:border-white/30"
-              />
-              <button
-                type="submit"
-                className="rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-900 hover:brightness-95"
+          {/* Quick Links */}
+          <div>
+            <h4 className="mb-4 text-sm font-semibold text-white">Quick Links</h4>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li>
+                <a href="#" className="transition hover:text-white">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#" className="transition hover:text-white">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#" className="transition hover:text-white">
+                  Features
+                </a>
+              </li>
+              <li>
+                <a href="#" className="transition hover:text-white">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Social Media */}
+          <div>
+            <h4 className="mb-4 text-sm font-semibold text-white">Social Media</h4>
+            <div className="flex items-center gap-4">
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                className="text-gray-400 transition hover:text-white"
               >
-                Subscribe
-              </button>
-            </motion.form>
-
-            <div className="mt-4 flex items-center gap-3 text-xs text-slate-400">
-              <span>No spam. Unsubscribe anytime.</span>
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor">
+                  <path d="M6.9 7.6H3.8V21h3.1V7.6zM5.4 3A1.8 1.8 0 1 0 5.4 6 1.8 1.8 0 0 0 5.4 3zM21 21h-3.1v-6.8c0-3.6-4-3.3-4 0V21H10V7.6h2.9v1.8c1.3-2.3 8-2.4 8 2.2V21z" />
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="Facebook"
+                className="text-gray-400 transition hover:text-white"
+              >
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor">
+                  <path d="M22 12c0-5.5-4.5-10-10-10S2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9v-2.9h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6v1.9h2.8l-.4 2.9h-2.3v7c4.7-.8 8.4-4.9 8.4-9.9z" />
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="Instagram"
+                className="text-gray-400 transition hover:text-white"
+              >
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor">
+                  <path d="M7.5 2h9C19.4 2 22 4.6 22 7.5v9c0 2.9-2.6 5.5-5.5 5.5h-9C4.6 22 2 19.4 2 16.5v-9C2 4.6 4.6 2 7.5 2zm0 1.5C5.6 3.5 3.5 5.6 3.5 7.5v9c0 1.9 2.1 4 4 4h9c1.9 0 4-2.1 4-4v-9c0-1.9-2.1-4-4-4h-9zM17 5.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7c2.8 0 5 2.2 5 5s-2.2 5-5 5-5-2.2-5-5 2.2-5 5-5zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z" />
+                </svg>
+              </a>
             </div>
           </div>
 
-          {/* Link columns */}
-          {Object.entries(links).map(([section, items]) => (
-            <div key={section}>
-              <h4 className="text-sm font-medium text-white">{section}</h4>
-              <ul className="mt-3 space-y-2 text-sm">
-                {items.map((l) => (
-                  <li key={l}>
-                    <a
-                      href="#"
-                      className="text-slate-300 transition hover:text-white"
-                    >
-                      {l}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Contact */}
+          <div>
+            <h4 className="mb-4 text-sm font-semibold text-white">Contact</h4>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li>info@smartdial.in</li>
+              <li>+91-XXXXXXXXXX</li>
+            </ul>
+          </div>
         </div>
 
         {/* Divider */}
-        <div className="my-8 h-px w-full bg-white/10" />
+        <div className="my-8 h-px w-full bg-gray-700" />
 
-        {/* Bottom row */}
-        <div className="flex flex-col items-center justify-between gap-4 text-xs text-slate-400 md:flex-row">
-          <p>© {new Date().getFullYear()} Smart Dial. All rights reserved.</p>
-          <div className="flex items-center gap-4">
-            <a href="#" aria-label="Twitter" className="hover:text-white">
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
-                <path d="M22 5.8c-.7.3-1.4.5-2.2.6.8-.5 1.3-1.2 1.6-2.1-.8.5-1.7.8-2.6 1-1.6-1.8-4.4-.8-4.6 1.6-.1.4 0 .8.1 1.2C10.1 8 6.6 6.2 4.3 3.5c-.9 1.6-.5 3.7 1 4.8-.6 0-1.2-.2-1.7-.5 0 1.8 1.2 3.4 3 3.8-.5.1-1 .2-1.5.1.4 1.5 1.9 2.6 3.5 2.7-1.4 1.1-3.1 1.6-4.8 1.4 1.6 1 3.4 1.6 5.3 1.6 6.4 0 10-5.4 9.8-10.3.7-.5 1.3-1.1 1.7-1.8z" />
-              </svg>
-            </a>
-            <a href="#" aria-label="LinkedIn" className="hover:text-white">
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
-                <path d="M6.9 7.6H3.8V21h3.1V7.6zM5.4 3A1.8 1.8 0 1 0 5.4 6 1.8 1.8 0 0 0 5.4 3zM21 21h-3.1v-6.8c0-3.6-4-3.3-4 0V21H10V7.6h2.9v1.8c1.3-2.3 8-2.4 8 2.2V21z" />
-              </svg>
-            </a>
-            <a href="#" aria-label="GitHub" className="hover:text-white">
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
-                <path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.7 1.8 2.7 2 .5-.4 1-.7 1.2-1.2-2.6-.3-5.3-1.3-5.3-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.4 0 0 1-.3 3.3 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.8.2 3.1.1 3.4.7.8 1.2 1.9 1.2 3.2 0 4.6-2.7 5.6-5.3 5.9.5.4 1 .9 1 .4v2.9c0 .3.2.7.8.6A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z" />
-              </svg>
-            </a>
-          </div>
+        {/* Bottom section */}
+        <div className="flex flex-col items-center justify-between gap-4 text-sm text-gray-400 md:flex-row">
+          <p>© 2025 Smart Dial. All Rights Reserved.</p>
+          <p className="text-sm font-medium text-gray-300">Smarter CRM. Smarter Results.</p>
         </div>
       </div>
     </footer>
