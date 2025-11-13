@@ -19,10 +19,11 @@ const App = () => {
       <Header />
       <Hero />
       <About />
+      <Welcome />
       <Problem />
       <Features />
       <Audience />
-      <Welcome />
+      
       <Service />
       <Pricing />
       <WhatOurUsersSay />

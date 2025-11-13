@@ -1,132 +1,192 @@
 // pricing.jsx
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const plans = [
-  {
-    name: "Basic",
-    idealFor: "Small DSA teams",
-    highlights: ["Smart Dialer", "Lead Management", "Basic Reporting"],
-  },
-  {
-    name: "Pro",
-    idealFor: "Mid-size agencies",
-    highlights: ["Full CRM", "Team Management", "Advanced Analytics", "Priority Support"],
-    featured: true,
-  },
-  {
-    name: "Enterprise",
-    idealFor: "Large organizations",
-    highlights: ["API Integration", "Dedicated Support", "Custom Workflows", "White Label Option"],
-  },
-];
+const plans = {
+  monthly: [
+    { name: "Quarterly", price: 150, cycle: "3 Months", discount: "10%", eff: "₹45" },
+    { name: "Half‑Yearly", price: 300, cycle: "6 Months", discount: "15%", eff: "₹43" },
+    { name: "Yearly", price: 600, cycle: "12 Months", discount: "25%", eff: "₹37.50" },
+  ],
+  yearly: [
+    { name: "Quarterly", price: 120, cycle: "3 Months", discount: "20%", eff: "₹36" },
+    { name: "Half‑Yearly", price: 260, cycle: "6 Months", discount: "25%", eff: "₹37" },
+    { name: "Yearly", price: 520, cycle: "12 Months", discount: "35%", eff: "₹33.75" },
+  ],
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 18, scale: 0.98 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: "easeOut" } },
+};
 
 const Pricing = () => {
+  const [billing, setBilling] = useState("monthly");
+  const data = plans[billing];
+
   return (
-    <section className="w-full bg-linear-to-br from-slate-50 to-slate-100">
+    <section className="relative isolate overflow-hidden bg-white">
+      {/* background accents */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_1px)] [background-size:22px_22px]"
+      />
+      <div className="absolute -top-24 -right-24 -z-10 h-72 w-72 rounded-full bg-gradient-to-tr from-indigo-200 via-fuchsia-200 to-pink-200 blur-3xl opacity-60" />
+
       <div className="mx-auto max-w-7xl px-4 py-16 md:py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          {/* Section title */}
-          <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl">💰 Pricing</h2>
-          <p className="mb-10 max-w-3xl text-base leading-7 text-gray-700 md:text-lg">
-            Choose the plan that fits your business.
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
+            Choose a plan that grows with you
+          </h2>
+          <p className="mt-3 text-sm leading-6 text-slate-600">
+            Transparent pricing with all features included and priority support for every plan.
           </p>
 
-          {/* Pricing cards */}
-          <div className="grid gap-6 md:grid-cols-3">
-            {plans.map((plan, index) => (
-              <motion.div
-                key={plan.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`relative overflow-hidden rounded-2xl p-8 shadow-lg ring-1 ${
-                  plan.featured
-                    ? "bg-blue-600 text-white ring-blue-500"
-                    : "bg-white text-slate-900 ring-slate-200"
-                }`}
-              >
-                {plan.featured && (
-                  <div className="absolute right-4 top-4 rounded-full bg-white/20 px-3 py-1 text-xs font-semibold backdrop-blur">
-                    Popular
+          {/* Billing toggle */}
+          <div className="mt-6 inline-flex items-center rounded-full border border-slate-200 bg-white p-1 shadow-sm">
+            <button
+              onClick={() => setBilling("monthly")}
+              className={`rounded-full px-4 py-2 text-sm transition ${
+                billing === "monthly"
+                  ? "bg-slate-900 text-white"
+                  : "text-slate-700 hover:bg-slate-100"
+              }`}
+            >
+              Standard
+            </button>
+            <button
+              onClick={() => setBilling("yearly")}
+              className={`rounded-full px-4 py-2 text-sm transition ${
+                billing === "yearly"
+                  ? "bg-slate-900 text-white"
+                  : "text-slate-700 hover:bg-slate-100"
+              }`}
+            >
+              Best value
+            </button>
+          </div>
+        </div>
+
+        {/* Cards */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={billing}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="mt-10 grid gap-6 md:grid-cols-3"
+          >
+            {data.map((p, i) => {
+              const featured = i === 2;
+              return (
+                <motion.div
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="show"
+                  whileHover={{ y: -6 }}
+                  key={p.name}
+                  className={`relative overflow-hidden rounded-2xl p-6 ring-1 ${
+                    featured
+                      ? "bg-gradient-to-b from-slate-900 to-slate-800 ring-slate-700"
+                      : "bg-white ring-slate-200"
+                  }`}
+                >
+                  {/* Accent ribbon */}
+                  {featured && (
+                    <div className="absolute right-3 top-3 rounded-full bg-white/10 px-3 py-1 text-xs text-white backdrop-blur">
+                      Popular
+                    </div>
+                  )}
+
+                  <div className="mb-4">
+                    <h3
+                      className={`text-lg font-semibold ${
+                        featured ? "text-white" : "text-slate-900"
+                      }`}
+                    >
+                      {p.name}
+                    </h3>
+                    <p className={`text-xs ${featured ? "text-slate-300" : "text-slate-500"}`}>
+                      {p.cycle}
+                    </p>
                   </div>
-                )}
 
-                <h3
-                  className={`mb-2 text-2xl font-bold ${
-                    plan.featured ? "text-white" : "text-slate-900"
-                  }`}
-                >
-                  {plan.name}
-                </h3>
-                <p
-                  className={`mb-6 text-sm ${
-                    plan.featured ? "text-blue-100" : "text-gray-600"
-                  }`}
-                >
-                  Ideal For: <span className="font-medium">{plan.idealFor}</span>
-                </p>
+                  <div className="flex items-end gap-2">
+                    <span
+                      className={`text-4xl font-semibold leading-none ${
+                        featured ? "text-white" : "text-slate-900"
+                      }`}
+                    >
+                      ₹{p.price}
+                    </span>
+                    <span className={`pb-1 text-xs ${featured ? "text-slate-300" : "text-slate-500"}`}>
+                      total
+                    </span>
+                  </div>
 
-                <div className="mb-6">
-                  <h4
-                    className={`mb-3 text-sm font-semibold ${
-                      plan.featured ? "text-blue-100" : "text-gray-700"
-                    }`}
-                  >
-                    Highlights:
-                  </h4>
-                  <ul className="space-y-2">
-                    {plan.highlights.map((highlight, idx) => (
+                  <div className="mt-3 text-sm">
+                    <p className={`${featured ? "text-indigo-200" : "text-indigo-700"}`}>
+                      Discount: <span className="font-medium">{p.discount}</span>
+                    </p>
+                    <p className={`${featured ? "text-slate-300" : "text-slate-600"}`}>
+                      Effective Price (per User/Month) {p.eff}
+                    </p>
+                  </div>
+
+                  <ul className="mt-5 space-y-2 text-sm">
+                    {[
+                      "Full access to all features",
+                      "Priority support",
+                      "Unlimited team members",
+                    ].map((f) => (
                       <li
-                        key={idx}
-                        className={`flex items-start gap-2 text-sm ${
-                          plan.featured ? "text-white" : "text-gray-700"
+                        key={f}
+                        className={`flex items-center gap-2 ${
+                          featured ? "text-slate-200" : "text-slate-700"
                         }`}
                       >
                         <svg
-                          xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
-                          fill="currentColor"
-                          className={`h-5 w-5 shrink-0 ${
-                            plan.featured ? "text-blue-200" : "text-green-600"
+                          className={`h-4 w-4 ${
+                            featured ? "text-emerald-300" : "text-emerald-600"
                           }`}
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
                         >
-                          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                          <path d="M5 13l4 4L19 7" />
                         </svg>
-                        {highlight}
+                        {f}
                       </li>
                     ))}
                   </ul>
-                </div>
 
-                <a
-                  href="#"
-                  className={`inline-flex w-full items-center justify-center gap-2 rounded-md px-6 py-3 text-sm font-semibold shadow-sm transition ${
-                    plan.featured
-                      ? "bg-white text-blue-600 hover:bg-gray-50"
-                      : "border border-gray-300 bg-white text-gray-900 hover:bg-gray-50"
-                  }`}
-                >
-                  Request Quote
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="h-4 w-4"
-                  >
-                    <path d="M13.5 4.5L21 12l-7.5 7.5-1.06-1.06L17.88 12l-5.44-5.44L13.5 4.5z" />
-                  </svg>
-                </a>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+                  <div className="mt-6">
+                    <a
+                      href="#"
+                      className={`inline-flex w-full items-center justify-center rounded-full px-4 py-2 text-sm font-medium transition ${
+                        featured
+                          ? "bg-white text-slate-900 hover:brightness-95"
+                          : "bg-slate-900 text-white hover:brightness-110"
+                      }`}
+                    >
+                      Purchase Now
+                      <svg viewBox="0 0 24 24" className="ml-2 h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M5 12h14M13 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* small footnote */}
+        <div className="mt-6 text-center text-xs text-slate-500">
+          Prices shown are illustrative; taxes may apply. Change or cancel anytime.
+        </div>
       </div>
     </section>
   );
