@@ -1,4 +1,5 @@
 import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
 import About from './components/About.jsx'
@@ -12,23 +13,36 @@ import WhatOurUsersSay from './components/WhatOurUsersSay.jsx'
 import WhyChooseUs from './components/Choose.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
+import AboutPage from './pages/About.jsx'
+import FeaturesPage from './pages/Features.jsx'
+import PricingPage from './pages/Pricing.jsx'
+import ContactUsPage from './pages/ContactUs.jsx'
 
 const App = () => {
   return (
     <div>
       <Header />
-      <Hero />
-      <About />
-      <Welcome />
-      <Problem />
-      <Features />
-      <Audience />
-      
-      <Service />
-      <Pricing />
-      <WhatOurUsersSay />
-      <WhyChooseUs />
-      <Contact />
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Hero />
+            <About />
+            <Welcome />
+            <Problem />
+            <Features />
+            <Audience />
+            <Service />
+            <Pricing />
+            <WhatOurUsersSay />
+            <WhyChooseUs />
+            <Contact />
+          </>
+        } />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/features" element={<FeaturesPage />} />
+        <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/contact" element={<ContactUsPage />} />
+      </Routes>
       <Footer />
     </div>
   )

@@ -1,17 +1,18 @@
 // header.jsx
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 
 const Header = () => {
   const [open, setOpen] = useState(false);
 
   const navItems = [
-    { label: "Home", href: "#" },
-    { label: "Features", href: "#" },
-    { label: "Pricing", href: "#" },
-    { label: "Contact Us", href: "#" },
-    { label: "About", href: "#" },
-  ];
+    { label: "Home", to: "/" },
+    { label: "Features", to: "/features" },
+    { label: "Pricing", to: "/pricing" },
+    { label: "Contact Us", to: "/contact" },
+    { label: "About", to: "/about" },
+  ];    
 
   return (
   <header className="w-full border-b border-black/5 bg-linear-to-br from-slate-50 to-slate-100">
@@ -22,11 +23,11 @@ const Header = () => {
           <p className="hidden sm:block">Opening Hours : Mon - Sat 10:00 AM To 07:30 PM</p>
         </div>
       </div>
-
+      
       {/* Reduce vertical padding slightly so increasing logo size doesn't grow the header */}
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:py-4">
         {/* Left: Brand (Logo) */}
-        <a href="#" className="inline-flex items-center" aria-label="Home">
+        <Link to="/" className="inline-flex items-center" aria-label="Home">
           <img
             src="/Smart-Dial-Final-01.png"
             alt="Smart Dial logo"
@@ -34,19 +35,19 @@ const Header = () => {
             decoding="async"  
             loading="eager"
           />
-        </a>
+        </Link>
 
         {/* Center: Nav pill */}
         <nav className="relative hidden md:flex">
           <div className="flex items-center gap-8 rounded-full bg-black/5 px-8 py-3 shadow-sm backdrop-blur border">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.label}
-                href={item.href}
+                to={item.to}
                 className="text-sm text-gray-700 transition-colors hover:text-black"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
         </nav>
@@ -96,13 +97,14 @@ const Header = () => {
           <div className="mx-4 mb-4 rounded-2xl bg-black/5 p-4 shadow-sm">
             <div className="flex flex-col gap-3 border-b border-black/10 pb-4">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.label}
-                  href={item.href}
+                  to={item.to}
                   className="rounded-md px-3 py-2 text-sm text-gray-800 hover:bg-white"
+                  onClick={() => setOpen(false)}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </div>
             <div className="mt-4 flex items-center justify-end gap-3">
