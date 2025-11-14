@@ -39,12 +39,12 @@ const Header = () => {
 
         {/* Center: Nav pill */}
         <nav className="relative hidden md:flex">
-          <div className="flex items-center gap-8 rounded-full bg-black/5 px-8 py-3 shadow-sm backdrop-blur border">
+          <div className="flex items-center gap-6 rounded-full bg-white px-10 py-3 shadow-sm border border-black">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 to={item.to}
-                className="text-sm text-gray-700 transition-colors hover:text-black"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-gray-900"
               >
                 {item.label}
               </Link>
