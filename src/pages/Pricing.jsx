@@ -3,47 +3,90 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { HiCheckCircle, HiArrowRight } from 'react-icons/hi2';
 
 // 1. Pricing data is stored in an array for easy management
-const pricingPlans = [
-  {
-    name: "Quarterly",
-    duration: "3 Months",
-    price: "150",
-    discount: "Discount: 10%",
-    effectivePrice: "Effective Price (per User/Month) ₹45",
-    features: [
-      "Full access to all features",
-      "Priority support",
-      "Unlimited team members",
-    ],
-    isPopular: false,
-  },
-  {
-    name: "Half-Yearly",
-    duration: "6 Months",
-    price: "300",
-    discount: "Discount: 15%",
-    effectivePrice: "Effective Price (per User/Month) ₹43",
-    features: [
-      "Full access to all features",
-      "Priority support",
-      "Unlimited team members",
-    ],
-    isPopular: false,
-  },
-  {
-    name: "Yearly",
-    duration: "12 Months",
-    price: "600",
-    discount: "Discount: 25%",
-    effectivePrice: "Effective Price (per User/Month) ₹37.50",
-    features: [
-      "Full access to all features",
-      "Priority support",
-      "Unlimited team members",
-    ],
-    isPopular: true,
-  },
-];
+const pricingData = {
+  appAndWeb: [
+    {
+      name: "Quarterly",
+      duration: "3 Months",
+      price: "₹450 / ₹360",
+      discount: "Discount: 20%",
+      effectivePrice: "Effective Price (per User/Month) ₹120",
+      features: [
+        "Full access to all features",
+        "Priority support",
+        "Unlimited team members",
+      ],
+      isPopular: false,
+    },
+    {
+      name: "Half Yearly",
+      duration: "6 Months",
+      price: "₹900 / ₹630",
+      discount: "Discount: 30%",
+      effectivePrice: "Effective Price (per User/Month) ₹105",
+      features: [
+        "Full access to all features",
+        "Priority support",
+        "Unlimited team members",
+      ],
+      isPopular: true,
+    },
+    {
+      name: "Monthly",
+      duration: "12 Months",
+      price: "₹1800 / ₹900",
+      discount: "Discount: 50%",
+      effectivePrice: "Effective Price (per User/Month) ₹75",
+      features: [
+        "Full access to all features",
+        "Priority support",
+        "Unlimited team members",
+      ],
+      isPopular: false,
+    },
+  ],
+  webOnly: [
+    {
+      name: "Quarterly",
+      duration: "3 Months",
+      price: "₹300 / ₹240",
+      discount: "Discount: 20%",
+      effectivePrice: "Effective Price (per User/Month) ₹80",
+      features: [
+        "Full access to all features",
+        "Priority support",
+        "Unlimited team members",
+      ],
+      isPopular: false,
+    },
+    {
+      name: "Half Yearly",
+      duration: "6 Months",
+      price: "₹600 / ₹420",
+      discount: "Discount: 30%",
+      effectivePrice: "Effective Price (per User/Month) ₹70",
+      features: [
+        "Full access to all features",
+        "Priority support",
+        "Unlimited team members",
+      ],
+      isPopular: true,
+    },
+    {
+      name: "Monthly",
+      duration: "12 Months",
+      price: "₹1200 / ₹600",
+      discount: "Discount: 50%",
+      effectivePrice: "Effective Price (per User/Month) ₹50",
+      features: [
+        "Full access to all features",
+        "Priority support",
+        "Unlimited team members",
+      ],
+      isPopular: false,
+    },
+  ],
+};
 
 // 2. Framer Motion variants
 const cardVariants = {
@@ -62,7 +105,9 @@ const cardVariants = {
 
 // 3. The main Pricing component
 export default function Pricing() {
-  const [billingCycle, setBillingCycle] = useState('standard');
+  const [planType, setPlanType] = useState('appAndWeb');
+
+  const pricingPlans = planType === 'appAndWeb' ? pricingData.appAndWeb : pricingData.webOnly;
 
   return (
     <section className="py-24 bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
@@ -81,25 +126,25 @@ export default function Pricing() {
         {/* --- Toggle Switch --- */}
         <div className="flex justify-center mt-10">
           <div className="relative flex p-1 bg-white border border-gray-200 rounded-lg shadow-sm">
-            {['standard', 'bestValue'].map((cycle) => (
+            {['appAndWeb', 'webOnly'].map((type) => (
               <button
-                key={cycle}
-                onClick={() => setBillingCycle(cycle)}
-                className="relative w-32 py-2 px-4 text-sm font-semibold z-10"
+                key={type}
+                onClick={() => setPlanType(type)}
+                className="relative px-6 py-2 text-sm font-semibold z-10 whitespace-nowrap"
               >
-                {billingCycle === cycle && (
+                {planType === type && (
                   <motion.div
-                    layoutId="billingToggle"
+                    layoutId="planToggle"
                     className="absolute inset-0 bg-indigo-600 rounded-md shadow-md"
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
                 )}
                 <span className={`relative ${
-                  billingCycle === cycle 
+                  planType === type 
                     ? 'text-white' 
                     : 'text-gray-600'
                 }`}>
-                  {cycle === 'standard' ? 'Standard' : 'Best Value'}
+                  {type === 'appAndWeb' ? 'App & Web CRM' : 'Web CRM only'}
                 </span>
               </button>
             ))}
@@ -141,15 +186,10 @@ export default function Pricing() {
               </p>
 
               {/* Price */}
-              <div className="mt-6 flex items-baseline gap-1">
-                <span className="text-5xl font-extrabold tracking-tight">
-                  ₹{plan.price}
-                </span>
-                <span className={`text-sm ${
-                  plan.isPopular ? 'text-gray-300' : 'text-gray-500'
-                }`}>
-                  total
-                </span>
+              <div className="mt-6">
+                <div className="text-3xl font-extrabold tracking-tight">
+                  {plan.price}
+                </div>
               </div>
 
               {/* Discounts */}
@@ -165,7 +205,7 @@ export default function Pricing() {
               </div>
 
               {/* Features */}
-              <ul className="mt-8 space-y-3 flex-grow">
+              <ul className="mt-8 space-y-3 grow">
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-center gap-2">
                     <HiCheckCircle className="w-5 h-5 text-green-500" />

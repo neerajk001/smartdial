@@ -3,15 +3,51 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const plans = {
-  monthly: [
-    { name: "Quarterly", price: 150, cycle: "3 Months", discount: "10%", eff: "₹45" },
-    { name: "Half‑Yearly", price: 300, cycle: "6 Months", discount: "15%", eff: "₹43" },
-    { name: "Yearly", price: 600, cycle: "12 Months", discount: "25%", eff: "₹37.50" },
+  appAndWeb: [
+    { 
+      name: "Quarterly", 
+      price: "₹450 / ₹360", 
+      cycle: "3 Months", 
+      discount: "20%", 
+      eff: "₹120" 
+    },
+    { 
+      name: "Half Yearly", 
+      price: "₹900 / ₹630", 
+      cycle: "6 Months", 
+      discount: "30%", 
+      eff: "₹105" 
+    },
+    { 
+      name: "Monthly", 
+      price: "₹1800 / ₹900", 
+      cycle: "12 Months", 
+      discount: "50%", 
+      eff: "₹75" 
+    },
   ],
-  yearly: [
-    { name: "Quarterly", price: 120, cycle: "3 Months", discount: "20%", eff: "₹36" },
-    { name: "Half‑Yearly", price: 260, cycle: "6 Months", discount: "25%", eff: "₹37" },
-    { name: "Yearly", price: 520, cycle: "12 Months", discount: "35%", eff: "₹33.75" },
+  webOnly: [
+    { 
+      name: "Quarterly", 
+      price: "₹300 / ₹240", 
+      cycle: "3 Months", 
+      discount: "20%", 
+      eff: "₹80" 
+    },
+    { 
+      name: "Half Yearly", 
+      price: "₹600 / ₹420", 
+      cycle: "6 Months", 
+      discount: "30%", 
+      eff: "₹70" 
+    },
+    { 
+      name: "Monthly", 
+      price: "₹1200 / ₹600", 
+      cycle: "12 Months", 
+      discount: "50%", 
+      eff: "₹50" 
+    },
   ],
 };
 
@@ -21,7 +57,7 @@ const cardVariants = {
 };
 
 const Pricing = () => {
-  const [billing, setBilling] = useState("monthly");
+  const [billing, setBilling] = useState("appAndWeb");
   const data = plans[billing];
 
   return (
@@ -29,9 +65,9 @@ const Pricing = () => {
       {/* background accents */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_1px)] [background-size:22px_22px]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_1px)] bg-size-[22px_22px]"
       />
-      <div className="absolute -top-24 -right-24 -z-10 h-72 w-72 rounded-full bg-gradient-to-tr from-indigo-200 via-fuchsia-200 to-pink-200 blur-3xl opacity-60" />
+      <div className="absolute -top-24 -right-24 -z-10 h-72 w-72 rounded-full bg-linear-to-tr from-indigo-200 via-fuchsia-200 to-pink-200 blur-3xl opacity-60" />
 
       <div className="mx-auto max-w-7xl px-4 py-16 md:py-20">
         <div className="mx-auto max-w-3xl text-center">
@@ -45,24 +81,24 @@ const Pricing = () => {
           {/* Billing toggle */}
           <div className="mt-6 inline-flex items-center rounded-full border border-slate-200 bg-white p-1 shadow-sm">
             <button
-              onClick={() => setBilling("monthly")}
+              onClick={() => setBilling("appAndWeb")}
               className={`rounded-full px-4 py-2 text-sm transition ${
-                billing === "monthly"
+                billing === "appAndWeb"
                   ? "bg-slate-900 text-white"
                   : "text-slate-700 hover:bg-slate-100"
               }`}
             >
-              Standard
+              App & Web CRM
             </button>
             <button
-              onClick={() => setBilling("yearly")}
+              onClick={() => setBilling("webOnly")}
               className={`rounded-full px-4 py-2 text-sm transition ${
-                billing === "yearly"
+                billing === "webOnly"
                   ? "bg-slate-900 text-white"
                   : "text-slate-700 hover:bg-slate-100"
               }`}
             >
-              Best value
+              Web CRM only
             </button>
           </div>
         </div>
@@ -78,7 +114,7 @@ const Pricing = () => {
             className="mt-10 grid gap-6 md:grid-cols-3"
           >
             {data.map((p, i) => {
-              const featured = i === 2;
+              const featured = i === 1;
               return (
                 <motion.div
                   variants={cardVariants}
@@ -88,7 +124,7 @@ const Pricing = () => {
                   key={p.name}
                   className={`relative overflow-hidden rounded-2xl p-6 ring-1 ${
                     featured
-                      ? "bg-gradient-to-b from-slate-900 to-slate-800 ring-slate-700"
+                      ? "bg-linear-to-b from-slate-900 to-slate-800 ring-slate-700"
                       : "bg-white ring-slate-200"
                   }`}
                 >
@@ -114,14 +150,11 @@ const Pricing = () => {
 
                   <div className="flex items-end gap-2">
                     <span
-                      className={`text-4xl font-semibold leading-none ${
+                      className={`text-3xl font-semibold leading-none ${
                         featured ? "text-white" : "text-slate-900"
                       }`}
                     >
-                      ₹{p.price}
-                    </span>
-                    <span className={`pb-1 text-xs ${featured ? "text-slate-300" : "text-slate-500"}`}>
-                      total
+                      {p.price}
                     </span>
                   </div>
 

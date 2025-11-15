@@ -52,8 +52,8 @@ const Hero = () => {
           >
             <div className="relative overflow-hidden rounded-2xl shadow-2xl ring-1 ring-black/10 transition-transform duration-300 hover:scale-[1.02]">
               <video
-                ref={videoRef}
-                className="h-72 w-full object-cover md:h-96"
+                ref={videoRef}                 
+                className="h-72 w-full object-cover md:h-96"   
                 autoPlay
                 muted={muted}
                 loop
