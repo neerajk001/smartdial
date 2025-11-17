@@ -1,153 +1,160 @@
 // Contact.jsx
 import React from "react";
 import { motion } from "framer-motion";
+import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 
 const Contact = () => {
   return (
-    <section className="w-full bg-white">
+    // 1. Kept the light gradient background
+    <section className="w-full bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       <div className="mx-auto max-w-7xl px-4 py-16 md:py-20">
+        
+        {/* 2. NEW: High-Contrast "Contact Hub" Card */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          // This card is the new centerpiece
+          className="mx-auto max-w-6xl overflow-hidden rounded-2xl shadow-2xl shadow-blue-900/20 border border-slate-200/70"
         >
-          {/* Section title */}
-          <div className="mb-10 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl">📞 Contact Us</h2>
-            <p className="mx-auto max-w-2xl text-base leading-7 text-gray-700 md:text-lg">
-              Want to make your DSA operations smarter? Let's connect and show you how Smart Dial
-              can transform your loan sales process.
-            </p>
+          {/* 3. NEW: Internal Grid for 50/50 Split */}
+          <div className="grid lg:grid-cols-2">
+            
+            {/* --- LEFT (INFO) - Dark Side --- */}
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="bg-slate-900 p-8 md:p-12"
+            >
+              <h2 className="mb-4 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400 md:text-4xl">
+                Get in Touch
+              </h2>
+              <p className="mb-8 max-w-2xl text-lg leading-7 text-slate-300">
+                Let's connect and show you how Smart Dial can transform your
+                loan sales process.
+              </p>
+
+              {/* Redesigned Info List for Dark Mode */}
+              <div className="space-y-6">
+                <a
+                  href="mailto:info@smartdial.in"
+                  className="flex items-start gap-4 group"
+                >
+                  <div className="flex-shrink-0 rounded-lg bg-blue-900/50 p-3 text-blue-300 transition-colors group-hover:bg-blue-800">
+                    <Mail className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white">
+                      Email
+                    </h3>
+                    <p className="text-base text-blue-300 transition-colors group-hover:text-white">
+                      info@smartdial.in
+                    </p>
+                  </div>
+                </a>
+
+                <a
+                  href="tel:+91XXXXXXXXXX"
+                  className="flex items-start gap-4 group"
+                >
+                  <div className="flex-shrink-0 rounded-lg bg-blue-900/50 p-3 text-blue-300 transition-colors group-hover:bg-blue-800">
+                    <Phone className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white">
+                      Phone
+                    </h3>
+                    <p className="text-base text-blue-300 transition-colors group-hover:text-white">
+                      +91-XXXXXXXXXX
+                    </p>
+                  </div>
+                </a>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 rounded-lg bg-blue-900/50 p-3 text-blue-300">
+                    <MapPin className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white">
+                      Office
+                    </h3>
+                    <p className="text-base text-slate-300">
+                      [Your Office Address, City, Pincode]
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* --- RIGHT (FORM) - Light Side --- */}
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="bg-white p-8 md:p-12"
+            >
+              <h3 className="mb-6 text-2xl font-semibold text-slate-900">
+                Send us a message
+              </h3>
+              <form action="#" method="POST" className="space-y-5">
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="mb-1 block text-sm font-medium text-gray-700"
+                  >
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    placeholder="John Doe"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="mb-1 block text-sm font-medium text-gray-700"
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    placeholder="you@example.com"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="mb-1 block text-sm font-medium text-gray-700"
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    rows="4"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    placeholder="How can we help?"
+                  ></textarea>
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    className="group inline-flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-blue-500/30 transition-all hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-0.5"
+                  >
+                    Send Message
+                    <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </button>
+                </div>
+              </form>
+            </motion.div>
           </div>
-
-          {/* Contact info cards */}
-          <div className="mb-10 grid gap-6 md:grid-cols-3">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center rounded-xl bg-gray-50 p-6 text-center shadow-sm ring-1 ring-gray-200"
-            >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-600">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="h-6 w-6"
-                >
-                  <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-                </svg>
-              </div>
-              <h3 className="mb-2 text-sm font-semibold text-gray-700">Email</h3>
-              <a
-                href="mailto:info@smartdial.in"
-                className="text-base font-medium text-blue-600 hover:text-blue-700"
-              >
-                info@smartdial.in
-              </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex flex-col items-center rounded-xl bg-gray-50 p-6 text-center shadow-sm ring-1 ring-gray-200"
-            >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-600">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="h-6 w-6"
-                >
-                  <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" />
-                </svg>
-              </div>
-              <h3 className="mb-2 text-sm font-semibold text-gray-700">Phone</h3>
-              <a
-                href="tel:+91XXXXXXXXXX"
-                className="text-base font-medium text-green-600 hover:text-green-700"
-              >
-                +91-XXXXXXXXXX
-              </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex flex-col items-center rounded-xl bg-gray-50 p-6 text-center shadow-sm ring-1 ring-gray-200"
-            >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 text-purple-600">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="h-6 w-6"
-                >
-                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                </svg>
-              </div>
-              <h3 className="mb-2 text-sm font-semibold text-gray-700">Address</h3>
-              <p className="text-base text-gray-600">[Your Office Address]</p>
-            </motion.div>
-          </div>
-
-          {/* CTA buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-wrap items-center justify-center gap-4"
-          >
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 rounded-md bg-blue-600 px-8 py-3 text-base font-semibold text-white shadow-md transition hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-            >
-              Request Demo
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="h-5 w-5"
-              >
-                <path d="M13.5 4.5L21 12l-7.5 7.5-1.06-1.06L17.88 12l-5.44-5.44L13.5 4.5z" />
-              </svg>
-            </a>
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-8 py-3 text-base font-semibold text-gray-900 shadow-sm transition hover:bg-gray-50"
-            >
-              Contact Us
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="h-5 w-5"
-              >
-                <path d="M13.5 4.5L21 12l-7.5 7.5-1.06-1.06L17.88 12l-5.44-5.44L13.5 4.5z" />
-              </svg>
-            </a>
-          </motion.div>
-
-          {/* Design tip */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-10 rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 p-6 text-center"
-          >
-            <p className="text-sm text-gray-600">
-              💡 <strong>Design Tip:</strong> Use a light grey or white background with clean modern
-              icons for Email, Phone, and Address.
-            </p>
-          </motion.div>
         </motion.div>
       </div>
     </section>
