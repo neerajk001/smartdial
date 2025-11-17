@@ -68,7 +68,7 @@ const Contact = () => {
                       Phone   
                     </h3>      
                     <p className="text-base text-blue-300 transition-colors group-hover:text-white">
-                      +91-XXXXXXXXXX
+                      +91-95888 11101
                     </p>
                   </div>         
                 </a>    
@@ -82,7 +82,9 @@ const Contact = () => {
                       Office
                     </h3>
                     <p className="text-base text-slate-300">
-                      [Your Office Address, City, Pincode]
+                      B-203, 204, 205, Lawrence Trade Center,<br />
+                      Manikpur Road, Near Madhuram Hotel,<br />
+                      Vasai West 401202
                     </p>
                   </div>
                 </div>
@@ -146,7 +148,7 @@ const Contact = () => {
                 <div>
                   <button
                     type="submit"
-                    className="group inline-flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-blue-500/30 transition-all hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-0.5"
+                    className="group inline-flex w-full items-center justify-center gap-2 rounded-lg bg-linear-to-r from-blue-600 to-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-blue-500/30 transition-all hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-0.5"
                   >
                     Send Message
                     <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />

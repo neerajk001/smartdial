@@ -22,7 +22,7 @@ export default function ContactUs() {
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="KT VISION Carnival Cinemas Location"
+              title="Smart Dial Office Location"
             ></iframe>
             
             {/* Location Info Overlay */}
@@ -34,9 +34,9 @@ export default function ContactUs() {
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-sm font-bold text-gray-900">KT VISION Carnival Cinemas</h3>
+                  <h3 className="text-sm font-bold text-gray-900">Smart Dial Office</h3>
                   <p className="text-xs text-gray-600 mt-1 leading-relaxed">
-                    Panchal Nagar, Anand Nagar, Vasai West, Naigaon, Vasai-Virar, Maharashtra 401202
+                    B-203, 204, 205, Lawrence Trade Center, Manikpur Road, Near Madhuram Hotel, Vasai West 401202
                   </p>
                   <div className="mt-2 flex items-center gap-1">
                     <div className="flex text-yellow-500 text-xs">
@@ -45,7 +45,7 @@ export default function ContactUs() {
                     <span className="text-xs text-gray-600 ml-1">3.3 · 7,635 reviews</span>
                   </div>
                   <a 
-                    href="https://www.google.com/maps/dir/?api=1&destination=KT+VISION+Carnival+Cinemas,Vasai" 
+                    href="https://www.google.com/maps/dir/?api=1&destination=Lawrence+Trade+Center+Vasai+West" 
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 mt-2 text-xs text-blue-600 font-medium hover:text-blue-800"
@@ -73,15 +73,17 @@ export default function ContactUs() {
             
             {/* Location Info */}
             <div className="mb-6 p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
-              <h3 className="text-lg font-bold text-gray-900 mb-2">KT VISION Carnival Cinemas</h3>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Smart Dial Office</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Panchal Nagar, Anand Nagar, Vasai West,<br />
-                Naigaon, Vasai-Virar,<br />
-                Maharashtra 401202
+                B-203, 204, 205, Lawrence Trade Center,<br />
+                Manikpur Road, Near Madhuram Hotel,<br />
+                Vasai West 401202
               </p>
-              <div className="mt-3 flex items-center gap-2">
-                <span className="text-yellow-500">★★★★</span>
-                <span className="text-sm text-gray-600">3.3 · 7,635 reviews</span>
+              <div className="mt-3 flex items-center gap-3 text-gray-600">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <span className="font-medium">+91-95888 11101</span>
               </div>
             </div>
             
