@@ -1,101 +1,78 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HiCheckCircle, HiArrowRight } from 'react-icons/hi2';
+import { Check, ArrowRight } from 'lucide-react';
 
-// 1. Pricing data is stored in an array for easy management
+// Pricing data structure matching component
 const pricingData = {
   appAndWeb: [
     {
       name: "Quarterly",
-      duration: "3 Months",
-      price: "₹450 / ₹360",
-      discount: "Discount: 20%",
-      effectivePrice: "Effective Price (per User/Month) ₹120",
-      features: [
-        "Full access to all features",
-        "Priority support",
-        "Unlimited team members",
-      ],
-      isPopular: false,
+      originalPrice: "₹450",
+      price: "₹360",
+      cycle: "per user / 3 months",
+      discount: "Save 20%",
+      eff: "₹120",
+      featured: false,
     },
     {
       name: "Half Yearly",
-      duration: "6 Months",
-      price: "₹900 / ₹630",
-      discount: "Discount: 30%",
-      effectivePrice: "Effective Price (per User/Month) ₹105",
-      features: [
-        "Full access to all features",
-        "Priority support",
-        "Unlimited team members",
-      ],
-      isPopular: true,
+      originalPrice: "₹900",
+      price: "₹630",
+      cycle: "per user / 6 months",
+      discount: "Save 30%",
+      eff: "₹105",
+      featured: true,
     },
     {
-      name: "Monthly",
-      duration: "12 Months",
-      price: "₹1800 / ₹900",
-      discount: "Discount: 50%",
-      effectivePrice: "Effective Price (per User/Month) ₹75",
-      features: [
-        "Full access to all features",
-        "Priority support",
-        "Unlimited team members",
-      ],
-      isPopular: false,
+      name: "Yearly",
+      originalPrice: "₹1800",
+      price: "₹900",
+      cycle: "per user / 12 months",
+      discount: "Save 50%",
+      eff: "₹75",
+      featured: false,
     },
   ],
   webOnly: [
     {
       name: "Quarterly",
-      duration: "3 Months",
-      price: "₹300 / ₹240",
-      discount: "Discount: 20%",
-      effectivePrice: "Effective Price (per User/Month) ₹80",
-      features: [
-        "Full access to all features",
-        "Priority support",
-        "Unlimited team members",
-      ],
-      isPopular: false,
+      originalPrice: "₹300",
+      price: "₹240",
+      cycle: "per user / 3 months",
+      discount: "Save 20%",
+      eff: "₹80",
+      featured: false,
     },
     {
       name: "Half Yearly",
-      duration: "6 Months",
-      price: "₹600 / ₹420",
-      discount: "Discount: 30%",
-      effectivePrice: "Effective Price (per User/Month) ₹70",
-      features: [
-        "Full access to all features",
-        "Priority support",
-        "Unlimited team members",
-      ],
-      isPopular: true,
+      originalPrice: "₹600",
+      price: "₹420",
+      cycle: "per user / 6 months",
+      discount: "Save 30%",
+      eff: "₹70",
+      featured: true,
     },
     {
-      name: "Monthly",
-      duration: "12 Months",
-      price: "₹1200 / ₹600",
-      discount: "Discount: 50%",
-      effectivePrice: "Effective Price (per User/Month) ₹50",
-      features: [
-        "Full access to all features",
-        "Priority support",
-        "Unlimited team members",
-      ],
-      isPopular: false,
+      name: "Yearly",
+      originalPrice: "₹1200",
+      price: "₹600",
+      cycle: "per user / 12 months",
+      discount: "Save 50%",
+      eff: "₹50",
+      featured: false,
     },
   ],
 };
 
-// 2. Framer Motion variants
+// Framer Motion variants
 const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 18, scale: 0.98 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
-      delay: i * 0.1, // Stagger effect
+      delay: i * 0.1,
       type: "spring",
       stiffness: 100,
       damping: 12,
@@ -103,46 +80,51 @@ const cardVariants = {
   }),
 };
 
-// 3. The main Pricing component
 export default function Pricing() {
   const [planType, setPlanType] = useState('appAndWeb');
-
-  const pricingPlans = planType === 'appAndWeb' ? pricingData.appAndWeb : pricingData.webOnly;
+  const data = planType === 'appAndWeb' ? pricingData.appAndWeb : pricingData.webOnly;
 
   return (
-    <section className="py-24 bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <section className="relative isolate overflow-hidden bg-white py-24">
+      {/* background accents */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-size-[22px_22px]"
+      />
+      <div className="absolute -top-24 -right-24 -z-10 h-72 w-72 rounded-full bg-indigo-500/5 blur-3xl" />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* --- Header --- */}
         <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">
+          <h2 className="text-4xl font-bold text-slate-900 sm:text-5xl">
             Choose a plan that grows with you
           </h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg text-slate-600">
             Transparent pricing with all features included and priority support for every plan.
           </p>
         </div>
 
         {/* --- Toggle Switch --- */}
         <div className="flex justify-center mt-10">
-          <div className="relative flex p-1 bg-white border border-gray-200 rounded-lg shadow-sm">
+          <div className="relative flex p-1 bg-slate-50 border border-slate-200 rounded-full shadow-sm">
             {['appAndWeb', 'webOnly'].map((type) => (
               <button
                 key={type}
                 onClick={() => setPlanType(type)}
-                className="relative px-6 py-2 text-sm font-semibold z-10 whitespace-nowrap"
+                className="relative px-6 py-2 text-sm font-medium z-10 whitespace-nowrap rounded-full"
               >
                 {planType === type && (
                   <motion.div
                     layoutId="planToggle"
-                    className="absolute inset-0 bg-indigo-600 rounded-md shadow-md"
+                    className="absolute inset-0 bg-slate-900 rounded-full shadow-md"
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
                 )}
                 <span className={`relative ${
                   planType === type 
                     ? 'text-white' 
-                    : 'text-gray-600'
+                    : 'text-slate-700'
                 }`}>
                   {type === 'appAndWeb' ? 'App & Web CRM' : 'Web CRM only'}
                 </span>
@@ -152,87 +134,128 @@ export default function Pricing() {
         </div>
 
         {/* --- Pricing Cards Grid --- */}
-        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {pricingPlans.map((plan, index) => (
-            <motion.div
-              key={plan.name}
-              custom={index}
-              initial="hidden"
-              animate="visible"
-              variants={cardVariants}
-              className={`
-                border rounded-2xl p-8 flex flex-col
-                ${
-                  plan.isPopular
-                    ? 'bg-linear-to-br from-indigo-600 to-purple-600 text-white border-indigo-400 shadow-2xl transform scale-105'
-                    : 'bg-white border-gray-200 shadow-lg hover:shadow-xl'
-                }
-                relative
-              `}
-            >
-              {/* Popular Badge */}
-              {plan.isPopular && (
-                <div className="absolute top-0 -translate-y-1/2 right-6 bg-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                  Popular
-                </div>
-              )}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={planType}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="mt-12 grid gap-6 md:grid-cols-3"
+          >
+            {data.map((p, i) => {
+              const featured = p.featured;
+              return (
+                <motion.div
+                  key={p.name}
+                  custom={i}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                  className={`relative overflow-hidden rounded-2xl p-6 ring-1 ${
+                    featured
+                      ? 'bg-linear-to-b from-slate-900 to-slate-800 ring-slate-700 shadow-2xl shadow-indigo-500/20'
+                      : 'bg-white ring-slate-200'
+                  }`}
+                >
+                  {/* Popular Badge */}
+                  {featured && (
+                    <div className="absolute right-0 top-0 rounded-bl-lg bg-linear-to-r from-pink-500 to-indigo-500 px-4 py-1 text-xs font-semibold text-white">
+                      Popular
+                    </div>
+                  )}
 
-              {/* Plan Details */}
-              <h3 className="text-2xl font-bold">{plan.name}</h3>
-              <p className={`mt-1 text-sm ${
-                plan.isPopular ? 'text-gray-300' : 'text-gray-500'
-              }`}>
-                {plan.duration}
-              </p>
+                  <div className="mb-4">
+                    <h3
+                      className={`text-lg font-semibold ${
+                        featured ? 'text-white' : 'text-slate-900'
+                      }`}
+                    >
+                      {p.name}
+                    </h3>
+                  </div>
 
-              {/* Price */}
-              <div className="mt-6">
-                <div className="text-3xl font-extrabold tracking-tight">
-                  {plan.price}
-                </div>
-              </div>
+                  {/* Price display with strike-through */}
+                  <div className="flex items-baseline gap-2">
+                    <span
+                      className={`text-3xl font-semibold leading-none ${
+                        featured ? 'text-white' : 'text-slate-900'
+                      }`}
+                    >
+                      {p.price}
+                    </span>
+                    <span
+                      className={`text-lg ${
+                        featured ? 'text-slate-400' : 'text-slate-500'
+                      } line-through`}
+                    >
+                      {p.originalPrice}
+                    </span>
+                  </div>
+                  <p className={`mt-1 text-sm ${featured ? 'text-slate-300' : 'text-slate-500'}`}>
+                    {p.cycle}
+                  </p>
 
-              {/* Discounts */}
-              <div className="mt-4 space-y-1 text-sm">
-                <p className={`font-semibold ${
-                  plan.isPopular ? 'text-indigo-300' : 'text-indigo-600'
-                }`}>
-                  {plan.discount}
-                </p>
-                <p className={plan.isPopular ? 'text-gray-300' : 'text-gray-500'}>
-                  {plan.effectivePrice}
-                </p>
-              </div>
+                  <div className="mt-4 text-sm">
+                    <p className={`${featured ? 'text-indigo-300' : 'text-indigo-600'} font-medium`}>
+                      {p.discount}
+                    </p>
+                    {/* Effective price display */}
+                    <p className={`mt-1 ${featured ? 'text-slate-300' : 'text-slate-600'}`}>
+                      <span className={`font-semibold ${featured ? 'text-white' : 'text-slate-800'}`}>
+                        {p.eff}
+                      </span>
+                      <span className="text-xs"> / effective per month</span>
+                    </p>
+                  </div>
 
-              {/* Features */}
-              <ul className="mt-8 space-y-3 grow">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-2">
-                    <HiCheckCircle className="w-5 h-5 text-green-500" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
+                  <ul className="mt-5 space-y-2 text-sm">
+                    {[
+                      "Full access to all features",
+                      "Priority support",
+                      "Unlimited team members",
+                    ].map((f) => (
+                      <li
+                        key={f}
+                        className={`flex items-center gap-2 ${
+                          featured ? 'text-slate-200' : 'text-slate-700'
+                        }`}
+                      >
+                        <Check
+                          className={`h-4 w-4 shrink-0 ${
+                            featured ? 'text-emerald-300' : 'text-emerald-600'
+                          }`}
+                          strokeWidth="3"
+                        />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
 
-              {/* Button */}
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-                className={`
-                  w-full mt-10 py-3 px-6 rounded-lg font-semibold flex items-center justify-center gap-2
-                  transition-colors
-                  ${
-                    plan.isPopular
-                      ? 'bg-white text-indigo-600 hover:bg-gray-100'
-                      : 'bg-indigo-600 text-white hover:bg-indigo-700'
-                  }
-                `}
-              >
-                Purchase Now
-                <HiArrowRight className="w-4 h-4" />
-              </motion.button>
-            </motion.div>
-          ))}
+                  <div className="mt-6">
+                    <a
+                      href="#"
+                      className={`inline-flex w-full items-center justify-center rounded-full px-4 py-2.5 text-sm font-medium transition ${
+                        featured
+                          ? 'bg-white text-slate-900 hover:bg-slate-200'
+                          : 'bg-slate-900 text-white hover:bg-slate-700'
+                      }`}
+                    >
+                      Purchase Now
+                      <ArrowRight className="ml-1.5 h-4 w-4" />
+                    </a>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Footnote */}
+        <div className="mt-8 text-center text-xs text-slate-500">
+          Prices shown are illustrative; taxes may apply. Change or cancel anytime.
         </div>
       </div>
     </section>

@@ -27,7 +27,7 @@ const Header = () => {
       {/* Reduce vertical padding slightly so increasing logo size doesn't grow the header */}
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:py-4">
         {/* Left: Brand (Logo) */}
-        <Link to="/" className="inline-flex items-center" aria-label="Home">
+        <Link to="/" className="inline-flex items-center gap-3" aria-label="Home">
           <img
             src="/Smart-Dial-Final-01.png"
             alt="Smart Dial logo"
@@ -35,6 +35,7 @@ const Header = () => {
             decoding="async"  
             loading="eager"
           />
+          <span className="text-xl font-bold text-slate-900">Smart Dial</span>
         </Link>
 
         {/* Center: Nav pill */}

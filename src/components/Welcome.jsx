@@ -13,130 +13,145 @@ const group = {
 };
 
 const chipCls =
-  "rounded-full bg-black/5 px-3 py-1 text-xs text-gray-600 ring-1 ring-black/5";
+  "rounded-full bg-white/70 backdrop-blur-md px-3 py-1 text-xs font-medium text-gray-700 shadow-sm ring-1 ring-black/10";
 
 const Welcome = () => {
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 200], [0, -12]);
+  const y = useTransform(scrollY, [0, 200], [0, -10]);
 
   return (
     <section className="relative isolate overflow-hidden bg-white">
-      {/* Grid background */}
+      {/* Subtle grid pattern */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.06)_1px,transparent_1px)] [background-size:22px_22px]"
       />
-      {/* Soft gradients */}
-      <div className="absolute -top-24 -right-24 -z-10 h-72 w-72 rounded-full bg-gradient-to-tr from-indigo-200 via-fuchsia-200 to-pink-200 blur-3xl opacity-60" />
-      <div className="absolute -bottom-20 -left-20 -z-10 h-72 w-72 rounded-full bg-gradient-to-tr from-cyan-200 via-sky-200 to-indigo-200 blur-3xl opacity-50" />
 
-      <div className="mx-auto max-w-7xl px-4 py-16 md:py-20">
-        <div className="grid items-center gap-10 md:grid-cols-2">
-          {/* Copy */}
+      {/* Soft gradient glows */}
+      <div className="absolute -top-28 -right-24 -z-10 h-96 w-96 rounded-full bg-gradient-to-br from-indigo-200 via-violet-200 to-rose-200 blur-3xl opacity-60" />
+      <div className="absolute -bottom-24 -left-24 -z-10 h-80 w-80 rounded-full bg-gradient-to-br from-sky-200 via-cyan-200 to-indigo-300 blur-3xl opacity-50" />
+
+      <div className="mx-auto max-w-7xl px-4 py-20">
+        <div className="grid items-center gap-14 md:grid-cols-2">
+
+          {/* LEFT CONTENT */}
           <motion.div variants={group} initial="hidden" animate="show">
-            <motion.div variants={text} className="mb-5 flex flex-wrap gap-2">
+
+            {/* Chips */}
+            <motion.div variants={text} className="mb-6 flex flex-wrap gap-2">
               <span className={chipCls}>Automation</span>
               <span className={chipCls}>Lead Management</span>
               <span className={chipCls}>Analytics</span>
             </motion.div>
 
+            {/* Title */}
             <motion.h1
               variants={text}
-              className="text-4xl font-semibold leading-tight text-gray-900 md:text-5xl"
+              className="text-5xl font-extrabold leading-tight text-gray-900 md:text-6xl"
             >
-              Welcome to{" "}
+              The Modern Way to Run{" "}
               <span className="bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 bg-clip-text text-transparent">
-                Smart Dial
+                DSA Operations
               </span>
             </motion.h1>
 
+            {/* Accent line */}
+            <motion.div
+              variants={text}
+              className="mt-3 h-1.5 w-32 rounded-full bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600"
+            />
+
+            {/* Description */}
             <motion.p
               variants={text}
-              className="mt-4 max-w-xl text-base leading-7 text-gray-600"
+              className="mt-5 max-w-xl text-lg font-medium leading-8 text-gray-700"
             >
-              An advanced telecalling and lead platform that streamlines calls,
-              captures follow‑ups, and surfaces insights with a real‑time dashboard,
-              helping teams work faster with less manual effort.
+              Smart Dial makes telecalling, follow-ups, loan tracking, and reporting effortless.  
+              A lightweight, powerful CRM for teams who want speed, structure, and accuracy.
             </motion.p>
 
-            <motion.ul variants={group} className="mt-6 space-y-2">
-              <motion.li variants={text} className="flex items-start gap-3 text-sm text-gray-700">
+            {/* Points */}
+            <motion.ul variants={group} className="mt-6 space-y-3">
+              <motion.li variants={text} className="flex items-start gap-3 text-sm text-gray-800">
                 <span className="mt-1 inline-block h-2 w-2 rounded-full bg-indigo-500" />
-                Seamless web-based app with secure customer records and follow‑ups.
+                Web-first workflow automation with secure customer records.
               </motion.li>
-              <motion.li variants={text} className="flex items-start gap-3 text-sm text-gray-700">
+              <motion.li variants={text} className="flex items-start gap-3 text-sm text-gray-800">
                 <span className="mt-1 inline-block h-2 w-2 rounded-full bg-fuchsia-500" />
-                MIS reports and dashboards to analyze performance and make decisions.
+                Smart dashboards + MIS insights to measure conversions.
               </motion.li>
-              <motion.li variants={text} className="flex items-start gap-3 text-sm text-gray-700">
+              <motion.li variants={text} className="flex items-start gap-3 text-sm text-gray-800">
                 <span className="mt-1 inline-block h-2 w-2 rounded-full bg-rose-500" />
-                Organized, transparent, and result‑driven workflows for your team.
+                Cleaner workflows for better quality, higher productivity.
               </motion.li>
             </motion.ul>
 
-            <motion.div variants={text} className="mt-8 flex items-center gap-3">
+            {/* CTAs */}
+            <motion.div variants={text} className="mt-8 flex items-center gap-4">
               <a
                 href="#"
-                className="rounded-full bg-gray-900 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:brightness-110"
+                className="rounded-full bg-gray-900 px-6 py-3 text-sm font-medium text-white shadow-md transition hover:scale-105 hover:brightness-110"
               >
                 Get Started
               </a>
               <a
                 href="#"
-                className="rounded-full border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-50"
+                className="rounded-full border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900 hover:bg-gray-50 transition hover:scale-105"
               >
                 Book a Demo
               </a>
             </motion.div>
 
-            {/* Author/meta */}
-            <motion.div variants={text} className="mt-8 flex items-center gap-3">
+            {/* Meta */}
+            <motion.div variants={text} className="mt-6 flex items-center gap-3">
               <div className="h-7 w-7 rounded-full bg-gray-300" />
-              <div className="text-sm text-gray-600">Published Oct 30, 2025 • 9 min read</div>
+              <div className="text-sm text-gray-600">Updated Nov 2025 • 1 min overview</div>
             </motion.div>
           </motion.div>
 
-          {/* Visual */}
+          {/* RIGHT VISUAL */}
           <motion.div
             style={{ y }}
-            initial={{ opacity: 0, scale: 0.98 }}
+            initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
             className="relative"
           >
+            {/* Glow on hover */}
             <motion.div
-              whileHover={{ y: -6 }}
-              transition={{ type: "spring", stiffness: 200, damping: 18 }}
-              className="overflow-hidden rounded-xl ring-1 ring-black/10 shadow-xl bg-white"
+              whileHover={{ scale: 1.015 }}
+              transition={{ type: "spring", stiffness: 180, damping: 18 }}
+              className="overflow-hidden rounded-2xl ring-1 ring-black/10 shadow-xl bg-white"
             >
-              {/* Replace with your image */}
+              {/* Replace with your custom banner later */}
               <motion.img
-                src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop"
-                alt="Team working"
-                className="h-72 w-full object-cover md:h-[380px]"
-                initial={{ scale: 1.03 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.9, ease: "easeOut" }}
-              />
+  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop"
+  alt="Team Working"
+  className="h-80 w-full object-cover md:h-[420px]"
+  initial={{ scale: 1.05 }}
+  animate={{ scale: 1 }}
+  transition={{ duration: 1, ease: "easeOut" }}
+/>
+
             </motion.div>
 
-            {/* Floating glass card */}
+            {/* Small Glass Popup */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-              className="absolute bottom-4 right-4 hidden max-w-sm rounded-lg bg-white/80 p-3 shadow-lg backdrop-blur-md ring-1 ring-black/10 md:block"
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
+              className="absolute bottom-4 right-4 hidden max-w-xs rounded-xl bg-white/80 p-3 shadow-lg backdrop-blur-md ring-1 ring-black/10 md:block"
             >
-              <div className="text-xs font-medium text-gray-700">Live Queue</div>
-              <div className="mt-2 flex items-center gap-3">
-                <span className="text-2xl font-semibold text-indigo-600">48</span>
-                <span className="text-xs text-gray-500">active calls</span>
+              <div className="text-xs font-semibold text-gray-700">Today’s Calls</div>
+              <div className="mt-1 flex items-center gap-2">
+                <span className="text-2xl font-bold text-indigo-600">136</span>
+                <span className="text-xs text-gray-500">completed</span>
               </div>
               <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-gray-200">
                 <motion.div
-                  initial={{ width: "30%" }}
-                  animate={{ width: "68%" }}
-                  transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+                  initial={{ width: "20%" }}
+                  animate={{ width: "75%" }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
                   className="h-full bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-rose-500"
                 />
               </div>
