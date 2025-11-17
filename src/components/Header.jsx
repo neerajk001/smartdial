@@ -54,18 +54,24 @@ const Header = () => {
         </nav>
 
         {/* Right: Auth buttons */}
-        <div className="hidden items-center gap-4 md:flex">
+        <div className="hidden items-center gap-3 md:flex">
           <Link
             to="/login"
-            className="text-sm text-gray-800 transition-colors hover:text-black bg-gray-100 px-5 py-2.5 rounded-full"
+            className="group flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-slate-700 transition-all hover:text-slate-900 hover:bg-slate-50 rounded-full border border-slate-300 hover:border-slate-400"
           >
-            Log in
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+            </svg>
+            <span>Log in</span>
           </Link>
           <Link
             to="/login"
-            className="rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:brightness-105"
+            className="group flex items-center gap-2 rounded-full bg-linear-to-r from-blue-600 to-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition-all hover:shadow-xl hover:shadow-blue-500/40 hover:scale-105"
           >
-            Sign Up
+            <span>Sign Up</span>
+            <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
           </Link>
         </div>
 
@@ -111,17 +117,23 @@ const Header = () => {
             <div className="mt-4 flex items-center justify-end gap-3">
               <Link
                 to="/login"
-                className="text-sm text-gray-800 transition-colors hover:text-black"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 transition-all hover:text-slate-900 hover:bg-slate-50 rounded-full border border-slate-300"
                 onClick={() => setOpen(false)}
               >
-                Log in
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                </svg>
+                <span>Log in</span>
               </Link>
               <Link
                 to="/login"
-                className="rounded-full bg-linear-to-b from-pink-300 to-pink-500 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:brightness-105"
+                className="flex items-center gap-2 rounded-full bg-linear-to-r from-blue-600 to-indigo-600 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/30"
                 onClick={() => setOpen(false)}
               >
-                Sign Up
+                <span>Sign Up</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
               </Link>
             </div>
           </div>

@@ -145,7 +145,7 @@ const Login = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="mt-6 text-center"
-              >   
+              > 
                 <h3 className="text-xl font-bold text-slate-900 mb-2">
                   Mobile + Web Application
                 </h3>
