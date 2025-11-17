@@ -55,18 +55,18 @@ const Header = () => {
 
         {/* Right: Auth buttons */}
         <div className="hidden items-center gap-4 md:flex">
-          <a
-            href="#"
-            className="text-sm text-gray-800 transition-colors hover:text-black bg-gray-100"
+          <Link
+            to="/login"
+            className="text-sm text-gray-800 transition-colors hover:text-black bg-gray-100 px-5 py-2.5 rounded-full"
           >
             Log in
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/login"
             className="rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:brightness-105"
           >
             Sign Up
-          </a>
+          </Link>
         </div>
 
         {/* Mobile menu button */}
@@ -109,18 +109,20 @@ const Header = () => {
               ))}
             </div>
             <div className="mt-4 flex items-center justify-end gap-3">
-              <a
-                href="#"
+              <Link
+                to="/login"
                 className="text-sm text-gray-800 transition-colors hover:text-black"
+                onClick={() => setOpen(false)}
               >
                 Log in
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="/login"
                 className="rounded-full bg-linear-to-b from-pink-300 to-pink-500 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:brightness-105"
+                onClick={() => setOpen(false)}
               >
                 Sign Up
-              </a>
+              </Link>
             </div>
           </div>
         </div>

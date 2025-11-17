@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
 import About from './components/About.jsx'
@@ -17,11 +17,15 @@ import AboutPage from './pages/About.jsx'
 import FeaturesPage from './pages/Features.jsx'
 import PricingPage from './pages/Pricing.jsx'
 import ContactUsPage from './pages/ContactUs.jsx'
+import LoginPage from './pages/Login.jsx'
 
 const App = () => {
+  const location = useLocation();
+  const isLoginPage = location.pathname === '/login';
+
   return (
     <div>
-      <Header />
+      {!isLoginPage && <Header />}
       <Routes>
         <Route path="/" element={
           <>
@@ -42,8 +46,9 @@ const App = () => {
         <Route path="/features" element={<FeaturesPage />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/contact" element={<ContactUsPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
-      <Footer />
+      {!isLoginPage && <Footer />}
     </div>
   )
 }

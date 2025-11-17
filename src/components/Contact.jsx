@@ -4,16 +4,16 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 
 const Contact = () => {
-  return (
+  return (    
     // 1. Kept the light gradient background
     <section className="w-full bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       <div className="mx-auto max-w-7xl px-4 py-16 md:py-20">
-        
+                                     
         {/* 2. NEW: High-Contrast "Contact Hub" Card */}
-        <motion.div
+        <motion.div      
           initial={{ opacity: 0, y: 30, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true }}    
           transition={{ duration: 0.7, ease: "easeOut" }}
           // This card is the new centerpiece
           className="mx-auto max-w-6xl overflow-hidden rounded-2xl shadow-2xl shadow-blue-900/20 border border-slate-200/70"
@@ -21,11 +21,11 @@ const Contact = () => {
           {/* 3. NEW: Internal Grid for 50/50 Split */}
           <div className="grid lg:grid-cols-2">
             
-            {/* --- LEFT (INFO) - Dark Side --- */}
+            {/* --- LEFT (INFO) - Dark Side --- */}      
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true }} 
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="bg-slate-900 p-8 md:p-12"
             >
@@ -35,18 +35,18 @@ const Contact = () => {
               <p className="mb-8 max-w-2xl text-lg leading-7 text-slate-300">
                 Let's connect and show you how Smart Dial can transform your
                 loan sales process.
-              </p>
-
+              </p>     
+            
               {/* Redesigned Info List for Dark Mode */}
-              <div className="space-y-6">
-                <a
-                  href="mailto:info@smartdial.in"
+              <div className="space-y-6">    
+                <a    
+                  href="mailto:info@smartdial.in"    
                   className="flex items-start gap-4 group"
-                >
+                >    
                   <div className="flex-shrink-0 rounded-lg bg-blue-900/50 p-3 text-blue-300 transition-colors group-hover:bg-blue-800">
                     <Mail className="h-6 w-6" />
                   </div>
-                  <div>
+                  <div>      
                     <h3 className="text-xl font-semibold text-white">
                       Email
                     </h3>
@@ -62,16 +62,16 @@ const Contact = () => {
                 >
                   <div className="flex-shrink-0 rounded-lg bg-blue-900/50 p-3 text-blue-300 transition-colors group-hover:bg-blue-800">
                     <Phone className="h-6 w-6" />
-                  </div>
+                  </div>   
                   <div>
                     <h3 className="text-xl font-semibold text-white">
-                      Phone
-                    </h3>
+                      Phone   
+                    </h3>      
                     <p className="text-base text-blue-300 transition-colors group-hover:text-white">
                       +91-XXXXXXXXXX
                     </p>
-                  </div>
-                </a>
+                  </div>         
+                </a>    
 
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 rounded-lg bg-blue-900/50 p-3 text-blue-300">
