@@ -1,7 +1,7 @@
 // Contact.jsx
 import React from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowRight, Instagram } from "lucide-react";
 
 const Contact = () => {
   return (    
@@ -88,6 +88,25 @@ const Contact = () => {
                     </p>
                   </div>
                 </div>
+
+                <a
+                  href="https://www.instagram.com/__smartsolutions__/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-4 group"
+                >
+                  <div className="shrink-0 rounded-lg bg-blue-900/50 p-3 text-blue-300 transition-colors group-hover:bg-blue-800">
+                    <Instagram className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white">
+                      Instagram
+                    </h3>
+                    <p className="text-base text-blue-300 transition-colors group-hover:text-white">
+                      @__smartsolutions__
+                    </p>
+                  </div>
+                </a>
               </div>
             </motion.div>
 

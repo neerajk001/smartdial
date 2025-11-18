@@ -1,135 +1,183 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Target, Eye, Heart, Lightbulb, Shield, Users, TrendingUp, Award, ArrowRight, CheckCircle, Zap } from 'lucide-react';
 
 const About = () => {
   const container = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.2 }
+      transition: { staggerChildren: 0.15 }
     }
   };
 
   const item = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-linear-to-br from-blue-600 via-indigo-700 to-purple-800 py-20 text-white">
-        <div className="pointer-events-none absolute right-0 top-0 -z-10 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
-        <div className="pointer-events-none absolute bottom-0 left-0 -z-10 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
+    <div className="min-h-screen bg-slate-50">
+      {/* Hero Section with Gradient */}
+      <section className="relative overflow-hidden bg-linear-to-br from-blue-600 via-indigo-600 to-purple-700 py-24 md:py-32 text-white">
+        <div className="pointer-events-none absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-white/10 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-white/10 blur-3xl" />
         
-        <div className="mx-auto max-w-7xl px-4">
+        <div className="relative mx-auto max-w-7xl px-4">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center"
           >
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-medium backdrop-blur-sm">
+              <Zap className="h-4 w-4" />
+              <span>Powering 10,000+ Users Nationwide</span>
+            </div>
             <h1 className="text-5xl font-extrabold tracking-tight md:text-6xl lg:text-7xl">
               About Smart Dial
             </h1>
-            <p className="mx-auto mt-6 max-w-3xl text-xl text-blue-100">
-              Empowering DSAs and financial teams with cutting-edge CRM technology to streamline operations and accelerate growth.
+            <p className="mx-auto mt-6 max-w-3xl text-xl md:text-2xl text-blue-50 leading-relaxed">
+              Transforming how DSAs and financial teams operate with intelligent CRM solutions built for growth and efficiency.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Our Story Section */}
-      <section className="py-20">
+      {/* Our Story Section - Enhanced */}
+      <section className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4">
           <motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid gap-12 md:grid-cols-2 items-center"
+            className="grid gap-12 lg:grid-cols-2 items-center"
           >
-            <motion.div variants={item}>
-              <h2 className="text-4xl font-bold text-slate-900">Our Story</h2>
-              <p className="mt-6 text-lg leading-8 text-gray-600">
-                Smart Dial was born from a simple observation: DSA teams and financial professionals needed a better way to manage their customer relationships and daily operations.
-              </p>
-              <p className="mt-4 text-lg leading-8 text-gray-600">
-                Traditional CRM systems were either too complex, too expensive, or not designed with the unique needs of the financial services industry in mind. We set out to change that.
-              </p>
-              <p className="mt-4 text-lg leading-8 text-gray-600">
-                Today, Smart Dial serves over 500+ DSA teams across India, helping them close more deals, manage their pipelines more effectively, and grow their businesses with confidence.
-              </p>
+            <motion.div variants={item} className="order-2 lg:order-1">
+              <div className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700 mb-6">
+                <Award className="h-4 w-4" />
+                Our Journey
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
+                Built for <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600">Financial Teams</span>
+              </h2>
+              <div className="mt-6 space-y-4">
+                <p className="text-lg leading-8 text-gray-700">
+                  Smart Dial was born from a simple yet powerful observation: DSA teams and financial professionals needed a CRM that truly understands their workflow.
+                </p>
+                <p className="text-lg leading-8 text-gray-700">
+                  Traditional systems were either too complex, overpriced, or lacked the specialized features that financial services demand. We built Smart Dial to bridge that gap.
+                </p>
+                <p className="text-lg leading-8 text-gray-700">
+                  Today, we proudly serve 500+ DSA teams across India, helping them close more deals, streamline operations, and accelerate their business growth.
+                </p>
+              </div>
+              
+              <div className="mt-8 grid grid-cols-2 gap-4">
+                <div className="rounded-xl bg-blue-50 p-5 border border-blue-100">
+                  <div className="text-3xl font-bold text-blue-600">500+</div>
+                  <div className="mt-1 text-sm font-medium text-gray-600">DSA Teams</div>
+                </div>
+                <div className="rounded-xl bg-indigo-50 p-5 border border-indigo-100">
+                  <div className="text-3xl font-bold text-indigo-600">10K+</div>
+                  <div className="mt-1 text-sm font-medium text-gray-600">Active Users</div>
+                </div>
+              </div>
             </motion.div>
 
-            <motion.div variants={item} className="relative">
-              <div className="overflow-hidden rounded-2xl shadow-2xl">
+            <motion.div variants={item} className="order-1 lg:order-2 relative">
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl shadow-blue-900/20 border-4 border-white max-w-md mx-auto lg:max-w-lg">
                 <img
                   src="/Smart-Dial-Final-01.png"
-                  alt="Smart Dial Team"
-                  className="h-full w-full object-cover"
+                  alt="Smart Dial Platform"
+                  className="h-full w-full object-contain"
                 />
+                <div className="absolute inset-0 bg-linear-to-t from-blue-900/40 to-transparent"></div>
+              </div>
+              {/* Floating Badge */}
+              <div className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 rounded-2xl bg-white p-4 md:p-6 shadow-2xl border border-gray-100">
+                <div className="flex items-center gap-2 md:gap-3">
+                  <div className="rounded-full bg-amber-100 p-2 md:p-3">
+                    <Award className="h-5 w-5 md:h-6 md:w-6 text-amber-600" />
+                  </div>
+                  <div>
+                    <div className="text-xl md:text-2xl font-bold text-slate-900">4.9/5</div>
+                    <div className="text-xs md:text-sm text-gray-600">Rating</div>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="bg-slate-900 py-20 text-white">
-        <div className="mx-auto max-w-7xl px-4">
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="grid gap-8 md:grid-cols-2"
-          >
-            <motion.div
-              variants={item}
-              className="rounded-2xl bg-linear-to-br from-blue-600 to-indigo-600 p-8 shadow-xl"
-            >
-              <div className="mb-4 inline-flex rounded-full bg-white/20 p-3">
-                <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="text-3xl font-bold">Our Mission</h3>
-              <p className="mt-4 text-lg leading-7 text-blue-100">
-                To empower DSA teams with intelligent, easy-to-use technology that simplifies lead management, enhances productivity, and drives sustainable growth in the financial services sector.
-              </p>
-            </motion.div>
-
-            <motion.div
-              variants={item}
-              className="rounded-2xl bg-linear-to-br from-purple-600 to-pink-600 p-8 shadow-xl"
-            >
-              <div className="mb-4 inline-flex rounded-full bg-white/20 p-3">
-                <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-              </div>
-              <h3 className="text-3xl font-bold">Our Vision</h3>
-              <p className="mt-4 text-lg leading-7 text-purple-100">
-                To become the leading CRM platform for DSAs across India, known for innovation, reliability, and exceptional customer success. We envision a future where every financial professional has access to world-class tools.
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Core Values */}
-      <section className="py-20">
+      {/* Mission & Vision - Modern Cards */}
+      <section className="bg-slate-900 py-20 md:py-28 text-white">
         <div className="mx-auto max-w-7xl px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center"
+            className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-slate-900">Our Core Values</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+            <h2 className="text-4xl md:text-5xl font-bold">Mission & Vision</h2>
+            <p className="mt-4 text-xl text-slate-300">What drives us forward every day</p>
+          </motion.div>
+
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid gap-8 lg:grid-cols-2"
+          >
+            <motion.div
+              variants={item}
+              className="group relative overflow-hidden rounded-2xl bg-linear-to-br from-blue-500 to-indigo-600 p-10 shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:-translate-y-2"
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+              <div className="relative">
+                <div className="mb-6 inline-flex rounded-2xl bg-white/20 p-4 backdrop-blur-sm">
+                  <Target className="h-10 w-10" />
+                </div>
+                <h3 className="text-3xl md:text-4xl font-bold mb-4">Our Mission</h3>
+                <p className="text-lg leading-8 text-blue-50">
+                  To empower DSA teams with intelligent, intuitive technology that simplifies lead management, boosts productivity, and fuels sustainable growth in the financial sector.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={item}
+              className="group relative overflow-hidden rounded-2xl bg-linear-to-br from-purple-500 to-pink-600 p-10 shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 hover:-translate-y-2"
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+              <div className="relative">
+                <div className="mb-6 inline-flex rounded-2xl bg-white/20 p-4 backdrop-blur-sm">
+                  <Eye className="h-10 w-10" />
+                </div>
+                <h3 className="text-3xl md:text-4xl font-bold mb-4">Our Vision</h3>
+                <p className="text-lg leading-8 text-purple-50">
+                  To be India's #1 CRM platform for DSAs, renowned for innovation, reliability, and customer success. We're building a future where every financial professional has access to world-class tools.
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Core Values - Icon Grid */}
+      <section className="py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900">Our Core Values</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600">
               The principles that guide everything we do
             </p>
           </motion.div>
@@ -139,110 +187,163 @@ const About = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="mt-16 grid gap-8 md:grid-cols-3"
+            className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
           >
             {[
               {
                 title: "Customer First",
-                description: "We put our customers at the center of everything we do, constantly listening and evolving based on their needs.",
-                icon: "❤️"
+                description: "Our customers are at the heart of everything. We listen, adapt, and evolve based on their needs.",
+                icon: Heart,
+                color: "from-red-500 to-pink-500",
+                bgColor: "bg-red-50",
+                borderColor: "border-red-200"
               },
               {
                 title: "Innovation",
-                description: "We embrace change and continuously push boundaries to deliver cutting-edge solutions that make a difference.",
-                icon: "💡"
+                description: "We embrace change and push boundaries to deliver cutting-edge solutions that make a real difference.",
+                icon: Lightbulb,
+                color: "from-yellow-500 to-orange-500",
+                bgColor: "bg-yellow-50",
+                borderColor: "border-yellow-200"
               },
               {
                 title: "Integrity",
-                description: "We operate with transparency, honesty, and ethical practices in all our business relationships.",
-                icon: "🤝"
+                description: "Transparency, honesty, and ethical practices form the foundation of all our relationships.",
+                icon: Shield,
+                color: "from-green-500 to-emerald-500",
+                bgColor: "bg-green-50",
+                borderColor: "border-green-200"
               },
               {
                 title: "Excellence",
-                description: "We strive for excellence in every detail, from product design to customer support.",
-                icon: "⭐"
+                description: "We pursue excellence in every detail, from product design to customer support and beyond.",
+                icon: Award,
+                color: "from-blue-500 to-cyan-500",
+                bgColor: "bg-blue-50",
+                borderColor: "border-blue-200"
               },
               {
                 title: "Collaboration",
-                description: "We believe in the power of teamwork and foster a culture of collaboration and mutual respect.",
-                icon: "🌟"
+                description: "Teamwork and mutual respect drive our culture. Together, we achieve more.",
+                icon: Users,
+                color: "from-purple-500 to-violet-500",
+                bgColor: "bg-purple-50",
+                borderColor: "border-purple-200"
               },
               {
                 title: "Growth",
-                description: "We are committed to the growth of our customers, our team, and our company.",
-                icon: "📈"
+                description: "Committed to continuous growth—for our customers, our team, and our company.",
+                icon: TrendingUp,
+                color: "from-indigo-500 to-blue-500",
+                bgColor: "bg-indigo-50",
+                borderColor: "border-indigo-200"
               }
-            ].map((value, index) => (
-              <motion.div
-                key={index}
-                variants={item}
-                className="rounded-2xl border border-gray-200 bg-white p-8 shadow-lg transition-all hover:shadow-xl hover:-translate-y-1"
-              >
-                <div className="mb-4 text-5xl">{value.icon}</div>
-                <h3 className="text-2xl font-bold text-slate-900">{value.title}</h3>
-                <p className="mt-3 text-gray-600">{value.description}</p>
-              </motion.div>
-            ))}
+            ].map((value, index) => {
+              const IconComponent = value.icon;
+              return (
+                <motion.div
+                  key={index}
+                  variants={item}
+                  whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                  className={`group rounded-2xl border-2 ${value.borderColor} ${value.bgColor} p-8 shadow-lg hover:shadow-2xl transition-all duration-300`}
+                >
+                  <div className={`mb-5 inline-flex rounded-xl bg-linear-to-br ${value.color} p-3 text-white shadow-lg`}>
+                    <IconComponent className="h-7 w-7" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-3">{value.title}</h3>
+                  <p className="text-gray-700 leading-relaxed">{value.description}</p>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="bg-blue-600 py-16 text-white">
-        <div className="mx-auto max-w-7xl px-4">
+      {/* Stats Section - Enhanced */}
+      <section className="relative overflow-hidden bg-linear-to-br from-blue-600 via-indigo-600 to-purple-700 py-20 text-white">
+        <div className="pointer-events-none absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40"></div>
+        
+        <div className="relative mx-auto max-w-7xl px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold">Trusted by Thousands</h2>
+            <p className="mt-4 text-xl text-blue-100">Our impact in numbers</p>
+          </motion.div>
+
           <motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid gap-8 text-center md:grid-cols-4"
+            className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
           >
             {[
-              { number: "500+", label: "DSA Teams" },
-              { number: "10,000+", label: "Active Users" },
-              { number: "1M+", label: "Calls Made" },
-              { number: "4.9/5", label: "Customer Rating" }
-            ].map((stat, index) => (
-              <motion.div key={index} variants={item}>
-                <div className="text-5xl font-bold">{stat.number}</div>
-                <div className="mt-2 text-lg text-blue-100">{stat.label}</div>
-              </motion.div>
-            ))}
+              { number: "500+", label: "DSA Teams", icon: Users },
+              { number: "10,000+", label: "Active Users", icon: TrendingUp },
+              { number: "1M+", label: "Calls Made", icon: Zap },
+              { number: "4.9/5", label: "Customer Rating", icon: Award }
+            ].map((stat, index) => {
+              const IconComponent = stat.icon;
+              return (
+                <motion.div 
+                  key={index} 
+                  variants={item}
+                  className="group text-center rounded-2xl bg-white/10 backdrop-blur-sm p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2"
+                >
+                  <IconComponent className="h-12 w-12 mx-auto mb-4 text-blue-200" />
+                  <div className="text-5xl md:text-6xl font-bold mb-2">{stat.number}</div>
+                  <div className="text-lg text-blue-100 font-medium">{stat.label}</div>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20">
-        <div className="mx-auto max-w-4xl px-4 text-center">
+      {/* CTA Section - Enhanced */}
+      <section className="py-20 md:py-28">
+        <div className="mx-auto max-w-5xl px-4">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            className="relative overflow-hidden rounded-3xl bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 p-12 md:p-16 text-center text-white shadow-2xl"
           >
-            <h2 className="text-4xl font-bold text-slate-900">Ready to Transform Your Business?</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-              Join hundreds of DSA teams who trust Smart Dial to power their operations.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <a
-                href="/contact"
-                className="group inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-blue-600 to-indigo-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-500/30 transition-all hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-0.5"
-              >
-                Get Started Today
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 transition-transform group-hover:translate-x-1">
-                  <path d="M13.5 4.5L21 12l-7.5 7.5-1.06-1.06L17.88 12l-5.44-5.44L13.5 4.5z" />
-                </svg>
-              </a>
-              <a
-                href="/contact"
-                className="group inline-flex items-center gap-2 rounded-xl border-2 border-gray-300 bg-white px-8 py-4 text-base font-semibold text-gray-900 shadow-sm transition-all hover:border-blue-600 hover:bg-blue-50 hover:text-blue-700"
-              >
-                Contact Sales
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 transition-transform group-hover:translate-x-1">
-                  <path d="M13.5 4.5L21 12l-7.5 7.5-1.06-1.06L17.88 12l-5.44-5.44L13.5 4.5z" />
-                </svg>
-              </a>
+            <div className="pointer-events-none absolute top-0 right-0 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl"></div>
+            <div className="pointer-events-none absolute bottom-0 left-0 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl"></div>
+            
+            <div className="relative">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur-sm">
+                <CheckCircle className="h-4 w-4" />
+                <span>Join 500+ Teams</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+                Ready to Transform Your<br />
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-indigo-400">Business Operations?</span>
+              </h2>
+              <p className="mx-auto mt-6 max-w-2xl text-lg md:text-xl text-slate-300">
+                Join hundreds of DSA teams who trust Smart Dial to power their growth and streamline their workflow.
+              </p>
+              <div className="mt-10 flex flex-wrap justify-center gap-4">
+                <a
+                  href="/contact"
+                  className="group inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-blue-500 to-indigo-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-500/50 transition-all hover:shadow-xl hover:shadow-blue-500/60 hover:-translate-y-1"
+                >
+                  Get Started Today
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </a>
+                <a
+                  href="/contact"
+                  className="group inline-flex items-center gap-2 rounded-xl border-2 border-white/30 bg-white/10 backdrop-blur-sm px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:bg-white/20 hover:border-white/50"
+                >
+                  Contact Sales
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>

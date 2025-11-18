@@ -1,6 +1,7 @@
 // footer.jsx
 import React from "react";
 import { Link } from "react-router-dom";
+import { Instagram } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -10,7 +11,11 @@ const Footer = () => {
         <div className="grid gap-8 md:grid-cols-4">
           {/* About Us */}
           <div className="md:col-span-1">
-            <h4 className="mb-4 text-lg font-semibold text-white">About Us</h4>
+            <img 
+              src="/Smart-Dial-Final-01.png" 
+              alt="Smart Dial Logo" 
+              className="h-12 w-auto mb-4"
+            />
             <p className="text-sm text-gray-300 leading-relaxed">
               Your smart companion for efficient loan processing. Our app is designed to simplify the way financial institutions, loan officers, and businesses collect essential customer data and documents.
             </p>
@@ -85,6 +90,17 @@ const Footer = () => {
               <li className="flex items-start gap-2">
                 <span className="font-medium">Address:</span>
                 <span>B-203, 204,205., Lawrence Trade Center, Manikpur Road, Near Madhuram Hotel, Vasai West 401202</span>
+              </li>
+              <li className="flex items-center gap-2 mt-4">
+                <a 
+                  href="https://www.instagram.com/__smartsolutions__/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-linear-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                >
+                  <Instagram className="h-5 w-5" />
+                  <span className="font-medium">Follow Us</span>
+                </a>
               </li>
             </ul>
           </div>
