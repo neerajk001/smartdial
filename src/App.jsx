@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/Header.jsx'
+import ScrollToTop from './components/ScrollToTop.jsx'
 import Hero from './components/Hero.jsx'
 import About from './components/About.jsx'
 import Problem from './components/Problem.jsx'
@@ -27,6 +28,7 @@ const App = () => {
 
   return (
     <div>
+      <ScrollToTop />
       {!isLoginPage && <Header />}
       <Routes>
         <Route path="/" element={
