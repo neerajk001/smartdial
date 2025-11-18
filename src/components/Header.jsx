@@ -1,10 +1,14 @@
 // header.jsx
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const [indicatorStyle, setIndicatorStyle] = useState({});
+  const navRef = useRef(null);
+  const wrapperRef = useRef(null);
 
   const navItems = [
     { label: "Home", to: "/" },
@@ -12,7 +16,39 @@ const Header = () => {
     { label: "Pricing", to: "/pricing" },
     { label: "Contact Us", to: "/contact" },
     { label: "About", to: "/about" },
-  ];    
+  ];
+
+  useEffect(() => {
+    const calculate = () => {
+      if (!navRef.current || !wrapperRef.current) return;
+      const isHome = location.pathname === "/";
+      if (isHome) {
+        setIndicatorStyle({ width: 0, left: 0 });
+        return;
+      }
+
+      const activeIndex = navItems.findIndex((item) => item.to === location.pathname);
+      const links = navRef.current.querySelectorAll('a');
+      const activeLink = activeIndex !== -1 ? links[activeIndex] : null;
+
+      if (!activeLink) {
+        setIndicatorStyle({ width: 0, left: 0 });
+        return;
+      }
+
+      const parentRect = wrapperRef.current.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+
+      setIndicatorStyle({
+        width: linkRect.width,
+        left: linkRect.left - parentRect.left,
+      });
+    };
+
+    calculate();
+    window.addEventListener('resize', calculate);
+    return () => window.removeEventListener('resize', calculate);
+  }, [location.pathname]);
 
   return (
   <header className="w-full border-b border-black/5 bg-linear-to-br from-slate-50 to-slate-100">
@@ -38,18 +74,41 @@ const Header = () => {
           <span className="text-xl font-bold text-slate-900">Smart Dial</span>
         </Link>
 
-        {/* Center: Nav pill */}
+        {/* Center: Nav pill with animated background */}
         <nav className="relative hidden md:flex">
-          <div className="flex items-center gap-6 rounded-full bg-white px-10 py-3 shadow-sm border border-black">
-            {navItems.map((item) => (
-              <Link
-                key={item.label}
-                to={item.to}
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-gray-900"
-              >
-                {item.label}
-              </Link>
-            ))}
+          <div ref={wrapperRef} className="relative flex items-center gap-6 rounded-full bg-white px-12 py-2 shadow-sm border border-black overflow-hidden">
+            {/* Animated background indicator */}
+            <div
+              className="absolute top-1/2 -translate-y-1/2 bg-slate-900 rounded-full transition-all duration-300 ease-out"
+              style={{
+                width: indicatorStyle.width ? `${indicatorStyle.width}px` : '0px',
+                height: 'calc(100% - 8px)',
+                left: indicatorStyle.left ? `${indicatorStyle.left}px` : '0px',
+                opacity: indicatorStyle.width ? 1 : 0,
+              }}
+            />
+            <div ref={navRef} className="relative z-10 flex items-center gap-6">
+              {navItems.map((item) => {
+                const isActive = location.pathname === item.to;
+                const isHome = item.to === "/";
+                const showIndicator = location.pathname !== "/";
+
+                let linkClasses = "text-sm font-medium transition-colors duration-300 px-3.5 py-1.5 ";
+                if (isActive && showIndicator) {
+                  linkClasses += "text-white";
+                } else if (isActive && isHome) {
+                  linkClasses += "text-blue-600"; // Home active: make it blue
+                } else {
+                  linkClasses += "text-gray-700 hover:text-gray-900";
+                }
+
+                return (
+                  <Link key={item.label} to={item.to} className={linkClasses}>
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </nav>
 
@@ -103,16 +162,23 @@ const Header = () => {
         <div className="md:hidden">
           <div className="mx-4 mb-4 rounded-2xl bg-black/5 p-4 shadow-sm">
             <div className="flex flex-col gap-3 border-b border-black/10 pb-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.label}
-                  to={item.to}
-                  className="rounded-md px-3 py-2 text-sm text-gray-800 hover:bg-white"
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isActive = location.pathname === item.to;
+                return (
+                  <Link
+                    key={item.label}
+                    to={item.to}
+                    className={`rounded-md px-3 py-2 text-sm transition-all ${
+                      isActive 
+                        ? 'bg-slate-900 text-white font-medium' 
+                        : 'text-gray-800 hover:bg-white'
+                    }`}
+                    onClick={() => setOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
             </div>
             <div className="mt-4 flex items-center justify-end gap-3">
               <Link
