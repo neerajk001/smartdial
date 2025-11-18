@@ -1,5 +1,6 @@
 // footer.jsx
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -7,12 +8,18 @@ const Footer = () => {
       <div className="mx-auto max-w-7xl px-4 py-12 md:py-16">
         {/* Top section */}
         <div className="grid gap-8 md:grid-cols-4">
-          {/* Brand */}
+          {/* About Us */}
           <div className="md:col-span-1">
-            <div className="mb-4 flex items-center gap-2">
-              <img src="/Smart-Dial-Final-01.png" alt="Smart Dial" className="h-8 w-auto" />
-            </div>
-            <p className="text-sm text-gray-400">Smarter CRM. Smarter Results.</p>
+            <h4 className="mb-4 text-lg font-semibold text-white">About Us</h4>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              Your smart companion for efficient loan processing. Our app is designed to simplify the way financial institutions, loan officers, and businesses collect essential customer data and documents.
+            </p>
+            <Link to="/about" className="inline-flex items-center gap-1 mt-3 text-sm text-blue-400 hover:text-blue-300 transition">
+              Read More
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
 
           {/* Quick Links */}
@@ -20,68 +27,65 @@ const Footer = () => {
             <h4 className="mb-4 text-sm font-semibold text-white">Quick Links</h4>
             <ul className="space-y-2 text-sm text-gray-300">
               <li>
-                <a href="#" className="transition hover:text-white">
+                <Link to="/" className="transition hover:text-white">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="transition hover:text-white">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#" className="transition hover:text-white">
+                <Link to="/features" className="transition hover:text-white">
                   Features
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="transition hover:text-white">
+                <Link to="/pricing" className="transition hover:text-white">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="transition hover:text-white">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Social Media */}
+          {/* Support */}
           <div>
-            <h4 className="mb-4 text-sm font-semibold text-white">Social Media</h4>
-            <div className="flex items-center gap-4">
-              <a
-                href="#"
-                aria-label="LinkedIn"
-                className="text-gray-400 transition hover:text-white"
-              >
-                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor">
-                  <path d="M6.9 7.6H3.8V21h3.1V7.6zM5.4 3A1.8 1.8 0 1 0 5.4 6 1.8 1.8 0 0 0 5.4 3zM21 21h-3.1v-6.8c0-3.6-4-3.3-4 0V21H10V7.6h2.9v1.8c1.3-2.3 8-2.4 8 2.2V21z" />
-                </svg>
-              </a>
-              <a
-                href="#"
-                aria-label="Facebook"
-                className="text-gray-400 transition hover:text-white"
-              >
-                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor">
-                  <path d="M22 12c0-5.5-4.5-10-10-10S2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9v-2.9h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6v1.9h2.8l-.4 2.9h-2.3v7c4.7-.8 8.4-4.9 8.4-9.9z" />
-                </svg>
-              </a>
-              <a
-                href="#"
-                aria-label="Instagram"
-                className="text-gray-400 transition hover:text-white"
-              >
-                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor">
-                  <path d="M7.5 2h9C19.4 2 22 4.6 22 7.5v9c0 2.9-2.6 5.5-5.5 5.5h-9C4.6 22 2 19.4 2 16.5v-9C2 4.6 4.6 2 7.5 2zm0 1.5C5.6 3.5 3.5 5.6 3.5 7.5v9c0 1.9 2.1 4 4 4h9c1.9 0 4-2.1 4-4v-9c0-1.9-2.1-4-4-4h-9zM17 5.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7c2.8 0 5 2.2 5 5s-2.2 5-5 5-5-2.2-5-5 2.2-5 5-5zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z" />
-                </svg>
-              </a>
-            </div>
+            <h4 className="mb-4 text-sm font-semibold text-white">Support</h4>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li>
+                <Link to="/privacy-policy" className="transition hover:text-white">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms-and-conditions" className="transition hover:text-white">
+                  Terms & Conditions
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          {/* Contact */}
+          {/* Get In Touch */}
           <div>
-            <h4 className="mb-4 text-sm font-semibold text-white">Contact</h4>
-            <ul className="space-y-2 text-sm text-gray-300">
-              <li>info@smartdial.in</li>
-              <li>+91-XXXXXXXXXX</li>
+            <h4 className="mb-4 text-sm font-semibold text-white">Get In Touch</h4>
+            <ul className="space-y-3 text-sm text-gray-300">
+              <li className="flex items-start gap-2">
+                <span className="font-medium">Email:</span>
+                <a href="mailto:support@smartdial.com" className="hover:text-white transition">
+                  support@smartdial.com
+                </a>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="font-medium">Phone:</span>
+                <a href="tel:+919588833303" className="hover:text-white transition">
+                  +91-95888 33303
+                </a>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="font-medium">Address:</span>
+                <span>B-203, 204,205., Lawrence Trade Center, Manikpur Road, Near Madhuram Hotel, Vasai West 401202</span>
+              </li>
             </ul>
           </div>
         </div>
