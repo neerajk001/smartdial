@@ -89,7 +89,7 @@ const Welcome = () => {
             {/* CTAs */}
             <motion.div variants={text} className="mt-8 flex items-center gap-4">
               <a
-                href="#"
+                href="/login"
                 className="rounded-full bg-gray-900 px-6 py-3 text-sm font-medium text-white shadow-md transition hover:scale-105 hover:brightness-110"
               >
                 Get Started

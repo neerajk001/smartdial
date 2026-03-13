@@ -50,8 +50,13 @@ const Features = () => {
     },
   ];
 
-  // Animation variants for the new "Glow Border"
+  // Animation variants for card lift and glow border
   const cardVariants = {
+    hover: { scale: 1.03 },
+    rest: { scale: 1 },
+  };
+
+  const glowVariants = {
     hover: { opacity: 1 },
     rest: { opacity: 0 },
   };
@@ -82,8 +87,7 @@ const Features = () => {
                 initial="rest"
                 whileHover="hover"
                 animate="rest"
-                // 2. UPGRADED CARD: Added "lift" on hover and subtle transition
-                whileHover={{ scale: 1.03 }}
+                variants={cardVariants}
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 // Kept the clean shadow and border, but removed overflow-hidden
                 className="relative rounded-xl shadow-xl shadow-blue-900/10 border border-slate-200/70"
@@ -98,7 +102,7 @@ const Features = () => {
                     background:
                       "linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%)",
                   }}
-                  variants={cardVariants}
+                  variants={glowVariants}
                   transition={{ duration: 0.4, ease: "easeInOut" }}
                 />
 

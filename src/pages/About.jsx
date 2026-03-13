@@ -330,7 +330,7 @@ const About = () => {
               </p>
               <div className="mt-10 flex flex-wrap justify-center gap-4">
                 <a
-                  href="/contact"
+                  href="/login"
                   className="group inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-blue-500 to-indigo-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-500/50 transition-all hover:shadow-xl hover:shadow-blue-500/60 hover:-translate-y-1"
                 >
                   Get Started Today

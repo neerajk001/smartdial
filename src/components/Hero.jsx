@@ -167,7 +167,7 @@ const Hero = () => {
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </a>
               <a
-                href="#"
+                href="/login"
                 className="group inline-flex items-center gap-2 rounded-xl border-2 border-slate-300 bg-white px-5 py-3 text-base font-semibold text-slate-800 shadow-sm transition-all hover:border-blue-600 hover:text-blue-700"
               >
                 Get Started

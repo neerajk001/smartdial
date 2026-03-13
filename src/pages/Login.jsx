@@ -2,14 +2,25 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const Login = () => {
-  const [loginType, setLoginType] = useState('secure');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    mobile: '',
+    companyName: '',
+    address: '',
+    numberOfEmployees: '',
+    gstin: '',
+    email: '',
+  });
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Login submitted:', { username, password, loginType });
+    // Handle form submit logic here
+    console.log('Form submitted:', formData);
   };
 
   return (
@@ -18,7 +29,7 @@ const Login = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-5xl bg-white rounded-2xl shadow-2xl overflow-hidden"
+        className="w-full max-w-6xl bg-white rounded-2xl shadow-2xl overflow-hidden"
       >
         <div className="grid md:grid-cols-2 gap-0">
           {/* Left Side - Login Form */}
@@ -39,68 +50,117 @@ const Login = () => {
             </div>
 
             {/* Login Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Username/Mobile Number */}
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {/* Name */}
               <div>
-                <label htmlFor="username" className="block text-sm font-medium text-slate-700 mb-1.5">
-                  Username/Mobile Number
+                <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1.5">
+                  Name
                 </label>
                 <input
                   type="text"
-                  id="username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  placeholder="Chirag.w"
+                  id="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Enter your name"
                   className="w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                   required
                 />
               </div>
 
-              {/* Password */}
+              {/* Mobile */}
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-slate-700 mb-1.5">
-                  Password
+                <label htmlFor="mobile" className="block text-sm font-medium text-slate-700 mb-1.5">
+                  Mobile
                 </label>
                 <input
-                  type="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••••••••"
+                  type="tel"
+                  id="mobile"
+                  value={formData.mobile}
+                  onChange={handleChange}
+                  placeholder="Enter mobile number"
                   className="w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                   required
                 />
               </div>
 
-              {/* Login Type */}
+              {/* Company Name */}
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
-                  Login Type
+                <label htmlFor="companyName" className="block text-sm font-medium text-slate-700 mb-1.5">
+                  Company Name
                 </label>
-                <div className="flex items-center gap-6">
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="loginType"
-                      value="secure"
-                      checked={loginType === 'secure'}
-                      onChange={(e) => setLoginType(e.target.value)}
-                      className="w-5 h-5 text-blue-600 focus:ring-blue-500"
-                    />
-                    <span className="text-slate-700">Secure</span>
-                  </label>
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="loginType"
-                      value="unsecure"
-                      checked={loginType === 'unsecure'}
-                      onChange={(e) => setLoginType(e.target.value)}
-                      className="w-5 h-5 text-blue-600 focus:ring-blue-500"
-                    />
-                    <span className="text-slate-700">Unsecure</span>
-                  </label>
-                </div>
+                <input
+                  type="text"
+                  id="companyName"
+                  value={formData.companyName}
+                  onChange={handleChange}
+                  placeholder="Enter company name"
+                  className="w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                  required
+                />
+              </div>
+
+              {/* Number of Employees */}
+              <div>
+                <label htmlFor="numberOfEmployees" className="block text-sm font-medium text-slate-700 mb-1.5">
+                  Number of Employees
+                </label>
+                <input
+                  type="number"
+                  id="numberOfEmployees"
+                  value={formData.numberOfEmployees}
+                  onChange={handleChange}
+                  placeholder="Enter number of employees"
+                  min="1"
+                  className="w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                  required
+                />
+              </div>
+
+              {/* GSTIN (Optional) */}
+              <div>
+                <label htmlFor="gstin" className="block text-sm font-medium text-slate-700 mb-1.5">
+                  GSTIN (Optional)
+                </label>
+                <input
+                  type="text"
+                  id="gstin"
+                  value={formData.gstin}
+                  onChange={handleChange}
+                  placeholder="Enter GSTIN"
+                  className="w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                />
+              </div>
+
+              {/* Email */}
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1.5">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Enter email"
+                  className="w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                  required
+                />
+              </div>
+
+              {/* Address */}
+              <div className="md:col-span-2">
+                <label htmlFor="address" className="block text-sm font-medium text-slate-700 mb-1.5">
+                  Address
+                </label>
+                <textarea
+                  id="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  placeholder="Enter address"
+                  rows={4}
+                  className="w-full min-h-24 px-3 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition resize-none"
+                  required
+                />
               </div>
 
               {/* Sign In Button */}
@@ -108,17 +168,10 @@ const Login = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 rounded-lg transition shadow-lg shadow-blue-700/30"
+                className="w-full md:col-span-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 rounded-lg transition shadow-lg shadow-blue-700/30"
               >
-                SIGN IN
+                SUBMIT
               </motion.button>
-
-              {/* Forgot Password */}
-              <div className="text-center">
-                <a href="#" className="text-blue-600 hover:text-blue-700 font-medium text-sm underline">
-                  Forget Password?
-                </a>        
-              </div>
             </form>
           </div>
 
