@@ -1,6 +1,6 @@
-// service.jsx
+﻿// service.jsx
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import {
   Phone,
   Database,
@@ -32,8 +32,8 @@ const card = {
 
 const features = [
   {
-    title: "Built‑in Dialer",
-    desc: "Place outbound calls from the web app with crystal‑clear quality and quick actions.",
+    title: "Built-in Dialer",
+    desc: "Place outbound calls from the web app with crystal-clear quality and quick actions.",
     icon: <Phone className="h-6 w-6" />,
     accent: "from-indigo-500 to-sky-500",
   },
@@ -44,8 +44,8 @@ const features = [
     accent: "from-violet-500 to-fuchsia-500",
   },
   {
-    title: "Follow‑up Reminders",
-    desc: "Never miss a touchpoint with auto‑scheduled nudges and inbox‑style queue.",
+    title: "Follow-up Reminders",
+    desc: "Never miss a touchpoint with auto-scheduled nudges and inbox-style queue.",
     icon: <CalendarClock className="h-6 w-6" />,
     accent: "from-amber-500 to-orange-500",
   },
@@ -80,7 +80,7 @@ const Service = () => {
       <div className="pointer-events-none absolute -bottom-24 right-16 -z-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-3xl" />
 
       <div className="mx-auto max-w-7xl px-4 py-16 md:py-20">
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
@@ -88,16 +88,16 @@ const Service = () => {
           className="mx-auto max-w-3xl text-center"
         >
           <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-800 md:text-4xl">
-            Designed for Agents. Built to Close More Leads
+            Transform Your DSA Operations
           </h2>
           <p className="mt-3 text-lg leading-7 text-slate-700">
-            A carefully crafted toolkit to dial faster, remember more, and decide
-            smarter—wrapped in a delightful UI.
+            Smart Dial gives your team the tools they need to manage leads, close more deals, and scale efficiently-
+            without relying on disconnected tools and manual processes.
           </p>
-        </motion.div>
+        </Motion.div>
 
         {/* Feature grid */}
-        <motion.div
+        <Motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
@@ -105,7 +105,7 @@ const Service = () => {
           className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
         >
           {features.map((f) => (
-            <motion.div
+            <Motion.div
               key={f.title}
               variants={card}
               whileHover={{ y: -6, rotateX: 2, rotateY: -2 }}
@@ -133,18 +133,18 @@ const Service = () => {
 
               <div className="mt-5 flex items-center justify-between">
                 <a
-                  href="#"
+                  href="/contact"
                   className="text-sm font-medium text-blue-600 transition-colors hover:text-blue-800"
                 >
-                  Learn more <ArrowRight className="inline h-4 w-4" />
+                  Book a Demo <ArrowRight className="inline h-4 w-4" />
                 </a>
               </div>
-            </motion.div>
+            </Motion.div>
           ))}
-        </motion.div>
+        </Motion.div>
 
         {/* CTA bar */}
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -154,29 +154,29 @@ const Service = () => {
           <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
             <div>
               <p className="text-lg font-medium text-white">
-                Ready to boost agent productivity?
+                Ready to transform how your DSA runs every day?
               </p>
               <p className="text-sm text-indigo-100">
-                Start a free trial and connect your team in minutes.
+                Experience a smarter way to manage loan sales operations with a connected, analytics-driven platform.
               </p>
             </div>
             <div className="flex flex-shrink-0 items-center gap-3">
               <a
-                href="#"
+                href="/register"
                 className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-slate-900 shadow-sm transition hover:brightness-95"
               >
                 Start Free Trial
               </a>
               <a
-                href="#"
+                href="/contact"
                 className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/10"
               >
                 <Calendar className="h-4 w-4" />
-                Book a Demo
+                Schedule Demo
               </a>
             </div>
           </div>
-        </motion.div>
+        </Motion.div>
       </div>
     </section>
   );

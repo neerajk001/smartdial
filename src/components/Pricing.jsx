@@ -1,73 +1,11 @@
-// pricing.jsx
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Check, ArrowRight } from "lucide-react"; // Import Lucide icons
+﻿// pricing.jsx
+import React, { useEffect, useState } from "react";
+import { motion as Motion, AnimatePresence } from "framer-motion";
+import { Check } from "lucide-react";
+import { DEFAULT_PLANS, fetchPlanData } from "../services/smartDialApi";
 
-// 1. UPDATED DATA STRUCTURE:
-//    - Added 'originalPrice' and 'price' for clarity.
-//    - Added 'featured: true' to the data.
-//    - Simplified 'cycle' and 'discount' copy.
-const plans = {
-  appAndWeb: [
-    {
-      name: "Quarterly",
-      originalPrice: "₹450",
-      price: "₹360",
-      cycle: "per user / 3 months",
-      discount: "Save 20%",
-      eff: "₹120",
-      featured: false,
-    },
-    {
-      name: "Half Yearly",
-      originalPrice: "₹900",
-      price: "₹630",
-      cycle: "per user / 6 months",
-      discount: "Save 30%",
-      eff: "₹105",
-      featured: true, // Moved "featured" logic here
-    },
-    {
-      name: "Yearly", // Renamed from "Monthly" for clarity
-      originalPrice: "₹1800",
-      price: "₹900",
-      cycle: "per user / 12 months",
-      discount: "Save 50%",
-      eff: "₹75",
-      featured: false,
-    },
-  ],
-  webOnly: [
-    {
-      name: "Quarterly",
-      originalPrice: "₹300",
-      price: "₹240",
-      cycle: "per user / 3 months",
-      discount: "Save 20%",
-      eff: "₹80",
-      featured: false,
-    },
-    {
-      name: "Half Yearly",
-      originalPrice: "₹600",
-      price: "₹420",
-      cycle: "per user / 6 months",
-      discount: "Save 30%",
-      eff: "₹70",
-      featured: true, // Moved "featured" logic here
-    },
-    {
-      name: "Yearly", // Renamed from "Monthly" for clarity
-      originalPrice: "₹1200",
-      price: "₹600",
-      cycle: "per user / 12 months",
-      discount: "Save 50%",
-      eff: "₹50",
-      featured: false,
-    },
-  ],
-};
-
+// 1. SINGLE PLAN SETUP:
+//    App & Web CRM bundled together. Web-only plans removed as per latest brief.
 const cardVariants = {
   hidden: { opacity: 0, y: 18, scale: 0.98 },
   show: (i) => ({ // Added 'i' for staggered delay
@@ -83,8 +21,33 @@ const cardVariants = {
 };
 
 const Pricing = () => {
-  const [billing, setBilling] = useState("appAndWeb");
-  const data = plans[billing];
+  const [data, setData] = useState(DEFAULT_PLANS);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadPlans = async () => {
+      try {
+        const plans = await fetchPlanData();
+        if (isMounted && plans.length) {
+          setData(plans);
+        }
+      } catch (error) {
+        console.error("Unable to load plan data", error);
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadPlans();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <section className="relative isolate overflow-hidden bg-white">
@@ -98,62 +61,30 @@ const Pricing = () => {
       <div className="mx-auto max-w-7xl px-4 py-16 md:py-20">
         <div className="mx-auto max-w-3xl text-center">
           {/* 2. UPGRADED HEADING: Added gradient for premium consistency */}
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
             Choose a plan that grows with you
           </h2>
-          <p className="mt-3 text-lg leading-7 text-slate-600">
+          <p className="mt-3 text-base sm:text-lg leading-7 text-slate-600">
             Transparent pricing with all features included and priority support.
           </p>
 
-          {/* 3. UPGRADED Billing toggle with layoutId animation */}
-          <div className="mt-8 inline-flex items-center rounded-full border border-slate-200 bg-slate-50 p-1 shadow-sm">
-            <button
-              onClick={() => setBilling("appAndWeb")}
-              className="relative rounded-full px-5 py-2 text-sm font-medium"
-            >
-              {billing === "appAndWeb" && (
-                <motion.div
-                  layoutId="highlighter"
-                  className="absolute inset-0 rounded-full bg-slate-900"
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                />
-              )}
-              <span className={`relative z-10 transition ${billing === "appAndWeb" ? "text-white" : "text-slate-700"}`}>
-                App & Web CRM
-              </span>
-            </button>
-            <button
-              onClick={() => setBilling("webOnly")}
-              className="relative rounded-full px-5 py-2 text-sm font-medium"
-            >
-              {billing === "webOnly" && (
-                <motion.div
-                  layoutId="highlighter"
-                  className="absolute inset-0 rounded-full bg-slate-900"
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                />
-              )}
-              <span className={`relative z-10 transition ${billing === "webOnly" ? "text-white" : "text-slate-700"}`}>
-                Web CRM only
-              </span>
-            </button>
-          </div>
+          <p className="mt-4 text-sm text-slate-500">App &amp; Web CRM are bundled together. Web CRM only plans are no longer offered.</p>
         </div>
 
         {/* Cards */}
         <AnimatePresence mode="wait">
-          <motion.div
-            key={billing}
+          <Motion.div
+            key={isLoading ? "loading" : "loaded"}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="mt-12 grid gap-6 md:grid-cols-3"
+            className="mt-10 md:mt-12 grid gap-4 sm:gap-6 md:grid-cols-3"
           >
             {data.map((p, i) => {
               const featured = p.featured; // Using data-driven prop
               return (
-                <motion.div
+                <Motion.div
                   custom={i} // Pass index to variants for stagger
                   variants={cardVariants}
                   initial="hidden"
@@ -161,15 +92,15 @@ const Pricing = () => {
                   whileHover={{ y: -6, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 400 }}
                   key={p.name}
-                  className={`relative overflow-hidden rounded-2xl p-6 ring-1 ${
+                  className={`relative overflow-hidden rounded-2xl p-5 sm:p-6 ring-1 ${
                     featured
-                      ? "bg-gradient-to-b from-slate-900 to-slate-800 ring-slate-700 shadow-2xl shadow-indigo-500/20"
+                      ? "bg-linear-to-b from-slate-900 to-slate-800 ring-slate-700 shadow-2xl shadow-indigo-500/20"
                       : "bg-white ring-slate-200"
                   }`}
                 >
                   {/* 4. UPGRADED Accent ribbon */}
                   {featured && (
-                    <div className="absolute right-0 top-0 rounded-bl-lg bg-gradient-to-r from-pink-500 to-indigo-500 px-4 py-1 text-xs font-semibold text-white">
+                    <div className="absolute right-0 top-0 rounded-bl-lg bg-linear-to-r from-pink-500 to-indigo-500 px-4 py-1 text-xs font-semibold text-white">
                       Popular
                     </div>
                   )}
@@ -187,7 +118,7 @@ const Pricing = () => {
                   {/* 5. UPGRADED Price display (Strike-through) */}
                   <div className="flex items-baseline gap-2">
                     <span
-                      className={`text-3xl font-semibold leading-none ${
+                      className={`text-2xl sm:text-3xl font-semibold leading-none ${
                         featured ? "text-white" : "text-slate-900"
                       }`}
                     >
@@ -232,7 +163,7 @@ const Pricing = () => {
                       >
                         {/* 7. UPGRADED Icon */}
                         <Check
-                          className={`h-4 w-4 flex-shrink-0 ${
+                          className={`h-4 w-4 shrink-0 ${
                             featured ? "text-emerald-300" : "text-emerald-600"
                           }`}
                           strokeWidth="3"
@@ -242,29 +173,17 @@ const Pricing = () => {
                     ))}
                   </ul>
 
-                  <div className="mt-6">
-                    <a
-                      href="#"
-                      className={`inline-flex w-full items-center justify-center rounded-full px-4 py-2.5 text-sm font-medium transition ${
-                        featured
-                          ? "bg-white text-slate-900 hover:bg-slate-200"
-                          : "bg-slate-900 text-white hover:bg-slate-700"
-                      }`}
-                    >
-                      Purchase Now
-                      {/* 7. UPGRADED Icon */}
-                      <ArrowRight className="ml-1.5 h-4 w-4" />
-                    </a>
-                  </div>
-                </motion.div>
+                </Motion.div>
               );
             })}
-          </motion.div>
+          </Motion.div>
         </AnimatePresence>
 
         {/* small footnote */}
         <div className="mt-8 text-center text-xs text-slate-500">
-          Prices shown are illustrative; taxes may apply. Change or cancel anytime.
+          {isLoading
+            ? "Loading latest prices from the backend..."
+            : "Prices are fetched from backend API; taxes may apply. Change or cancel anytime."}
         </div>
       </div>
     </section>

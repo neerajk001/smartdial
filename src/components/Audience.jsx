@@ -1,13 +1,14 @@
-// Audience.jsx
+﻿// Audience.jsx
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { CheckCircle, ArrowRight } from "lucide-react"; // Import icons
 
 const Audience = () => {
   const audiences = [
     "DSA partners working with banks and NBFCs",
-    "Loan agents and financial sales teams",
-    "Call centers and BPOs handling loan sales or telecalling",
+    "Loan agents and financial advisors",
+    "Call centers handling loan sales",
+    "BPO companies managing telecalling operations",
     "Financial institutions managing distributed sales teams",
   ];
 
@@ -39,7 +40,7 @@ const Audience = () => {
         <div className="grid items-center gap-12 md:grid-cols-2">
           
           {/* --- LEFT COLUMN (Info & CTA) --- */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -47,14 +48,14 @@ const Audience = () => {
           >
             {/* 3. Added gradient text to heading for premium consistency */}
             <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl">
-              👥 Who We Built This For
+              Team Who We Built This For
             </h2>
             <p className="mb-8 max-w-3xl text-lg leading-7 text-gray-700">
-              Smart Dial is designed for any team involved in high-volume DSA and
-              financial sales operations.
+              Smart Dial is designed for organizations that manage large volumes of financial sales and telecalling
+              operations-whether you have 10 agents or 500.
             </p>
             {/* 4. Moved CTA button here and upgraded icon */}
-            <motion.a
+            <Motion.a
               href="#"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -62,11 +63,11 @@ const Audience = () => {
             >
               Start Your Free Trial
               <ArrowRight className="h-5 w-5" />
-            </motion.a>
-          </motion.div>
+            </Motion.a>
+          </Motion.div>
 
           {/* --- RIGHT COLUMN (Audience List) --- */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -77,7 +78,7 @@ const Audience = () => {
                 - bg-white/70: Makes it semi-transparent
                 - ring-1 ring-white/50: Gives it a subtle "glass edge"
             */}
-            <motion.ul
+            <Motion.ul
               variants={listContainerVariants}
               initial="hidden"
               whileInView="visible"
@@ -85,7 +86,7 @@ const Audience = () => {
               className="relative flex flex-col gap-6 rounded-2xl p-8 backdrop-blur-md bg-white/70 shadow-xl shadow-blue-900/10 ring-1 ring-white/50"
             >
               {audiences.map((audience, index) => (
-                <motion.li
+                <Motion.li
                   key={index}
                   variants={listItemVariants}
                   className="flex items-start gap-4"
@@ -97,10 +98,10 @@ const Audience = () => {
                   <p className="pt-1 text-base font-medium leading-6 text-slate-800">
                     {audience}
                   </p>
-                </motion.li>
+                </Motion.li>
               ))}
-            </motion.ul>
-          </motion.div>
+            </Motion.ul>
+          </Motion.div>
 
         </div>
       </div>

@@ -1,6 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+﻿import React from 'react';
+import { motion as Motion } from 'framer-motion';
 import { Target, Eye, Heart, Lightbulb, Shield, Users, TrendingUp, Award, ArrowRight, CheckCircle, Zap } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const About = () => {
   const container = {
@@ -24,7 +25,7 @@ const About = () => {
         <div className="pointer-events-none absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-white/10 blur-3xl" />
         
         <div className="relative mx-auto max-w-7xl px-4">
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -40,21 +41,21 @@ const About = () => {
             <p className="mx-auto mt-6 max-w-3xl text-xl md:text-2xl text-blue-50 leading-relaxed">
               Transforming how DSAs and financial teams operate with intelligent CRM solutions built for growth and efficiency.
             </p>
-          </motion.div>
+          </Motion.div>
         </div>
       </section>
 
       {/* Our Story Section - Enhanced */}
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4">
-          <motion.div
+          <Motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
             className="grid gap-12 lg:grid-cols-2 items-center"
           >
-            <motion.div variants={item} className="order-2 lg:order-1">
+            <Motion.div variants={item} className="order-2 lg:order-1">
               <div className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700 mb-6">
                 <Award className="h-4 w-4" />
                 Our Journey
@@ -84,12 +85,12 @@ const About = () => {
                   <div className="mt-1 text-sm font-medium text-gray-600">Active Users</div>
                 </div>
               </div>
-            </motion.div>
+            </Motion.div>
 
-            <motion.div variants={item} className="order-1 lg:order-2 relative">
+            <Motion.div variants={item} className="order-1 lg:order-2 relative">
               <div className="relative overflow-hidden rounded-2xl shadow-2xl shadow-blue-900/20 border-4 border-white max-w-md mx-auto lg:max-w-lg">
                 <img
-                  src="/Smart-Dial-Final-01.png"
+                  src={logo}
                   alt="Smart Dial Platform"
                   className="h-full w-full object-contain"
                 />
@@ -107,15 +108,15 @@ const About = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </Motion.div>
+          </Motion.div>
         </div>
       </section>
 
       {/* Mission & Vision - Modern Cards */}
       <section className="bg-slate-900 py-20 md:py-28 text-white">
         <div className="mx-auto max-w-7xl px-4">
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -123,16 +124,16 @@ const About = () => {
           >
             <h2 className="text-4xl md:text-5xl font-bold">Mission & Vision</h2>
             <p className="mt-4 text-xl text-slate-300">What drives us forward every day</p>
-          </motion.div>
+          </Motion.div>
 
-          <motion.div
+          <Motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
             className="grid gap-8 lg:grid-cols-2"
           >
-            <motion.div
+            <Motion.div
               variants={item}
               className="group relative overflow-hidden rounded-2xl bg-linear-to-br from-blue-500 to-indigo-600 p-10 shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:-translate-y-2"
             >
@@ -146,9 +147,9 @@ const About = () => {
                   To empower DSA teams with intelligent, intuitive technology that simplifies lead management, boosts productivity, and fuels sustainable growth in the financial sector.
                 </p>
               </div>
-            </motion.div>
+            </Motion.div>
 
-            <motion.div
+            <Motion.div
               variants={item}
               className="group relative overflow-hidden rounded-2xl bg-linear-to-br from-purple-500 to-pink-600 p-10 shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 hover:-translate-y-2"
             >
@@ -162,15 +163,15 @@ const About = () => {
                   To be India's #1 CRM platform for DSAs, renowned for innovation, reliability, and customer success. We're building a future where every financial professional has access to world-class tools.
                 </p>
               </div>
-            </motion.div>
-          </motion.div>
+            </Motion.div>
+          </Motion.div>
         </div>
       </section>
 
       {/* Core Values - Icon Grid */}
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4">
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -180,9 +181,9 @@ const About = () => {
             <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600">
               The principles that guide everything we do
             </p>
-          </motion.div>
+          </Motion.div>
 
-          <motion.div
+          <Motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
@@ -232,7 +233,7 @@ const About = () => {
               },
               {
                 title: "Growth",
-                description: "Committed to continuous growth—for our customers, our team, and our company.",
+                description: "Committed to continuous growth-for our customers, our team, and our company.",
                 icon: TrendingUp,
                 color: "from-indigo-500 to-blue-500",
                 bgColor: "bg-indigo-50",
@@ -241,7 +242,7 @@ const About = () => {
             ].map((value, index) => {
               const IconComponent = value.icon;
               return (
-                <motion.div
+                <Motion.div
                   key={index}
                   variants={item}
                   whileHover={{ y: -8, transition: { duration: 0.2 } }}
@@ -252,10 +253,10 @@ const About = () => {
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900 mb-3">{value.title}</h3>
                   <p className="text-gray-700 leading-relaxed">{value.description}</p>
-                </motion.div>
+                </Motion.div>
               );
             })}
-          </motion.div>
+          </Motion.div>
         </div>
       </section>
 
@@ -264,7 +265,7 @@ const About = () => {
         <div className="pointer-events-none absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40"></div>
         
         <div className="relative mx-auto max-w-7xl px-4">
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -272,9 +273,9 @@ const About = () => {
           >
             <h2 className="text-4xl md:text-5xl font-bold">Trusted by Thousands</h2>
             <p className="mt-4 text-xl text-blue-100">Our impact in numbers</p>
-          </motion.div>
+          </Motion.div>
 
-          <motion.div
+          <Motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
@@ -289,7 +290,7 @@ const About = () => {
             ].map((stat, index) => {
               const IconComponent = stat.icon;
               return (
-                <motion.div 
+                <Motion.div 
                   key={index} 
                   variants={item}
                   className="group text-center rounded-2xl bg-white/10 backdrop-blur-sm p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2"
@@ -297,17 +298,17 @@ const About = () => {
                   <IconComponent className="h-12 w-12 mx-auto mb-4 text-blue-200" />
                   <div className="text-5xl md:text-6xl font-bold mb-2">{stat.number}</div>
                   <div className="text-lg text-blue-100 font-medium">{stat.label}</div>
-                </motion.div>
+                </Motion.div>
               );
             })}
-          </motion.div>
+          </Motion.div>
         </div>
       </section>
 
       {/* CTA Section - Enhanced */}
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-5xl px-4">
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -345,7 +346,7 @@ const About = () => {
                 </a>
               </div>
             </div>
-          </motion.div>
+          </Motion.div>
         </div>
       </section>
     </div>
@@ -353,3 +354,4 @@ const About = () => {
 };
 
 export default About;
+

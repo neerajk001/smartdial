@@ -1,0 +1,120 @@
+{
+  "info": {
+    "_postman_id": "aaf26b03-9301-4316-9360-8bbdcfb84703",
+    "name": "sdpanel",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "16341412"
+  },
+  "item": [
+    {
+      "name": "getplandata",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-KEY",
+            "value": "Surplus_apikey@",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://smartdial.co.in/sdpanel/api/index.php/Auth/getplandata",
+          "protocol": "https",
+          "host": [
+            "smartdial",
+            "co",
+            "in"
+          ],
+          "path": [
+            "sdpanel",
+            "api",
+            "index.php",
+            "Auth",
+            "getplandata"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "saveclient",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-API-KEY",
+            "value": "Surplus_apikey@",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "Sumit",
+              "type": "text"
+            },
+            {
+              "key": "phone",
+              "value": "7578596545",
+              "type": "text",
+              "uuid": "90844840-d5a8-4f00-8f95-6b202065c529"
+            },   
+            {
+              "key": "company_name", 
+              "value": "tyard",
+              "type": "text",
+              "uuid": "b32d1508-a842-4a3c-b080-de38d22b33ff"
+            },
+            {
+              "key": "email",
+              "value": "adilpatel3110@gmail.com",
+              "type": "text",
+              "uuid": "ba8ce36f-c800-4541-9c24-5dc9f7e5a2b3"
+            },
+            {
+              "key": "no_of_emp",
+              "value": "10",
+              "type": "text",
+              "uuid": "4eff1e85-5a8c-4457-996b-9ec854c50914"
+            },
+            {
+              "key": "address",
+              "value": "mumbai",
+              "type": "text",
+              "uuid": "c80dc6ed-1ec2-49f3-86fa-622cfbca10ab"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://smartdial.co.in/sdpanel/api/index.php/Auth/saveclient",
+          "protocol": "https",
+          "host": [
+            "smartdial",
+            "co", 
+            "in"
+          ],
+          "path": [
+            "sdpanel",
+            "api",
+            "index.php",
+            "Auth",
+            "saveclient"
+          ] 
+        }
+      },
+      "response": []
+    } 
+  ]
+}

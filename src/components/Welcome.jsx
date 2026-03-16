@@ -1,6 +1,6 @@
-// welcome.jsx
+﻿// welcome.jsx
 import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion as Motion, useScroll, useTransform } from "framer-motion";
 
 const text = {
   hidden: { opacity: 0, y: 14 },
@@ -35,17 +35,17 @@ const Welcome = () => {
         <div className="grid items-center gap-14 md:grid-cols-2">
 
           {/* LEFT CONTENT */}
-          <motion.div variants={group} initial="hidden" animate="show">
+          <Motion.div variants={group} initial="hidden" animate="show">
 
             {/* Chips */}
-            <motion.div variants={text} className="mb-6 flex flex-wrap gap-2">
+            <Motion.div variants={text} className="mb-6 flex flex-wrap gap-2">
               <span className={chipCls}>Automation</span>
               <span className={chipCls}>Lead Management</span>
               <span className={chipCls}>Analytics</span>
-            </motion.div>
+            </Motion.div>
 
             {/* Title */}
-            <motion.h1
+            <Motion.h1
               variants={text}
               className="text-5xl font-extrabold leading-tight text-gray-900 md:text-6xl"
             >
@@ -53,64 +53,64 @@ const Welcome = () => {
               <span className="bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 bg-clip-text text-transparent">
                 DSA Operations
               </span>
-            </motion.h1>
+            </Motion.h1>
 
             {/* Accent line */}
-            <motion.div
+            <Motion.div
               variants={text}
               className="mt-3 h-1.5 w-32 rounded-full bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600"
             />
 
             {/* Description */}
-            <motion.p
+            <Motion.p
               variants={text}
               className="mt-5 max-w-xl text-lg font-medium leading-8 text-gray-700"
             >
               Smart Dial makes telecalling, follow-ups, loan tracking, and reporting effortless.  
               A lightweight, powerful CRM for teams who want speed, structure, and accuracy.
-            </motion.p>
+            </Motion.p>
 
             {/* Points */}
-            <motion.ul variants={group} className="mt-6 space-y-3">
-              <motion.li variants={text} className="flex items-start gap-3 text-sm text-gray-800">
+            <Motion.ul variants={group} className="mt-6 space-y-3">
+              <Motion.li variants={text} className="flex items-start gap-3 text-sm text-gray-800">
                 <span className="mt-1 inline-block h-2 w-2 rounded-full bg-indigo-500" />
                 Web-first workflow automation with secure customer records.
-              </motion.li>
-              <motion.li variants={text} className="flex items-start gap-3 text-sm text-gray-800">
+              </Motion.li>
+              <Motion.li variants={text} className="flex items-start gap-3 text-sm text-gray-800">
                 <span className="mt-1 inline-block h-2 w-2 rounded-full bg-fuchsia-500" />
                 Smart dashboards + MIS insights to measure conversions.
-              </motion.li>
-              <motion.li variants={text} className="flex items-start gap-3 text-sm text-gray-800">
+              </Motion.li>
+              <Motion.li variants={text} className="flex items-start gap-3 text-sm text-gray-800">
                 <span className="mt-1 inline-block h-2 w-2 rounded-full bg-rose-500" />
                 Cleaner workflows for better quality, higher productivity.
-              </motion.li>
-            </motion.ul>
+              </Motion.li>
+            </Motion.ul>
 
             {/* CTAs */}
-            <motion.div variants={text} className="mt-8 flex items-center gap-4">
+            <Motion.div variants={text} className="mt-8 flex items-center gap-4">
               <a
-                href="/login"
+                href="/register"
                 className="rounded-full bg-gray-900 px-6 py-3 text-sm font-medium text-white shadow-md transition hover:scale-105 hover:brightness-110"
               >
                 Get Started
               </a>
               <a
-                href="#"
+                href="/contact"
                 className="rounded-full border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900 hover:bg-gray-50 transition hover:scale-105"
               >
                 Book a Demo
               </a>
-            </motion.div>
+            </Motion.div>
 
             {/* Meta */}
-            <motion.div variants={text} className="mt-6 flex items-center gap-3">
+            <Motion.div variants={text} className="mt-6 flex items-center gap-3">
               <div className="h-7 w-7 rounded-full bg-gray-300" />
-              <div className="text-sm text-gray-600">Updated Nov 2025 • 1 min overview</div>
-            </motion.div>
-          </motion.div>
+              <div className="text-sm text-gray-600">Updated Nov 2025 - 1 min overview</div>
+            </Motion.div>
+          </Motion.div>
 
           {/* RIGHT VISUAL */}
-          <motion.div
+          <Motion.div
             style={{ y }}
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -118,13 +118,13 @@ const Welcome = () => {
             className="relative"
           >
             {/* Glow on hover */}
-            <motion.div
+            <Motion.div
               whileHover={{ scale: 1.015 }}
               transition={{ type: "spring", stiffness: 180, damping: 18 }}
               className="overflow-hidden rounded-2xl ring-1 ring-black/10 shadow-xl bg-white"
             >
               {/* Replace with your custom banner later */}
-              <motion.img
+              <Motion.img
   src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop"
   alt="Team Working"
   className="h-80 w-full object-cover md:h-[420px]"
@@ -133,30 +133,30 @@ const Welcome = () => {
   transition={{ duration: 1, ease: "easeOut" }}
 />
 
-            </motion.div>
+            </Motion.div>
 
             {/* Small Glass Popup */}
-            <motion.div
+            <Motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
               className="absolute bottom-4 right-4 hidden max-w-xs rounded-xl bg-white/80 p-3 shadow-lg backdrop-blur-md ring-1 ring-black/10 md:block"
             >
-              <div className="text-xs font-semibold text-gray-700">Today’s Calls</div>
+              <div className="text-xs font-semibold text-gray-700">Today's Calls</div>
               <div className="mt-1 flex items-center gap-2">
                 <span className="text-2xl font-bold text-indigo-600">136</span>
                 <span className="text-xs text-gray-500">completed</span>
               </div>
               <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-gray-200">
-                <motion.div
+                <Motion.div
                   initial={{ width: "20%" }}
                   animate={{ width: "75%" }}
                   transition={{ duration: 1.2, ease: "easeOut" }}
                   className="h-full bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-rose-500"
                 />
               </div>
-            </motion.div>
-          </motion.div>
+            </Motion.div>
+          </Motion.div>
         </div>
       </div>
     </section>
@@ -164,3 +164,4 @@ const Welcome = () => {
 };
 
 export default Welcome;
+

@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+﻿import React, { useEffect, useState } from 'react';
+import { motion as Motion } from 'framer-motion';
+import { saveClientLead } from '../services/smartDialApi';
+import logo from '../assets/logo.png';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -11,40 +13,78 @@ const Login = () => {
     gstin: '',
     email: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState('idle');
+
+  useEffect(() => {
+    if (submitStatus !== 'success') {
+      return undefined;
+    }
+
+    const timer = setTimeout(() => {
+      setSubmitStatus('idle');
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [submitStatus]);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
+    if (submitStatus !== 'idle') {
+      setSubmitStatus('idle');
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submit logic here
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const addressWithGstin = formData.gstin
+        ? `${formData.address} | GSTIN: ${formData.gstin}`
+        : formData.address;
+
+      await saveClientLead({
+        name: formData.name,
+        phone: formData.mobile,
+        companyName: formData.companyName,
+        email: formData.email,
+        noOfEmp: formData.numberOfEmployees,
+        address: addressWithGstin,
+      });
+
+      setSubmitStatus('success');
+    } catch (error) {
+      console.error('Register submit failed:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-100 to-slate-200 flex items-center justify-center px-4 py-8">
-      <motion.div 
+    <div className="min-h-screen bg-linear-to-br from-slate-100 to-slate-200 flex items-center justify-center px-3 sm:px-4 py-4 sm:py-8">
+      <Motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-6xl bg-white rounded-2xl shadow-2xl overflow-hidden"
+        className="w-full max-w-6xl bg-white rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl overflow-hidden"
       >
         <div className="grid md:grid-cols-2 gap-0">
           {/* Left Side - Login Form */}
-          <div className="p-6 md:p-8 lg:p-10">
+          <div className="p-4 sm:p-6 md:p-8 lg:p-10">
             {/* Logo and Title */}
             <div className="mb-6">
               <div className="flex items-center gap-2 mb-4">
                 <img
-                  src="/Smart-Dial-Final-01.png"
+                  src={logo}
                   alt="Smart Dial logo"
                   className="h-12 w-auto"
                 />
-                <span className="text-xl font-bold text-slate-900">Smart <span className="text-blue-600">Dial</span></span>
               </div>
-              <h1 className="text-2xl md:text-3xl font-bold text-slate-900 mb-1">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 mb-1">
                 Welcome to Smart Dial CRM
               </h1>
             </div>
@@ -164,20 +204,31 @@ const Login = () => {
               </div>
 
               {/* Sign In Button */}
-              <motion.button
+              <Motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full md:col-span-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 rounded-lg transition shadow-lg shadow-blue-700/30"
+                disabled={isSubmitting}
+                className={`w-full md:col-span-2 text-white font-semibold py-3 rounded-lg transition shadow-lg ${
+                  submitStatus === 'success'
+                    ? 'bg-emerald-600 shadow-emerald-600/30'
+                    : 'bg-blue-700 hover:bg-blue-800 shadow-blue-700/30'
+                } ${isSubmitting ? 'opacity-80 cursor-not-allowed' : ''}`}
               >
-                SUBMIT
-              </motion.button>
+                {isSubmitting ? 'SUBMITTING...' : submitStatus === 'success' ? 'SUBMITTED' : 'SUBMIT'}
+              </Motion.button>
+
+              {submitStatus === 'error' && (
+                <p className="md:col-span-2 text-sm text-red-600 text-center">
+                  Submission failed. Please try again.
+                </p>
+              )}
             </form>
           </div>
 
           {/* Right Side - Illustration */}
-          <div className="bg-linear-to-br from-blue-50 to-slate-100 p-6 md:p-8 lg:p-10 flex flex-col items-center justify-center">
-            <motion.div
+          <div className="hidden md:flex bg-linear-to-br from-blue-50 to-slate-100 p-6 md:p-8 lg:p-10 flex-col items-center justify-center">
+            <Motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -186,14 +237,14 @@ const Login = () => {
               {/* Illustration */}
               <div className="relative">
                 <img
-                  src="/logo-img.jpg"
+                  src={logo}
                   alt="Person working on laptop"
                   className="w-full h-auto rounded-2xl"
                 />
               </div>   
   
               {/* Bottom Text */}
-              <motion.div
+              <Motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
@@ -211,13 +262,14 @@ const Login = () => {
                   <div className="w-8 h-1 bg-blue-600 rounded-full"></div>
                   <div className="w-8 h-1 bg-slate-300 rounded-full"></div>
                 </div>
-              </motion.div>
-            </motion.div>
+              </Motion.div>
+            </Motion.div>
           </div>
         </div>
-      </motion.div>
+      </Motion.div>
     </div>
   );
 };
 
 export default Login;
+

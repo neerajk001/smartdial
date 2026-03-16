@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+﻿import React from 'react';
+import { motion as Motion } from 'framer-motion';
 import {
   HiOutlineDevicePhoneMobile,
   HiOutlineUserGroup,
@@ -90,14 +90,14 @@ export default function Features() {
         </div>
 
         {/* --- Features Grid --- */}
-        <motion.div
+        <Motion.div
           className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           {features.map((feature) => (
-            <motion.div
+            <Motion.div
               key={feature.title}
               variants={cardVariants}
               whileHover={{ 
@@ -140,9 +140,9 @@ export default function Features() {
               }`}>
                 {feature.description}
               </p>
-            </motion.div>
+            </Motion.div>
           ))}
-        </motion.div>
+        </Motion.div>
       </div>
     </section>
   );

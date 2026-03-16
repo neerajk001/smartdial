@@ -1,7 +1,8 @@
-// hero.jsx
+﻿// hero.jsx
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { ArrowRight, Star, Volume2, VolumeX, Zap } from "lucide-react";
+import logo from "../assets/logo.png";
 
 // Animation variants (unchanged)
 const stagger = {
@@ -35,12 +36,12 @@ const Hero = () => {
       <div className="pointer-events-none absolute bottom-0 left-0 -z-10 h-96 w-96 rounded-full bg-blue-500/5 blur-3xl" />
 
       {/* Screen-adjustable container */}
-      <div className="mx-auto max-w-7xl px-4 min-h-screen flex items-center">
+      <div className="mx-auto max-w-7xl px-4 min-h-[85vh] md:min-h-screen flex items-center">
         {/* 50/50 Grid */}
-        <div className="grid items-center gap-12 md:grid-cols-2 py-16 md:py-0">
+        <div className="grid items-center gap-8 md:gap-12 md:grid-cols-2 py-10 md:py-0">
           
           {/* 1. TWEAK: Left column is now the "Sleek Product Window" */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -64,7 +65,7 @@ const Hero = () => {
                   loop
                   playsInline
                   preload="metadata"
-                  poster="/Smart-Dial-Final-01.png"
+                  poster={logo}
                   aria-label="SmartDial in action"
                 >
                   <source
@@ -92,10 +93,10 @@ const Hero = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </Motion.div>
 
           {/* 2. Right column (text) is unchanged */}
-          <motion.div
+          <Motion.div
             variants={stagger}
             initial="hidden"
             animate="show"
@@ -103,13 +104,13 @@ const Hero = () => {
           >
             
 
-            <motion.h1
+            <Motion.h1
               variants={item}
-              className="text-3xl font-extrabold leading-[1.1] text-slate-900 md:text-5xl lg:text-6xl"
+              className="text-2xl sm:text-3xl font-extrabold leading-[1.1] text-slate-900 md:text-5xl lg:text-6xl"
             >
-              Smart Dial — Powering Smarter{" "}
+              Smart Dial - Powering Smarter{" "}
               <span className="relative inline-block">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
+                <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-600 via-indigo-600 to-purple-600">
                   DSA Operations
                 </span>
                 <svg
@@ -138,46 +139,46 @@ const Hero = () => {
                   </defs>
                 </svg>
               </span>
-            </motion.h1>
+            </Motion.h1>
 
-            <motion.p
+            <Motion.p
               variants={item}
-              className="mt-6 max-w-xl text-lg leading-8 text-gray-600 font-semibold"
+              className="mt-5 max-w-xl text-base sm:text-lg leading-7 sm:leading-8 text-gray-600 font-semibold"
             >
               A complete mobile and web-based CRM solution designed for DSAs and
               financial teams who work with banks and NBFCs.
-            </motion.p>
-            <motion.p
+            </Motion.p>
+            <Motion.p
               variants={item}
-              className="mt-3 max-w-xl text-lg leading-8 text-gray-600 font-semibold"
+              className="mt-2 max-w-xl text-base sm:text-lg leading-7 sm:leading-8 text-gray-600 font-semibold"
             >
               Manage leads, monitor calls, and track team performance  all in
               one powerful platform.
-            </motion.p>       
+            </Motion.p>       
             
-            <motion.div
+            <Motion.div
               variants={item}
-              className="mt-10 flex flex-wrap items-center gap-4"
+              className="mt-8 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4"
             >
               <a
-                href="#"
-                className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-5 py-3 text-base font-semibold text-white shadow-lg shadow-blue-500/30 transition-all hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-0.5"
+                href="/contact"
+                className="group inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-xl bg-linear-to-r from-blue-600 to-indigo-600 px-5 py-3 text-base font-semibold text-white shadow-lg shadow-blue-500/30 transition-all hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-0.5"
               >
                 Book a Demo
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </a>
               <a
-                href="/login"
-                className="group inline-flex items-center gap-2 rounded-xl border-2 border-slate-300 bg-white px-5 py-3 text-base font-semibold text-slate-800 shadow-sm transition-all hover:border-blue-600 hover:text-blue-700"
+                href="/register"
+                className="group inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-xl border-2 border-slate-300 bg-white px-5 py-3 text-base font-semibold text-slate-800 shadow-sm transition-all hover:border-blue-600 hover:text-blue-700"
               >
                 Get Started
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </a>
-            </motion.div>
+            </Motion.div>
 
-            <motion.div
+            <Motion.div
               variants={item}
-              className="mt-10 flex flex-wrap items-center gap-6"
+              className="mt-8 flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6"
             >
               <div className="flex items-center">
                 <div className="flex -space-x-2">
@@ -208,8 +209,8 @@ const Hero = () => {
                 />
                 <span>4.9/5 Rating</span>
               </div>
-            </motion.div>
-          </motion.div>
+            </Motion.div>
+          </Motion.div>
         </div>
       </div>
     </section>

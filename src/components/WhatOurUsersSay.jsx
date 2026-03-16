@@ -1,7 +1,7 @@
-// what-our-users-say.jsx
+﻿// what-our-users-say.jsx
 import React, { useRef } from "react";
 // 1. Import new hooks for scroll-based animation
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion as Motion, useScroll, useTransform } from "framer-motion";
 import { Star } from "lucide-react";
 
 const testimonials = [
@@ -9,7 +9,7 @@ const testimonials = [
     name: "Aisha Verma",
     role: "Sales Lead, FinEdge",
     quote:
-      "Smart Dial helped our team reduce follow‑up delays by 40%. The reminders and call logs are brilliant.",
+      "Smart Dial helped our team reduce follow-up delays by 40%. The reminders and call logs are brilliant.",
     avatar: "https://i.pravatar.cc/80?img=5",
   },
   {
@@ -23,7 +23,7 @@ const testimonials = [
     name: "Sneha Iyer",
     role: "Ops Manager, EduSpark",
     quote:
-      "Exactly the clarity our agents needed—clean UI, powerful analytics, and excellent support.",
+      "Exactly the clarity our agents needed-clean UI, powerful analytics, and excellent support.",
     avatar: "https://i.pravatar.cc/80?img=32",
   },
   {
@@ -51,7 +51,7 @@ const testimonials = [
 
 // 2. Component for the individual testimonial cards
 const TestimonialCard = ({ t }) => (
-  <motion.div
+  <Motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, amount: 0.3 }}
@@ -69,14 +69,14 @@ const TestimonialCard = ({ t }) => (
         <div className="text-xs text-slate-600">{t.role}</div>
       </div>
     </div>
-    <p className="mt-4 text-base leading-6 text-slate-700">“{t.quote}”</p>
-  </motion.div>
+    <p className="mt-4 text-base leading-6 text-slate-700">"{t.quote}"</p>
+  </Motion.div>
 );
 
 // 3. Component for the animating columns
 const ParallaxColumn = ({ testimonials, y = 0 }) => {
   return (
-    <motion.div
+    <Motion.div
       className="flex w-full flex-col gap-6"
       // 4. Apply the transformed 'y' value from useTransform
       style={{ y }}
@@ -85,7 +85,7 @@ const ParallaxColumn = ({ testimonials, y = 0 }) => {
       {[...testimonials, ...testimonials].map((t, idx) => (
         <TestimonialCard t={t} key={idx} />
       ))}
-    </motion.div>
+    </Motion.div>
   );
 };
 
@@ -118,7 +118,7 @@ const WhatOurUsersSay = () => {
       <div className="pointer-events-none absolute -bottom-24 right-1/2 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-fuchsia-500/10 blur-3xl" />
 
       <div className="mx-auto max-w-7xl px-4 py-16 md:py-20">
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -131,7 +131,7 @@ const WhatOurUsersSay = () => {
           <p className="mt-3 text-lg leading-7 text-slate-700">
             Real stories from teams closing more leads with less effort.
           </p>
-        </motion.div>
+        </Motion.div>
 
         {/* 7. NEW: Column Layout */}
         <div
@@ -161,7 +161,7 @@ const WhatOurUsersSay = () => {
         </div>
 
         {/* Rating strip */}
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -172,9 +172,9 @@ const WhatOurUsersSay = () => {
             <Star className="h-4 w-4 text-amber-500" fill="currentColor" />
             <span className="font-medium">4.9/5</span> average rating
           </span>
-          <span className="text-slate-400">•</span>
+          <span className="text-slate-400">-</span>
           <span className="font-medium">Trusted by 1000+</span> agents
-        </motion.div>
+        </Motion.div>
       </div>
     </section>
   );

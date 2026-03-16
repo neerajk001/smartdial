@@ -1,14 +1,54 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+﻿import React, { useState } from 'react';
+import { motion as Motion } from 'framer-motion';
+import { saveClientLead } from '../services/smartDialApi';
 
 export default function ContactUs() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    mobile: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState({ type: '', message: '' });
+
+  const handleChange = (event) => {
+    const { id, value } = event.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setStatus({ type: '', message: '' });
+
+    try {
+      await saveClientLead({
+        name: formData.name,
+        phone: formData.mobile,
+        companyName: 'Website Lead',
+        email: formData.email,
+        noOfEmp: '1',
+        address: formData.message,
+      });
+
+      setStatus({ type: 'success', message: 'Thanks! Your message has been submitted.' });
+      setFormData({ name: '', email: '', mobile: '', message: '' });
+    } catch (error) {
+      console.error('ContactUs form submit failed', error);
+      setStatus({ type: 'error', message: 'Could not submit right now. Please try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section className="py-20 bg-linear-to-br from-blue-50 via-white to-indigo-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
 
           {/* --- Column 1: Google Map --- */}
-          <motion.div 
+          <Motion.div 
             className="rounded-xl overflow-hidden shadow-2xl relative"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -40,9 +80,9 @@ export default function ContactUs() {
                   </p>
                   <div className="mt-2 flex items-center gap-1">
                     <div className="flex text-yellow-500 text-xs">
-                      <span>★</span><span>★</span><span>★</span><span>★</span><span className="text-gray-300">★</span>
+                      <span>*</span><span>*</span><span>*</span><span>*</span><span className="text-gray-300">*</span>
                     </div>
-                    <span className="text-xs text-gray-600 ml-1">3.3 · 7,635 reviews</span>
+                    <span className="text-xs text-gray-600 ml-1">3.3 - 7,635 reviews</span>
                   </div>
                   <a 
                     href="https://www.google.com/maps/dir/?api=1&destination=Lawrence+Trade+Center+Vasai+West" 
@@ -58,10 +98,10 @@ export default function ContactUs() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </Motion.div>
 
           {/* --- Column 2: Contact Form --- */}
-          <motion.div 
+          <Motion.div 
             className="flex flex-col justify-center"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -83,11 +123,11 @@ export default function ContactUs() {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <span className="font-medium">+91-95888 11101</span>
+                <span className="font-medium">+91-95888 33303</span>
               </div>
             </div>
             
-            <form action="#" method="POST" className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name */}
               <div>
                 <label htmlFor="name" className="sr-only">Name</label>
@@ -95,6 +135,8 @@ export default function ContactUs() {
                   type="text"
                   name="name"
                   id="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   autoComplete="name"
                   placeholder="Name"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
@@ -109,6 +151,8 @@ export default function ContactUs() {
                   type="email"
                   name="email"
                   id="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   autoComplete="email"
                   placeholder="Email"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
@@ -123,6 +167,8 @@ export default function ContactUs() {
                   type="tel"
                   name="mobile"
                   id="mobile"
+                  value={formData.mobile}
+                  onChange={handleChange}
                   autoComplete="tel"
                   placeholder="Mobile"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
@@ -137,29 +183,38 @@ export default function ContactUs() {
                   id="message"
                   name="message"
                   rows={5}
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder="Message"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   required
-                  defaultValue={""}
                 />
               </div>
 
+              {status.message && (
+                <p className={`text-sm ${status.type === 'success' ? 'text-emerald-600' : 'text-red-600'}`}>
+                  {status.message}
+                </p>
+              )}
+
               {/* Send Button */}
               <div>
-                <motion.button
+                <Motion.button
                   type="submit"
+                  disabled={isSubmitting}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-lg text-base font-semibold text-white bg-linear-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all"
                 >
-                  Send
-                </motion.button>
+                  {isSubmitting ? 'Sending...' : 'Send'}
+                </Motion.button>
               </div>
             </form>
-          </motion.div>
+          </Motion.div>
 
         </div>
       </div>
     </section>
   );
 }
+

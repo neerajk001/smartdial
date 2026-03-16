@@ -1,19 +1,19 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+﻿import React from 'react';
+import { motion as Motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 export default function TermsAndConditions() {
   return (
     <section className="py-20 bg-linear-to-br from-slate-50 via-white to-blue-50 min-h-screen">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           {/* Header */}
           <div className="text-center mb-12">
-            <motion.div
+            <Motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
@@ -23,7 +23,7 @@ export default function TermsAndConditions() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               Legal Document
-            </motion.div>
+            </Motion.div>
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
               Terms & Conditions
             </h1>
@@ -33,7 +33,7 @@ export default function TermsAndConditions() {
           </div>
 
           {/* Introduction */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -42,12 +42,12 @@ export default function TermsAndConditions() {
             <p className="text-slate-700 leading-relaxed">
               Welcome to <span className="font-bold text-blue-700">SmartDial</span>! These Terms and Conditions ("Terms") govern your use of the SmartDial application ("App") provided by <span className="font-semibold">Smart Solutions</span> ("we," "us," or "our"). By using the App, you agree to comply with and be bound by these Terms. If you do not agree to these Terms, please do not use the App.
             </p>
-          </motion.div>
+          </Motion.div>
 
           {/* Content Sections */}
           <div className="space-y-8">
             {/* Section 1 */}
-            <motion.section
+            <Motion.section
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -65,10 +65,10 @@ export default function TermsAndConditions() {
                   </p>
                 </div>
               </div>
-            </motion.section>
+            </Motion.section>
 
             {/* Section 2 */}
-            <motion.section
+            <Motion.section
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -106,10 +106,10 @@ export default function TermsAndConditions() {
                   </div>
                 </div>
               </div>
-            </motion.section>
+            </Motion.section>
 
             {/* Section 3 */}
-            <motion.section
+            <Motion.section
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -144,10 +144,10 @@ export default function TermsAndConditions() {
                   </div>
                 </div>
               </div>
-            </motion.section>
+            </Motion.section>
 
             {/* Section 4 */}
-            <motion.section
+            <Motion.section
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -165,10 +165,10 @@ export default function TermsAndConditions() {
                   </p>
                 </div>
               </div>
-            </motion.section>
+            </Motion.section>
 
             {/* Section 5 */}
-            <motion.section
+            <Motion.section
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -197,10 +197,10 @@ export default function TermsAndConditions() {
                   </div>
                 </div>
               </div>
-            </motion.section>
+            </Motion.section>
 
             {/* Section 6 */}
-            <motion.section
+            <Motion.section
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -218,10 +218,10 @@ export default function TermsAndConditions() {
                   </p>
                 </div>
               </div>
-            </motion.section>
+            </Motion.section>
 
             {/* Section 7 */}
-            <motion.section
+            <Motion.section
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -239,10 +239,10 @@ export default function TermsAndConditions() {
                   </p>
                 </div>
               </div>
-            </motion.section>
+            </Motion.section>
 
             {/* Section 8 */}
-            <motion.section
+            <Motion.section
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -271,10 +271,10 @@ export default function TermsAndConditions() {
                   </div>
                 </div>
               </div>
-            </motion.section>
+            </Motion.section>
 
             {/* Section 9 */}
-            <motion.section
+            <Motion.section
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -292,10 +292,10 @@ export default function TermsAndConditions() {
                   </p>
                 </div>
               </div>
-            </motion.section>
+            </Motion.section>
 
             {/* Section 10 */}
-            <motion.section
+            <Motion.section
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -313,11 +313,11 @@ export default function TermsAndConditions() {
                   </p>
                 </div>
               </div>
-            </motion.section>
+            </Motion.section>
           </div>
 
           {/* Contact Section */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -355,7 +355,7 @@ export default function TermsAndConditions() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </Motion.div>
 
           {/* Back to Home */}
           <div className="mt-8 text-center">
@@ -369,8 +369,9 @@ export default function TermsAndConditions() {
               Back to Home
             </Link>
           </div>
-        </motion.div>
+        </Motion.div>
       </div>
     </section>
   );
 }
+

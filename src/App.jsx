@@ -24,15 +24,15 @@ import TermsAndConditionsPage from './pages/TermsAndConditions.jsx'
 
 const App = () => {
   const location = useLocation();
-  const isLoginPage = location.pathname === '/login';
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
 
   return (
     <div>
       <ScrollToTop />
-      {!isLoginPage && <Header />}
+      {!isAuthPage && <Header />}
       <Routes>
         <Route path="/" element={
-          <>
+          <div className="mx-3 sm:mx-4 md:mx-6 lg:mx-8">
             <Hero />
             <About />
             <Welcome />
@@ -44,17 +44,18 @@ const App = () => {
             <WhatOurUsersSay />
             <WhyChooseUs />
             <Contact />
-          </>
+          </div>
         } />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/features" element={<FeaturesPage />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/contact" element={<ContactUsPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<LoginPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
       </Routes>
-      {!isLoginPage && <Footer />}
+      {!isAuthPage && <Footer />}
     </div>
   )
 }

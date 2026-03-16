@@ -1,25 +1,25 @@
-// why-choose-us.jsx
+﻿// why-choose-us.jsx
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { CheckCircle, Zap } from "lucide-react"; // Import icons
 
-// 1. UPDATED data to be more card-friendly (split title/desc)
+// 1. UPDATED data to reflect key advantages
 const benefits = [
   {
-    title: "Purpose-Built for DSAs",
-    desc: "Designed specifically for the unique workflows of DSA operations, not a generic CRM.",
+    title: "Built for Loan Sales",
+    desc: "Smart Dial is designed specifically for loan distribution and DSA operations-not as a generic CRM retrofit.",
   },
   {
-    title: "Fully Integrated Solution",
-    desc: "A single, seamless platform connecting your mobile app agents and your web CRM backend.",
+    title: "Integrated Calling + CRM",
+    desc: "Telecalling, customer data, loan workflows, and team management live in one connected platform.",
   },
   {
-    title: "Real-Time Tracking",
-    desc: "Instantly monitor calls, attendance, team performance, and file status without delays.",
+    title: "Real-Time Team Visibility",
+    desc: "Monitor calling activity, file movement, and performance metrics live so you can react faster.",
   },
   {
-    title: "Saves Time & Boosts Productivity",
-    desc: "Automate reporting, dialing, and follow-ups to help your team close more loans, faster.",
+    title: "Faster, Simpler Operations",
+    desc: "Structured workflows reduce manual effort, speed up loan processing, and improve lead conversion rates.",
   },
 ];
 
@@ -56,7 +56,7 @@ const WhyChooseUs = () => {
         <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
           
           {/* --- LEFT COLUMN (Info & Highlight) --- */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -67,12 +67,11 @@ const WhyChooseUs = () => {
               Why Choose Smart Dial
             </h2>
             <p className="text-lg leading-7 text-slate-600">
-              Smart Dial stands apart because it's built for how DSA businesses
-              actually work—connecting your web CRM and mobile agents
-              seamlessly.
+              Smart Dial is not just another CRM-it is a complete operational platform designed specifically for the
+              DSA industry, helping you centralize processes and operate with real-time insight.
             </p>
 
-            <motion.div
+            <Motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -96,12 +95,12 @@ const WhyChooseUs = () => {
                 <span>Apex Solutions</span>
                 <span>RealProp</span>
               </div>
-            </motion.div>
-          </motion.div>
+            </Motion.div>
+          </Motion.div>
 
           {/* --- RIGHT COLUMN (Interactive Benefit Cards) --- */}
           {/* 2. REPLACED motion.ul with this new card stack */}
-          <motion.div
+          <Motion.div
             variants={stackContainerVariants}
             initial="hidden"
             whileInView="visible"
@@ -109,7 +108,7 @@ const WhyChooseUs = () => {
             className="flex flex-col gap-6"
           >
             {benefits.map((benefit, index) => (
-              <motion.div
+              <Motion.div
                 key={index}
                 variants={stackItemVariants}
                 // 3. This is the "Glow Border" card from Features.jsx
@@ -119,7 +118,7 @@ const WhyChooseUs = () => {
                 className="relative rounded-xl shadow-xl shadow-blue-900/10 border border-slate-200/70"
               >
                 {/* The Glow */}
-                <motion.div
+                <Motion.div
                   className="pointer-events-none absolute inset-0 rounded-xl"
                   style={{
                     background:
@@ -145,9 +144,9 @@ const WhyChooseUs = () => {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </Motion.div>
             ))}
-          </motion.div>
+          </Motion.div>
         </div>
       </div>
     </section>

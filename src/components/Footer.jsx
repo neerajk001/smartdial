@@ -2,17 +2,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Instagram } from "lucide-react";
+import logo from "../assets/logo.png";
 
 const Footer = () => {
   return (
     <footer className="w-full bg-slate-900 text-white">
       <div className="mx-auto max-w-7xl px-4 py-12 md:py-16">
         {/* Top section */}
-        <div className="grid gap-8 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           {/* About Us */}
-          <div className="md:col-span-1">
+          <div className="col-span-2 md:col-span-1">
             <img 
-              src="/Smart-Dial-Final-01.png" 
+              src={logo}
               alt="Smart Dial Logo" 
               className="h-12 w-auto mb-4"
             />
@@ -72,19 +73,19 @@ const Footer = () => {
           </div>
 
           {/* Get In Touch */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <h4 className="mb-4 text-sm font-semibold text-white">Get In Touch</h4>
             <ul className="space-y-3 text-sm text-gray-300">
               <li className="flex items-start gap-2">
                 <span className="font-medium">Email:</span>
-                <a href="mailto:support@smartdial.com" className="hover:text-white transition">
-                  support@smartdial.com
+                <a href="mailto:admin@smartsolutionsmumbai.com" className="hover:text-white transition">
+                  admin@smartsolutionsmumbai.com
                 </a>
               </li>
               <li className="flex items-start gap-2">
                 <span className="font-medium">Phone:</span>
-                <a href="tel:+919588833303" className="hover:text-white transition">
-                  +91-95888 33303
+                <a href="tel:9588833303" className="hover:text-white transition">
+                  9588833303
                 </a>
               </li>
               <li className="flex items-start gap-2">
