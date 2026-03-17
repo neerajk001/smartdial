@@ -78,8 +78,8 @@ const Footer = () => {
             <ul className="space-y-3 text-sm text-gray-300">
               <li className="flex items-start gap-2">
                 <span className="font-medium">Email:</span>
-                <a href="mailto:admin@smartsolutionsmumbai.com" className="hover:text-white transition">
-                  admin@smartsolutionsmumbai.com
+                <a href="mailto:info@smartdial.co.in" className="hover:text-white transition">
+                  info@smartdial.co.in
                 </a>
               </li>
               <li className="flex items-start gap-2">

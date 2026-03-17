@@ -137,7 +137,7 @@ const Pricing = () => {
                   </p>
 
                   <div className="mt-4 text-sm">
-                    <p className={`${featured ? "text-indigo-300" : "text-indigo-600"} font-medium`}>
+                    <p className={`${featured ? "text-indigo-300" : "text-indigo-600"} font-semibold`}>
                       {p.discount}
                     </p>
                     {/* 6. UPGRADED Effective price display */}
@@ -145,7 +145,7 @@ const Pricing = () => {
                       <span className={`font-semibold ${featured ? "text-white" : "text-slate-800"}`}>
                         {p.eff}
                       </span>
-                      <span className="text-xs"> / effective per month</span>
+                      <span className="text-xs"> / per month/per user</span>
                     </p>
                   </div>
 

@@ -86,24 +86,8 @@ const Welcome = () => {
               </Motion.li>
             </Motion.ul>
 
-            {/* CTAs */}
-            <Motion.div variants={text} className="mt-8 flex items-center gap-4">
-              <a
-                href="/register"
-                className="rounded-full bg-gray-900 px-6 py-3 text-sm font-medium text-white shadow-md transition hover:scale-105 hover:brightness-110"
-              >
-                Get Started
-              </a>
-              <a
-                href="/contact"
-                className="rounded-full border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900 hover:bg-gray-50 transition hover:scale-105"
-              >
-                Book a Demo
-              </a>
-            </Motion.div>
-
             {/* Meta */}
-            <Motion.div variants={text} className="mt-6 flex items-center gap-3">
+            <Motion.div variants={text} className="mt-8 flex items-center gap-3">
               <div className="h-7 w-7 rounded-full bg-gray-300" />
               <div className="text-sm text-gray-600">Updated Nov 2025 - 1 min overview</div>
             </Motion.div>

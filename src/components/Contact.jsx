@@ -79,7 +79,7 @@ const Contact = () => {
               {/* Redesigned Info List for Dark Mode */}
               <div className="space-y-5 sm:space-y-6">    
                 <a    
-                  href="mailto:info@smartdial.in"    
+                  href="mailto:info@smartdial.co.in"    
                   className="flex items-start gap-4 group"
                 >    
                   <div className="shrink-0 rounded-lg bg-blue-900/50 p-3 text-blue-300 transition-colors group-hover:bg-blue-800">
@@ -90,7 +90,7 @@ const Contact = () => {
                       Email
                     </h3>
                     <p className="text-base text-blue-300 transition-colors group-hover:text-white">
-                      info@smartdial.in
+                      info@smartdial.co.in
                     </p>
                   </div>
                 </a>
@@ -191,7 +191,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                    placeholder="you@example.com"
+                    placeholder="info@smartdial.co.in"
                     required
                   />
                 </div>

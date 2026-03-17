@@ -4,29 +4,29 @@ const API_KEY = "Surplus_apikey@";
 const DEFAULT_PLANS = [
   {
     name: "Quarterly",
-    originalPrice: "₹450",
-    price: "₹360",
+    originalPrice: "₹600",
+    price: "₹450",
     cycle: "per user / 3 months",
-    discount: "Save 20%",
-    eff: "₹120",
+    discount: "Save 25%",
+    eff: "₹150",
     featured: false,
   },
   {
     name: "Half Yearly",
-    originalPrice: "₹900",
-    price: "₹630",
+    originalPrice: "₹1200",
+    price: "₹780",
     cycle: "per user / 6 months",
-    discount: "Save 30%",
-    eff: "₹105",
+    discount: "Save 35%",
+    eff: "₹130",
     featured: true,
   },
   {
     name: "Yearly",
-    originalPrice: "₹1800",
-    price: "₹900",
+    originalPrice: "₹2400",
+    price: "₹1200",
     cycle: "per user / 12 months",
     discount: "Save 50%",
-    eff: "₹75",
+    eff: "₹100",
     featured: false,
   },
 ];
@@ -72,11 +72,16 @@ const normalizePlans = (payload) => {
 
   const normalized = source.map((item, index) => {
     const months = toNumber(getValue(item, ["months", "duration", "tenure", "month"]));
-    const priceValue = getValue(item, ["offer_price", "price", "amount", "final_price"]);
-    const originalValue = getValue(item, ["original_price", "mrp", "base_price", "actual_price"]);
+    const priceValue = getValue(item, ["final_price", "offer_price", "discounted_price", "amount", "price"]);
+    const originalValue = getValue(item, ["price", "original_price", "mrp", "base_price", "actual_price"]);
 
     const priceNumber = toNumber(priceValue);
     const originalNumber = toNumber(originalValue);
+    const hasBothNumbers = Number.isFinite(priceNumber) && Number.isFinite(originalNumber);
+    // Some payloads return offer and original values swapped; force discounted <= original.
+    const shouldSwapPrices = hasBothNumbers && priceNumber > originalNumber;
+    const normalizedPriceNumber = shouldSwapPrices ? originalNumber : priceNumber;
+    const normalizedOriginalNumber = shouldSwapPrices ? priceNumber : originalNumber;
 
     const name =
       getValue(item, ["name", "plan_name", "title"], "") ||
@@ -100,22 +105,30 @@ const normalizePlans = (payload) => {
             ? 12
             : 1;
 
+    const discountRaw = getValue(item, ["discount_text", "discount"], "");
+    const discountNumber = toNumber(discountRaw);
     const discountText =
-      getValue(item, ["discount_text", "discount"], "") ||
-      (Number.isFinite(priceNumber) && Number.isFinite(originalNumber) && originalNumber > priceNumber
-        ? `Save ${Math.round(((originalNumber - priceNumber) / originalNumber) * 100)}%`
+      (Number.isFinite(discountNumber) ? `Save ${discountNumber}%` : discountRaw) ||
+      (Number.isFinite(normalizedPriceNumber) &&
+      Number.isFinite(normalizedOriginalNumber) &&
+      normalizedOriginalNumber > normalizedPriceNumber
+        ? `Save ${Math.round(((normalizedOriginalNumber - normalizedPriceNumber) / normalizedOriginalNumber) * 100)}%`
         : "");
 
     const effectiveMonthly =
-      Number.isFinite(priceNumber) && finalMonths > 0
-        ? Math.round((priceNumber / finalMonths) * 100) / 100
+      Number.isFinite(normalizedPriceNumber) && finalMonths > 0
+        ? Math.round((normalizedPriceNumber / finalMonths) * 100) / 100
         : NaN;
 
     return {
       name,
-      originalPrice: toCurrency(originalValue) || DEFAULT_PLANS[index]?.originalPrice || "",
-      price: toCurrency(priceValue) || DEFAULT_PLANS[index]?.price || "",
-      cycle: `per user / ${finalMonths} month${finalMonths > 1 ? "s" : ""}`,
+      originalPrice: Number.isFinite(normalizedOriginalNumber)
+        ? toCurrency(normalizedOriginalNumber)
+        : toCurrency(originalValue) || DEFAULT_PLANS[index]?.originalPrice || "",
+      price: Number.isFinite(normalizedPriceNumber)
+        ? toCurrency(normalizedPriceNumber)
+        : toCurrency(priceValue) || DEFAULT_PLANS[index]?.price || "",
+      cycle: getValue(item, ["description", "cycle"], "") || `per user / ${finalMonths} month${finalMonths > 1 ? "s" : ""}`,
       discount: discountText || DEFAULT_PLANS[index]?.discount || "",
       eff: Number.isFinite(effectiveMonthly)
         ? toCurrency(effectiveMonthly)
@@ -178,7 +191,24 @@ export const saveClientLead = async ({
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to submit form: ${response.status}`);
+    const contentType = response.headers.get("content-type") || "";
+    let backendMessage = "";
+
+    try {
+      if (contentType.includes("application/json")) {
+        const errorPayload = await response.json();
+        backendMessage = errorPayload?.message || errorPayload?.error || "";
+      } else {
+        backendMessage = await response.text();
+      }
+    } catch {
+      backendMessage = "";
+    }
+
+    const message = backendMessage
+      ? `Failed to submit form: ${backendMessage}`
+      : `Failed to submit form: ${response.status}`;
+    throw new Error(message);
   }
 
   const contentType = response.headers.get("content-type") || "";

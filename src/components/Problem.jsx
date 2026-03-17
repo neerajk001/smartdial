@@ -72,7 +72,7 @@ const Problem = () => {
           >
             <p className="text-lg font-semibold md:text-xl">
               Smart Dial addresses these challenges by providing a single integrated platform for DSA operations.
-            </p>
+            </p> 
             <p className="mt-3 text-base md:text-lg">
               The platform connects telecalling, loan processing, team management, and analytics into one seamless
               workflow-giving you real-time visibility, faster file movement, structured lead management, automated
