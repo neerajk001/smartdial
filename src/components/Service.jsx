@@ -9,7 +9,6 @@ import {
   Lock,
   PieChart,
   ArrowRight,
-  Calendar,
 } from "lucide-react"; // Added imports from previous step
 
 const container = {
@@ -71,10 +70,10 @@ const features = [
 
 const Service = () => {
   return (
-    <section className="relative isolate overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+    <section className="relative isolate overflow-hidden bg-linear-to-br from-blue-50 via-white to-indigo-50">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_1px)] [background-size:22px_22px]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_1px)] bg-size-[22px_22px]"
       />
       <div className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-fuchsia-500/10 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-24 right-16 -z-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-3xl" />
@@ -87,7 +86,7 @@ const Service = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="mx-auto max-w-3xl text-center"
         >
-          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-800 md:text-4xl">
+          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-800 md:text-4xl">
             Transform Your DSA Operations
           </h2>
           <p className="mt-3 text-lg leading-7 text-slate-700">
@@ -113,11 +112,11 @@ const Service = () => {
               // 1. UPDATED Card style for Glassmorphism
               //    - Replaced 'bg-white' with 'bg-white/70 backdrop-blur-lg'
               //    - Swapped 'border-slate-200/70' for a cleaner 'border-white/40'
-              className="relative rounded-2xl border border-white/40 bg-white/70 p-5 backdrop-blur-lg shadow-xl shadow-blue-900/10 [transform-style:preserve-3d]"
+              className="relative rounded-2xl border border-white/40 bg-white/70 p-5 backdrop-blur-lg shadow-xl shadow-blue-900/10 transform-3d"
             >
               <div className="flex items-start gap-4">
                 <div
-                  className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${f.accent} text-white shadow-lg`}
+                  className={`flex h-11 w-11 items-center justify-center rounded-xl bg-linear-to-br ${f.accent} text-white shadow-lg`}
                 >
                   {f.icon}
                 </div>
@@ -143,40 +142,6 @@ const Service = () => {
           ))}
         </Motion.div>
 
-        {/* CTA bar */}
-        <Motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-          className="mt-16 overflow-hidden rounded-2xl bg-gradient-to-r from-blue-700 to-indigo-900 p-5 shadow-2xl shadow-blue-500/30 sm:p-6"
-        >
-          <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-            <div>
-              <p className="text-lg font-medium text-white">
-                Ready to transform how your DSA runs every day?
-              </p>
-              <p className="text-sm text-indigo-100">
-                Experience a smarter way to manage loan sales operations with a connected, analytics-driven platform.
-              </p>
-            </div>
-            <div className="flex flex-shrink-0 items-center gap-3">
-              <a
-                href="/register"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-slate-900 shadow-sm transition hover:brightness-95"
-              >
-                Start Free Trial
-              </a>
-              <a
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/10"
-              >
-                <Calendar className="h-4 w-4" />
-                Schedule Demo
-              </a>
-            </div>
-          </div>
-        </Motion.div>
       </div>
     </section>
   );

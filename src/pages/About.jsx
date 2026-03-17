@@ -1,352 +1,248 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion as Motion } from 'framer-motion';
-import { Target, Eye, Heart, Lightbulb, Shield, Users, TrendingUp, Award, ArrowRight, CheckCircle, Zap } from 'lucide-react';
+import {
+  ArrowRight,
+  BarChart3,
+  CheckCircle2,
+  Clock3,
+  Layers,
+  Shield,
+  Sparkles,
+  Users,
+} from 'lucide-react';
 import logo from '../assets/logo.png';
 
+const milestones = [
+  {
+    year: '2023',
+    title: 'Built for DSA reality',
+    text: 'We started with one clear goal: create software that matches real loan sales workflows, not generic CRM templates.',
+  },
+  {
+    year: '2024',
+    title: 'Operational backbone launched',
+    text: 'Telecalling, lead flow, and backend tracking came into one connected platform for growing teams.',
+  },
+  {
+    year: '2025',
+    title: 'Scale and reliability',
+    text: 'Faster reporting, clearer accountability, and stable daily operations for distributed teams across cities.',
+  },
+  {
+    year: 'Today',
+    title: 'Focused on outcomes',
+    text: 'We continue to improve conversion visibility, team productivity, and workflow clarity for every customer.',
+  },
+];
+
+const pillars = [
+  {
+    icon: Layers,
+    title: 'Connected Workflow',
+    text: 'Sales, follow-ups, and backend processing work in one system with fewer handoff delays.',
+  },
+  {
+    icon: Clock3,
+    title: 'Faster Execution',
+    text: 'Teams spend less time on manual coordination and more time on conversion-focused actions.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Decision Clarity',
+    text: 'Real-time reporting helps managers identify bottlenecks quickly and improve performance.',
+  },
+  {
+    icon: Shield,
+    title: 'Trust and Control',
+    text: 'Role-based access and structured data flow improve transparency and operational confidence.',
+  },
+];
+
 const About = () => {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  };
-
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Hero Section with Gradient */}
-      <section className="relative overflow-hidden bg-linear-to-br from-blue-600 via-indigo-600 to-purple-700 py-24 md:py-32 text-white">
-        <div className="pointer-events-none absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-white/10 blur-3xl" />
-        <div className="pointer-events-none absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-white/10 blur-3xl" />
-        
-        <div className="relative mx-auto max-w-7xl px-4">
+    <div className="min-h-screen bg-slate-50 text-slate-900">
+      <section className="relative overflow-hidden border-b border-slate-200 bg-white">
+        <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" />
+        <div className="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-indigo-500/10 blur-3xl" />
+
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-16 md:grid-cols-2 md:py-24">
           <Motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
+            transition={{ duration: 0.6 }}
           >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-medium backdrop-blur-sm">
-              <Zap className="h-4 w-4" />
-              <span>Powering 10,000+ Users Nationwide</span>
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-700">
+              <Sparkles className="h-4 w-4" />
+              Why Smart Dial exists
             </div>
-            <h1 className="text-5xl font-extrabold tracking-tight md:text-6xl lg:text-7xl">
-              About Smart Dial
+            <h1 className="text-4xl font-extrabold leading-tight md:text-5xl">
+              A sharper operating system
+              <span className="block text-blue-700">for modern DSA teams</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-3xl text-xl md:text-2xl text-blue-50 leading-relaxed">
-              Transforming how DSAs and financial teams operate with intelligent CRM solutions built for growth and efficiency.
+            <p className="mt-5 max-w-xl text-base leading-8 text-slate-600 md:text-lg">
+              Smart Dial is designed for how financial sales teams actually work: high follow-up volume,
+              distributed coordination, and constant need for visibility.
             </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="/register"
+                className="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-blue-600 to-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:brightness-110"
+              >
+                Start with Smart Dial
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <a
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:border-blue-500 hover:text-blue-700"
+              >
+                Talk to our team
+              </a>
+            </div>
           </Motion.div>
-        </div>
-      </section>
 
-      {/* Our Story Section - Enhanced */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4">
           <Motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="grid gap-12 lg:grid-cols-2 items-center"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="relative"
           >
-            <Motion.div variants={item} className="order-2 lg:order-1">
-              <div className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700 mb-6">
-                <Award className="h-4 w-4" />
-                Our Journey
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
-                Built for <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600">Financial Teams</span>
-              </h2>
-              <div className="mt-6 space-y-4">
-                <p className="text-lg leading-8 text-gray-700">
-                  Smart Dial was born from a simple yet powerful observation: DSA teams and financial professionals needed a CRM that truly understands their workflow.
-                </p>
-                <p className="text-lg leading-8 text-gray-700">
-                  Traditional systems were either too complex, overpriced, or lacked the specialized features that financial services demand. We built Smart Dial to bridge that gap.
-                </p>
-                <p className="text-lg leading-8 text-gray-700">
-                  Today, we proudly serve 500+ DSA teams across India, helping them close more deals, streamline operations, and accelerate their business growth.
-                </p>
-              </div>
-              
-              <div className="mt-8 grid grid-cols-2 gap-4">
-                <div className="rounded-xl bg-blue-50 p-5 border border-blue-100">
-                  <div className="text-3xl font-bold text-blue-600">500+</div>
-                  <div className="mt-1 text-sm font-medium text-gray-600">DSA Teams</div>
-                </div>
-                <div className="rounded-xl bg-indigo-50 p-5 border border-indigo-100">
-                  <div className="text-3xl font-bold text-indigo-600">10K+</div>
-                  <div className="mt-1 text-sm font-medium text-gray-600">Active Users</div>
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/5 md:p-8">
+              <div className="mb-6 flex items-center gap-3">
+                <img src={logo} alt="Smart Dial" className="h-12 w-auto" />
+                <div>
+                  <p className="text-sm font-semibold text-slate-500">Platform Snapshot</p>
+                  <p className="text-xl font-bold text-slate-900">Built to reduce operational friction</p>
                 </div>
               </div>
-            </Motion.div>
 
-            <Motion.div variants={item} className="order-1 lg:order-2 relative">
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl shadow-blue-900/20 border-4 border-white max-w-md mx-auto lg:max-w-lg">
-                <img
-                  src={logo}
-                  alt="Smart Dial Platform"
-                  className="h-full w-full object-contain"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-blue-900/40 to-transparent"></div>
-              </div>
-              {/* Floating Badge */}
-              <div className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 rounded-2xl bg-white p-4 md:p-6 shadow-2xl border border-gray-100">
-                <div className="flex items-center gap-2 md:gap-3">
-                  <div className="rounded-full bg-amber-100 p-2 md:p-3">
-                    <Award className="h-5 w-5 md:h-6 md:w-6 text-amber-600" />
-                  </div>
-                  <div>
-                    <div className="text-xl md:text-2xl font-bold text-slate-900">4.9/5</div>
-                    <div className="text-xs md:text-sm text-gray-600">Rating</div>
-                  </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                  <p className="text-2xl font-extrabold text-blue-700">500+</p>
+                  <p className="mt-1 text-sm text-slate-600">Teams onboarded</p>
+                </div>
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                  <p className="text-2xl font-extrabold text-blue-700">10K+</p>
+                  <p className="mt-1 text-sm text-slate-600">Daily users</p>
+                </div>
+                <div className="col-span-2 rounded-xl border border-slate-200 bg-slate-50 p-4">
+                  <p className="text-sm text-slate-600">
+                    Our focus remains simple: make every stage of lead handling and loan workflow faster,
+                    clearer, and measurable.
+                  </p>
                 </div>
               </div>
-            </Motion.div>
+            </div>
           </Motion.div>
         </div>
       </section>
 
-      {/* Mission & Vision - Modern Cards */}
-      <section className="bg-slate-900 py-20 md:py-28 text-white">
-        <div className="mx-auto max-w-7xl px-4">
+      <section className="mx-auto max-w-7xl px-4 py-16 md:py-20">
+        <Motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-10"
+        >
+          <h2 className="text-3xl font-bold md:text-4xl">How we evolved</h2>
+          <p className="mt-3 max-w-3xl text-base leading-7 text-slate-600 md:text-lg">
+            A short timeline of how Smart Dial grew from a focused product idea into a practical system
+            used by operational teams daily.
+          </p>
+        </Motion.div>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          {milestones.map((m, idx) => (
+            <Motion.div
+              key={m.year}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: idx * 0.05 }}
+              className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
+            >
+              <p className="text-sm font-semibold uppercase tracking-wide text-blue-700">{m.year}</p>
+              <h3 className="mt-2 text-xl font-bold text-slate-900">{m.title}</h3>
+              <p className="mt-2 text-sm leading-7 text-slate-600">{m.text}</p>
+            </Motion.div>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-y border-slate-200 bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-16 md:py-20">
           <Motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            transition={{ duration: 0.5 }}
+            className="mb-10"
           >
-            <h2 className="text-4xl md:text-5xl font-bold">Mission & Vision</h2>
-            <p className="mt-4 text-xl text-slate-300">What drives us forward every day</p>
-          </Motion.div>
-
-          <Motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="grid gap-8 lg:grid-cols-2"
-          >
-            <Motion.div
-              variants={item}
-              className="group relative overflow-hidden rounded-2xl bg-linear-to-br from-blue-500 to-indigo-600 p-10 shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:-translate-y-2"
-            >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
-              <div className="relative">
-                <div className="mb-6 inline-flex rounded-2xl bg-white/20 p-4 backdrop-blur-sm">
-                  <Target className="h-10 w-10" />
-                </div>
-                <h3 className="text-3xl md:text-4xl font-bold mb-4">Our Mission</h3>
-                <p className="text-lg leading-8 text-blue-50">
-                  To empower DSA teams with intelligent, intuitive technology that simplifies lead management, boosts productivity, and fuels sustainable growth in the financial sector.
-                </p>
-              </div>
-            </Motion.div>
-
-            <Motion.div
-              variants={item}
-              className="group relative overflow-hidden rounded-2xl bg-linear-to-br from-purple-500 to-pink-600 p-10 shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 hover:-translate-y-2"
-            >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
-              <div className="relative">
-                <div className="mb-6 inline-flex rounded-2xl bg-white/20 p-4 backdrop-blur-sm">
-                  <Eye className="h-10 w-10" />
-                </div>
-                <h3 className="text-3xl md:text-4xl font-bold mb-4">Our Vision</h3>
-                <p className="text-lg leading-8 text-purple-50">
-                  To be India's #1 CRM platform for DSAs, renowned for innovation, reliability, and customer success. We're building a future where every financial professional has access to world-class tools.
-                </p>
-              </div>
-            </Motion.div>
-          </Motion.div>
-        </div>
-      </section>
-
-      {/* Core Values - Icon Grid */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4">
-          <Motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900">Our Core Values</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600">
-              The principles that guide everything we do
+            <h2 className="text-3xl font-bold md:text-4xl">What we optimize for</h2>
+            <p className="mt-3 max-w-3xl text-base leading-7 text-slate-600 md:text-lg">
+              These are the pillars behind our product and service decisions.
             </p>
           </Motion.div>
 
-          <Motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-          >
-            {[
-              {
-                title: "Customer First",
-                description: "Our customers are at the heart of everything. We listen, adapt, and evolve based on their needs.",
-                icon: Heart,
-                color: "from-red-500 to-pink-500",
-                bgColor: "bg-red-50",
-                borderColor: "border-red-200"
-              },
-              {
-                title: "Innovation",
-                description: "We embrace change and push boundaries to deliver cutting-edge solutions that make a real difference.",
-                icon: Lightbulb,
-                color: "from-yellow-500 to-orange-500",
-                bgColor: "bg-yellow-50",
-                borderColor: "border-yellow-200"
-              },
-              {
-                title: "Integrity",
-                description: "Transparency, honesty, and ethical practices form the foundation of all our relationships.",
-                icon: Shield,
-                color: "from-green-500 to-emerald-500",
-                bgColor: "bg-green-50",
-                borderColor: "border-green-200"
-              },
-              {
-                title: "Excellence",
-                description: "We pursue excellence in every detail, from product design to customer support and beyond.",
-                icon: Award,
-                color: "from-blue-500 to-cyan-500",
-                bgColor: "bg-blue-50",
-                borderColor: "border-blue-200"
-              },
-              {
-                title: "Collaboration",
-                description: "Teamwork and mutual respect drive our culture. Together, we achieve more.",
-                icon: Users,
-                color: "from-purple-500 to-violet-500",
-                bgColor: "bg-purple-50",
-                borderColor: "border-purple-200"
-              },
-              {
-                title: "Growth",
-                description: "Committed to continuous growth-for our customers, our team, and our company.",
-                icon: TrendingUp,
-                color: "from-indigo-500 to-blue-500",
-                bgColor: "bg-indigo-50",
-                borderColor: "border-indigo-200"
-              }
-            ].map((value, index) => {
-              const IconComponent = value.icon;
+          <div className="grid gap-6 sm:grid-cols-2">
+            {pillars.map((p, idx) => {
+              const Icon = p.icon;
               return (
                 <Motion.div
-                  key={index}
-                  variants={item}
-                  whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                  className={`group rounded-2xl border-2 ${value.borderColor} ${value.bgColor} p-8 shadow-lg hover:shadow-2xl transition-all duration-300`}
+                  key={p.title}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: idx * 0.05 }}
+                  className="rounded-2xl border border-slate-200 bg-slate-50 p-6"
                 >
-                  <div className={`mb-5 inline-flex rounded-xl bg-linear-to-br ${value.color} p-3 text-white shadow-lg`}>
-                    <IconComponent className="h-7 w-7" />
+                  <div className="inline-flex rounded-lg bg-blue-100 p-3 text-blue-700">
+                    <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-3">{value.title}</h3>
-                  <p className="text-gray-700 leading-relaxed">{value.description}</p>
+                  <h3 className="mt-4 text-xl font-bold text-slate-900">{p.title}</h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">{p.text}</p>
                 </Motion.div>
               );
             })}
-          </Motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Stats Section - Enhanced */}
-      <section className="relative overflow-hidden bg-linear-to-br from-blue-600 via-indigo-600 to-purple-700 py-20 text-white">
-        <div className="pointer-events-none absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40"></div>
-        
-        <div className="relative mx-auto max-w-7xl px-4">
-          <Motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold">Trusted by Thousands</h2>
-            <p className="mt-4 text-xl text-blue-100">Our impact in numbers</p>
-          </Motion.div>
-
-          <Motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
-          >
-            {[
-              { number: "500+", label: "DSA Teams", icon: Users },
-              { number: "10,000+", label: "Active Users", icon: TrendingUp },
-              { number: "1M+", label: "Calls Made", icon: Zap },
-              { number: "4.9/5", label: "Customer Rating", icon: Award }
-            ].map((stat, index) => {
-              const IconComponent = stat.icon;
-              return (
-                <Motion.div 
-                  key={index} 
-                  variants={item}
-                  className="group text-center rounded-2xl bg-white/10 backdrop-blur-sm p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2"
-                >
-                  <IconComponent className="h-12 w-12 mx-auto mb-4 text-blue-200" />
-                  <div className="text-5xl md:text-6xl font-bold mb-2">{stat.number}</div>
-                  <div className="text-lg text-blue-100 font-medium">{stat.label}</div>
-                </Motion.div>
-              );
-            })}
-          </Motion.div>
-        </div>
-      </section>
-
-      {/* CTA Section - Enhanced */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-5xl px-4">
-          <Motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative overflow-hidden rounded-3xl bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 p-12 md:p-16 text-center text-white shadow-2xl"
-          >
-            <div className="pointer-events-none absolute top-0 right-0 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl"></div>
-            <div className="pointer-events-none absolute bottom-0 left-0 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl"></div>
-            
-            <div className="relative">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur-sm">
-                <CheckCircle className="h-4 w-4" />
-                <span>Join 500+ Teams</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-                Ready to Transform Your<br />
-                <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-indigo-400">Business Operations?</span>
-              </h2>
-              <p className="mx-auto mt-6 max-w-2xl text-lg md:text-xl text-slate-300">
-                Join hundreds of DSA teams who trust Smart Dial to power their growth and streamline their workflow.
+      <section className="mx-auto max-w-7xl px-4 py-16 md:py-20">
+        <div className="rounded-2xl bg-linear-to-r from-slate-900 to-slate-800 p-8 text-white md:p-10">
+          <div className="grid gap-6 md:grid-cols-2 md:items-center">
+            <div>
+              <h2 className="text-3xl font-bold md:text-4xl">Built for teams that execute daily</h2>
+              <p className="mt-3 text-sm leading-7 text-slate-300 md:text-base">
+                If your team handles telecalling, follow-ups, and backend coordination every day,
+                Smart Dial gives you the structure to move faster with fewer blind spots.
               </p>
-              <div className="mt-10 flex flex-wrap justify-center gap-4">
-                <a
-                  href="/login"
-                  className="group inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-blue-500 to-indigo-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-500/50 transition-all hover:shadow-xl hover:shadow-blue-500/60 hover:-translate-y-1"
-                >
-                  Get Started Today
-                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </a>
-                <a
-                  href="/contact"
-                  className="group inline-flex items-center gap-2 rounded-xl border-2 border-white/30 bg-white/10 backdrop-blur-sm px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:bg-white/20 hover:border-white/50"
-                >
-                  Contact Sales
-                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </a>
-              </div>
             </div>
-          </Motion.div>
+
+            <ul className="space-y-3 text-sm text-slate-200">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 text-emerald-400" />
+                Clear handoffs between sales and operations
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 text-emerald-400" />
+                Better manager visibility across active pipelines
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 text-emerald-400" />
+                Reliable workflows for scaling teams
+              </li>
+              <li className="pt-2">
+                <a
+                  href="/pricing"
+                  className="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 font-semibold text-slate-900"
+                >
+                  View plans
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
     </div>
@@ -354,4 +250,3 @@ const About = () => {
 };
 
 export default About;
-

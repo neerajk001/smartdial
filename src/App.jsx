@@ -10,7 +10,6 @@ import Audience from './components/Audience.jsx'
 import Welcome from './components/Welcome.jsx'
 import Service from './components/Service.jsx'
 import Pricing from './components/Pricing.jsx'
-import WhatOurUsersSay from './components/WhatOurUsersSay.jsx'
 import WhyChooseUs from './components/Choose.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
@@ -41,7 +40,6 @@ const App = () => {
             <Audience />
             <Service />
             <Pricing />
-            <WhatOurUsersSay />
             <WhyChooseUs />
             <Contact />
           </div>

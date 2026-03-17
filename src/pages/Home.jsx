@@ -7,7 +7,6 @@ import Features from '../components/Features';
 import Audience from '../components/Audience';
 import Service from '../components/Service';
 import Pricing from '../components/Pricing';
-import WhatOurUsersSay from '../components/WhatOurUsersSay';
 import WhyChooseUs from '../components/Choose';
 import Contact from '../components/Contact';
 
@@ -22,7 +21,6 @@ const Home = () => {
       <Audience />
       <Service />
       <Pricing />
-      <WhatOurUsersSay />
       <WhyChooseUs />
       <Contact />
     </>

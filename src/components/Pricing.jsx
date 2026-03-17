@@ -151,9 +151,12 @@ const Pricing = () => {
 
                   <ul className="mt-5 space-y-2 text-sm">
                     {[
-                      "Full access to all features",
+                      "Full CRM & Dialer access",
+                      "Lead & follow-up management",
+                      "Call logs and performance tracking",
+                      "Role-based user access",
+                      "Advanced analytics dashboard",
                       "Priority support",
-                      "Unlimited team members",
                     ].map((f) => (
                       <li
                         key={f}

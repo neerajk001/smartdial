@@ -1,9 +1,11 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { motion as Motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { saveClientLead } from '../services/smartDialApi';
 import logo from '../assets/logo.png';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     mobile: '',
@@ -64,6 +66,14 @@ const Login = () => {
     }
   };
 
+  const handleGoBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+      return;
+    }
+    navigate('/');
+  };
+
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-100 to-slate-200 flex items-center justify-center px-3 sm:px-4 py-4 sm:py-8">
       <Motion.div 
@@ -75,6 +85,15 @@ const Login = () => {
         <div className="grid md:grid-cols-2 gap-0">
           {/* Left Side - Login Form */}
           <div className="p-4 sm:p-6 md:p-8 lg:p-10">
+            <button
+              type="button"
+              onClick={handleGoBack}
+              className="mb-4 inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-blue-500 hover:text-blue-700"
+            >
+              <span aria-hidden="true">←</span>
+              <span>Back</span>
+            </button>
+
             {/* Logo and Title */}
             <div className="mb-6">
               <div className="flex items-center gap-2 mb-4">

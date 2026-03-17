@@ -32,38 +32,38 @@ const About = () => {
             organizations grow faster while maintaining operational clarity.
           </p>
 
-          {/* Cards */}
-          <div className="mt-10 grid gap-8 md:grid-cols-2">
-            <div className="rounded-xl bg-slate-50 p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="mb-3 text-xl font-bold text-indigo-600">Vision</h3>
-              <p className="text-base leading-7 text-slate-600 space-y-2">
-                <span className="block font-semibold">Building the Future of the DSA Ecosystem</span>
-                <span className="block">
-                  Our vision is to become the most trusted digital operating system for DSAs and loan
-                  distribution partners in India.
-                </span>
+          {/* Vision + Mission */}
+          <div className="mt-10 grid gap-8 md:grid-cols-2 md:items-stretch">
+            <div className="rounded-2xl bg-slate-50 p-6 md:p-7 border border-slate-200 shadow-sm hover:shadow-md transition-shadow h-full md:min-h-[420px] flex flex-col">
+              <div className="mb-4 inline-flex w-fit rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold tracking-wide text-indigo-700">
+                Vision
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900">Building the Future of the DSA Ecosystem</h3>
+              <p className="mt-4 text-base leading-7 text-slate-600">
+                We aim to become the most trusted digital operating system for DSAs and loan distribution
+                partners across India.
               </p>
+              <ul className="mt-5 space-y-2 text-sm leading-6 text-slate-600">
+                <li>Unified sales, backend, and team workflows</li>
+                <li>High transparency across every stage of loan operations</li>
+                <li>Scalable systems for growing DSA businesses</li>
+              </ul>
             </div>
 
-            <div className="rounded-xl bg-slate-50 p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="mb-3 text-xl font-bold text-indigo-600">Mission</h3>
-              <div className="text-base leading-7 text-slate-600 space-y-3">
-                <p className="font-semibold">Simplifying Financial Operations Through Technology</p>
-                <p>
-                  Our mission is to simplify and modernize the way financial sales teams operate.
-                </p>
-                <p>We achieve this by:</p>
-                <ul className="list-disc list-inside space-y-1">
-                  <li>Automating repetitive operational tasks</li>
-                  <li>Creating transparent workflows across departments</li>
-                  <li>Providing real-time insights for better decision-making</li>
-                  <li>Designing tools that are simple, powerful, and human-centric</li>
-                </ul>
-                <p>
-                  Smart Dial is built to help DSA businesses focus on what matters most - closing more deals
-                  and growing their business.
-                </p>
+            <div className="rounded-2xl bg-slate-50 p-6 md:p-7 border border-slate-200 shadow-sm hover:shadow-md transition-shadow h-full md:min-h-[420px] flex flex-col">
+              <div className="mb-4 inline-flex w-fit rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold tracking-wide text-indigo-700">
+                Mission
               </div>
+              <h3 className="text-2xl font-bold text-slate-900">Simplifying Financial Operations Through Technology</h3>
+              <p className="mt-4 text-base leading-7 text-slate-600">
+                We modernize how financial sales teams operate so they can work faster, with more clarity and
+                better control.
+              </p>
+              <ul className="mt-5 space-y-2 text-sm leading-6 text-slate-600">
+                <li>Automate repetitive operational tasks</li>
+                <li>Provide real-time insights for better decisions</li>
+                <li>Design tools that are simple, powerful, and human-centric</li>
+              </ul>
             </div>
           </div>
 
