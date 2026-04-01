@@ -1,4 +1,4 @@
-﻿// Contact.jsx
+// Contact.jsx
 import React, { useState } from "react";
 import { motion as Motion } from "framer-motion";
 import { Mail, Phone, MapPin, ArrowRight, Instagram } from "lucide-react";
@@ -167,7 +167,7 @@ const Contact = () => {
                       Instagram
                     </h3>
                     <p className="text-base text-blue-300 transition-colors group-hover:text-white">
-                      @__smartsolutions__
+                      @_smartdial_
                     </p>
                   </div>
                 </a>

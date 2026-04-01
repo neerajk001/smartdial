@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion as Motion } from 'framer-motion';
 import {
   HiOutlineDevicePhoneMobile,
@@ -105,25 +105,10 @@ export default function Features() {
                 boxShadow: "0px 10px 30px -5px rgba(0, 0, 0, 0.1)"
               }}
               transition={{ duration: 0.2 }}
-              className={`
-                rounded-2xl p-8 flex flex-col items-center text-center
-                transition-colors duration-300
-                ${
-                  feature.highlighted
-                    ? 'bg-linear-to-br from-indigo-600 to-purple-600 text-white shadow-2xl'
-                    : 'bg-white shadow-lg hover:shadow-xl border border-gray-200'
-                }
-              `}
+              className="group rounded-2xl p-8 flex flex-col items-center text-center transition-all duration-300 bg-white shadow-lg border border-gray-200 hover:border-transparent hover:bg-linear-to-br hover:from-indigo-600 hover:to-purple-600 hover:text-white hover:shadow-2xl"
             >
               {/* Icon */}
-              <div className={`
-                flex items-center justify-center h-16 w-16 rounded-full
-                ${
-                  feature.highlighted
-                    ? 'bg-white text-indigo-600'
-                    : 'bg-indigo-100 text-indigo-600'
-                }
-              `}>
+              <div className="flex items-center justify-center h-16 w-16 rounded-full transition-colors duration-300 bg-indigo-100 text-indigo-600 group-hover:bg-white group-hover:text-indigo-600">
                 {feature.icon}
               </div>
 
@@ -133,11 +118,7 @@ export default function Features() {
               </h3>
 
               {/* Description */}
-              <p className={`mt-2 text-base ${
-                feature.highlighted 
-                ? 'text-indigo-100' 
-                : 'text-gray-600'
-              }`}>
+              <p className="mt-2 text-base text-gray-600 transition-colors duration-300 group-hover:text-indigo-100">
                 {feature.description}
               </p>
             </Motion.div>
