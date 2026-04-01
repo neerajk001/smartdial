@@ -167,13 +167,6 @@ const Hero = () => {
                 Book a Demo
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </a>
-              <a
-                href="/register"
-                className="group inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-xl border-2 border-slate-300 bg-white px-5 py-3 text-base font-semibold text-slate-800 shadow-sm transition-all hover:border-blue-600 hover:text-blue-700"
-              >
-                Get Started
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </a>
             </Motion.div>
 
             <Motion.div

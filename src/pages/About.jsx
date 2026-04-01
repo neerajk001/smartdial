@@ -85,52 +85,11 @@ const About = () => {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="/register"
-                className="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-blue-600 to-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:brightness-110"
-              >
-                Start with Smart Dial
-                <ArrowRight className="h-4 w-4" />
-              </a>
-              <a
                 href="/contact"
                 className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:border-blue-500 hover:text-blue-700"
               >
                 Talk to our team
               </a>
-            </div>
-          </Motion.div>
-
-          <Motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="relative"
-          >
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/5 md:p-8">
-              <div className="mb-6 flex items-center gap-3">
-                <img src={logo} alt="Smart Dial" className="h-12 w-auto" />
-                <div>
-                  <p className="text-sm font-semibold text-slate-500">Platform Snapshot</p>
-                  <p className="text-xl font-bold text-slate-900">Built to reduce operational friction</p>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-                  <p className="text-2xl font-extrabold text-blue-700">500+</p>
-                  <p className="mt-1 text-sm text-slate-600">Teams onboarded</p>
-                </div>
-                <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-                  <p className="text-2xl font-extrabold text-blue-700">10K+</p>
-                  <p className="mt-1 text-sm text-slate-600">Daily users</p>
-                </div>
-                <div className="col-span-2 rounded-xl border border-slate-200 bg-slate-50 p-4">
-                  <p className="text-sm text-slate-600">
-                    Our focus remains simple: make every stage of lead handling and loan workflow faster,
-                    clearer, and measurable.
-                  </p>
-                </div>
-              </div>
             </div>
           </Motion.div>
         </div>
