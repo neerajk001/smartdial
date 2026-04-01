@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://smartdial.co.in/sdpanel/api/index.php/Auth";
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "/sdpanel/api/index.php/Auth").replace(/\/$/, "");
 const API_KEY = "Surplus_apikey@";
 
 const DEFAULT_PLANS = [
@@ -153,13 +153,21 @@ const normalizePlans = (payload) => {
 export const fetchPlanData = async () => {
   const response = await fetch(`${API_BASE_URL}/getplandata`, {
     method: "GET",
+    cache: "no-store",
     headers: {
       "X-API-KEY": API_KEY,
     },
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch plan data: ${response.status}`);
+    let details = "";
+    try {
+      details = await response.text();
+    } catch {
+      details = "";
+    }
+    const suffix = details ? ` - ${details.slice(0, 180)}` : "";
+    throw new Error(`Failed to fetch plan data: ${response.status}${suffix}`);
   }
 
   const payload = await response.json();
@@ -173,6 +181,7 @@ export const saveClientLead = async ({
   email,
   noOfEmp,
   address,
+  turnstileToken,
 }) => {
   const formData = new FormData();
   formData.append("name", name || "");
@@ -181,6 +190,7 @@ export const saveClientLead = async ({
   formData.append("email", email || "");
   formData.append("no_of_emp", noOfEmp || "1");
   formData.append("address", address || "");
+  formData.append("cf-turnstile-response", turnstileToken || "");
 
   const response = await fetch(`${API_BASE_URL}/saveclient`, {
     method: "POST",

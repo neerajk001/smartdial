@@ -8,6 +8,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    mobile: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -15,18 +16,31 @@ const Contact = () => {
 
   const handleChange = (event) => {
     const { id, value } = event.target;
+    // Mobile validation: only allow up to 10 digits
+    if (id === "mobile") {
+      const cleaned = value.replace(/\D/g, "").slice(0, 10);
+      setFormData((prev) => ({ ...prev, [id]: cleaned }));
+      return;
+    }
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Final mobile validation
+    if (formData.mobile.length !== 10) {
+      setStatus({ type: "error", message: "Please enter a valid 10-digit mobile number." });
+      return;
+    }
+
     setIsSubmitting(true);
     setStatus({ type: "", message: "" });
 
     try {
       await saveClientLead({
         name: formData.name,
-        phone: "",
+        phone: formData.mobile,
         companyName: "Website Lead",
         email: formData.email,
         noOfEmp: "1",
@@ -34,7 +48,7 @@ const Contact = () => {
       });
 
       setStatus({ type: "success", message: "Thanks! Your details were submitted successfully." });
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", mobile: "", message: "" });
     } catch (error) {
       console.error("Contact form submit failed", error);
       setStatus({ type: "error", message: "Submission failed. Please try again." });
@@ -191,6 +205,24 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    placeholder="john@example.com"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="mobile"
+                    className="mb-1 block text-sm font-medium text-gray-700"
+                  >
+                    Mobile Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="mobile"
+                    value={formData.mobile}
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    placeholder="10-digit mobile number"
                     required
                   />
                 </div>

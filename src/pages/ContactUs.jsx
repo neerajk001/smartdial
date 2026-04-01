@@ -14,11 +14,24 @@ export default function ContactUs() {
 
   const handleChange = (event) => {
     const { id, value } = event.target;
+    // Mobile validation: only allow up to 10 digits
+    if (id === 'mobile') {
+      const cleaned = value.replace(/\D/g, '').slice(0, 10);
+      setFormData((prev) => ({ ...prev, [id]: cleaned }));
+      return;
+    }
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Final mobile validation
+    if (formData.mobile.length !== 10) {
+      setStatus({ type: 'error', message: 'Please enter a valid 10-digit mobile number.' });
+      return;
+    }
+
     setIsSubmitting(true);
     setStatus({ type: '', message: '' });
 

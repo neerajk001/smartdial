@@ -23,18 +23,23 @@ const cardVariants = {
 const Pricing = () => {
   const [data, setData] = useState(DEFAULT_PLANS);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
 
   useEffect(() => {
     let isMounted = true;
 
     const loadPlans = async () => {
       try {
+        setLoadError("");
         const plans = await fetchPlanData();
         if (isMounted && plans.length) {
           setData(plans);
         }
       } catch (error) {
         console.error("Unable to load plan data", error);
+        if (isMounted) {
+          setLoadError("Unable to load latest pricing right now. Showing fallback prices.");
+        }
       } finally {
         if (isMounted) {
           setIsLoading(false);
@@ -186,7 +191,7 @@ const Pricing = () => {
         <div className="mt-8 text-center text-xs text-slate-500">
           {isLoading
             ? "Loading latest prices from the backend..."
-            : "Prices are fetched from backend API; taxes may apply. Change or cancel anytime."}
+            : loadError || "Prices are fetched from backend API; taxes may apply. Change or cancel anytime."}
         </div>
       </div>
     </section>

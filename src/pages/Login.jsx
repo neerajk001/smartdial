@@ -3,6 +3,7 @@ import { motion as Motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { saveClientLead } from '../services/smartDialApi';
 import logo from '../assets/logo.png';
+import TurnstileField from '../components/TurnstileField';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,6 +19,8 @@ const Login = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('idle');
   const [submitErrorMessage, setSubmitErrorMessage] = useState('');
+  const [captchaToken, setCaptchaToken] = useState('');
+  const [captchaKey, setCaptchaKey] = useState(0);
   const [fieldErrors, setFieldErrors] = useState({
     mobile: '',
     gstin: '',
@@ -109,6 +112,12 @@ const Login = () => {
       return;
     }
 
+    if (!captchaToken) {
+      setSubmitErrorMessage('Please complete the captcha before submitting.');
+      setSubmitStatus('error');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setSubmitErrorMessage('');
@@ -125,6 +134,7 @@ const Login = () => {
         email: formData.email,
         noOfEmp: formData.numberOfEmployees,
         address: addressWithGstin,
+        turnstileToken: captchaToken,
       });
 
       setSubmitStatus('success');
@@ -139,10 +149,14 @@ const Login = () => {
         email: '',
       });
       setFieldErrors({ mobile: '', gstin: '', email: '' });
+      setCaptchaToken('');
+      setCaptchaKey((prev) => prev + 1);
     } catch (error) {
       console.error('Register submit failed:', error);
       setSubmitErrorMessage(error?.message || 'Submission failed. Please try again.');
       setSubmitStatus('error');
+      setCaptchaToken('');
+      setCaptchaKey((prev) => prev + 1);
     } finally {
       setIsSubmitting(false);
     }
@@ -337,12 +351,16 @@ const Login = () => {
                 />
               </div>
 
+              <div className="md:col-span-2">
+                <TurnstileField key={captchaKey} onTokenChange={setCaptchaToken} />
+              </div>
+
               {/* Sign In Button */}
               <Motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !captchaToken}
                 className={`w-full md:col-span-2 text-white font-semibold py-3 rounded-lg transition shadow-lg ${
                   submitStatus === 'success'
                     ? 'bg-emerald-600 shadow-emerald-600/30'
