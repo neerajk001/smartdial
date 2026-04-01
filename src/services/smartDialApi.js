@@ -5,10 +5,10 @@ const DEFAULT_PLANS = [
   {
     name: "Quarterly",
     originalPrice: "₹600",
-    price: "₹330",
+    price: "₹450",
     cycle: "per user / 3 months",
-    discount: "Save 45%",
-    eff: "₹110",
+    discount: "Save 25%",
+    eff: "₹150",
     featured: false,
   },
   {
