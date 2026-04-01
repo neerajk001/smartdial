@@ -143,7 +143,7 @@ const Contact = () => {
                 </div>
 
                 <a
-                  href="https://www.instagram.com/__smartsolutions__/"
+                  href="https://www.instagram.com/_smartdial_/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start gap-4 group"

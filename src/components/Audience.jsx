@@ -54,16 +54,6 @@ const Audience = () => {
               Smart Dial is designed for organizations that manage large volumes of financial sales and telecalling
               operations-whether you have 10 agents or 500.
             </p>
-            {/* 4. Moved CTA button here and upgraded icon */}
-            <Motion.a
-              href="#"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="inline-flex items-center gap-2.5 rounded-lg bg-blue-600 px-7 py-3 text-base font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-            >
-              Start Your Free Trial
-              <ArrowRight className="h-5 w-5" />
-            </Motion.a>
           </Motion.div>
 
           {/* --- RIGHT COLUMN (Audience List) --- */}
