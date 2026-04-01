@@ -5,10 +5,10 @@ const DEFAULT_PLANS = [
   {
     name: "Quarterly",
     originalPrice: "₹600",
-    price: "₹450",
+    price: "₹330",
     cycle: "per user / 3 months",
-    discount: "Save 25%",
-    eff: "₹150",
+    discount: "Save 45%",
+    eff: "₹110",
     featured: false,
   },
   {
@@ -57,7 +57,7 @@ const getValue = (obj, keys, fallback = "") => {
   return fallback;
 };
 
-const normalizePlans = (payload) => {
+const normalizePlansWithMeta = (payload) => {
   const source = Array.isArray(payload)
     ? payload
     : Array.isArray(payload?.data)
@@ -67,7 +67,11 @@ const normalizePlans = (payload) => {
         : [];
 
   if (!source.length) {
-    return DEFAULT_PLANS;
+    return {
+      plans: DEFAULT_PLANS,
+      usedFallback: true,
+      fallbackReason: "No plan records returned by backend.",
+    };
   }
 
   const normalized = source.map((item, index) => {
@@ -141,14 +145,22 @@ const normalizePlans = (payload) => {
     };
   });
 
-  return normalized
+  const plans = normalized
     .sort((a, b) => a.months - b.months)
     .map((plan) => {
       const cleanedPlan = { ...plan };
       delete cleanedPlan.months;
       return cleanedPlan;
     });
+
+  return {
+    plans,
+    usedFallback: false,
+    fallbackReason: "",
+  };
 };
+
+const normalizePlans = (payload) => normalizePlansWithMeta(payload).plans;
 
 export const fetchPlanData = async () => {
   const response = await fetch(`${API_BASE_URL}/getplandata`, {
@@ -172,6 +184,30 @@ export const fetchPlanData = async () => {
 
   const payload = await response.json();
   return normalizePlans(payload);
+};
+
+export const fetchPlanDataWithStatus = async () => {
+  const response = await fetch(`${API_BASE_URL}/getplandata`, {
+    method: "GET",
+    cache: "no-store",
+    headers: {
+      "X-API-KEY": API_KEY,
+    },
+  });
+
+  if (!response.ok) {
+    let details = "";
+    try {
+      details = await response.text();
+    } catch {
+      details = "";
+    }
+    const suffix = details ? ` - ${details.slice(0, 180)}` : "";
+    throw new Error(`Failed to fetch plan data: ${response.status}${suffix}`);
+  }
+
+  const payload = await response.json();
+  return normalizePlansWithMeta(payload);
 };
 
 export const saveClientLead = async ({

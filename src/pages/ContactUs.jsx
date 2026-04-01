@@ -1,6 +1,7 @@
 ﻿import React, { useState } from 'react';
 import { motion as Motion } from 'framer-motion';
-import { saveClientLead } from '../services/smartDialApi';
+
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mbdpklpr';
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
@@ -36,14 +37,24 @@ export default function ContactUs() {
     setStatus({ type: '', message: '' });
 
     try {
-      await saveClientLead({
-        name: formData.name,
-        phone: formData.mobile,
-        companyName: 'Website Lead',
-        email: formData.email,
-        noOfEmp: '1',
-        address: formData.message,
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          mobile: formData.mobile,
+          message: formData.message,
+          source: 'contact-page',
+        }),
       });
+
+      if (!response.ok) {
+        throw new Error(`Formspree submit failed: ${response.status}`);
+      }
 
       setStatus({ type: 'success', message: 'Thanks! Your message has been submitted.' });
       setFormData({ name: '', email: '', mobile: '', message: '' });
@@ -136,7 +147,7 @@ export default function ContactUs() {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <span className="font-medium">+91-95888 33303</span>
+                <span className="font-medium">9730170684</span>
               </div>
             </div>
             

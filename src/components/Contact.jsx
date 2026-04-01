@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import { motion as Motion } from "framer-motion";
 import { Mail, Phone, MapPin, ArrowRight, Instagram } from "lucide-react";
-import { saveClientLead } from "../services/smartDialApi";
+
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mbdpklpr";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -38,14 +39,24 @@ const Contact = () => {
     setStatus({ type: "", message: "" });
 
     try {
-      await saveClientLead({
-        name: formData.name,
-        phone: formData.mobile,
-        companyName: "Website Lead",
-        email: formData.email,
-        noOfEmp: "1",
-        address: formData.message,
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          mobile: formData.mobile,
+          message: formData.message,
+          source: "landing-contact",
+        }),
       });
+
+      if (!response.ok) {
+        throw new Error(`Formspree submit failed: ${response.status}`);
+      }
 
       setStatus({ type: "success", message: "Thanks! Your details were submitted successfully." });
       setFormData({ name: "", email: "", mobile: "", message: "" });
@@ -110,7 +121,7 @@ const Contact = () => {
                 </a>
 
                 <a
-                  href="tel:+919588833303"
+                  href="tel:9730170684"
                   className="flex items-start gap-4 group"
                 >
                   <div className="shrink-0 rounded-lg bg-blue-900/50 p-3 text-blue-300 transition-colors group-hover:bg-blue-800">
@@ -121,7 +132,7 @@ const Contact = () => {
                       Phone   
                     </h3>      
                     <p className="text-base text-blue-300 transition-colors group-hover:text-white">
-                      +91-95888 33303
+                      9730170684
                     </p>
                   </div>         
                 </a>    

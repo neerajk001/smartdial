@@ -1,0 +1,2 @@
+STATUS: 200
+DATA: [{"id":"1","name":"Quarterly","price":"600","discount":"45","final_price":"330","description":"per user \/ 3 months","validity":"3 months","status":"1","created":"2026-04-01 12:14:20"},{"id":"2","name":"Half Yearly","price":"1200","discount":"35","final_price":"780","description":"per user \/ 6 months","validity":"6 months","status":"1","created":"2026-03-17 17:41:37"},{"id":"3","name":"Yearly","price":"2400","discount":"50","final_price":"1200","description":"per user \/ 12 months","validity":"12 months","status":"1","created":"2026-03-17 17:41:29"}]

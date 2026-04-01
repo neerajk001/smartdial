@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { motion as Motion, AnimatePresence } from "framer-motion";
 import { Check } from "lucide-react";
-import { DEFAULT_PLANS, fetchPlanData } from "../services/smartDialApi";
+import { DEFAULT_PLANS, fetchPlanDataWithStatus } from "../services/smartDialApi";
 
 // 1. SINGLE PLAN SETUP:
 //    App & Web CRM bundled together. Web-only plans removed as per latest brief.
@@ -31,9 +31,12 @@ const Pricing = () => {
     const loadPlans = async () => {
       try {
         setLoadError("");
-        const plans = await fetchPlanData();
-        if (isMounted && plans.length) {
-          setData(plans);
+        const result = await fetchPlanDataWithStatus();
+        if (isMounted && result.plans.length) {
+          setData(result.plans);
+          if (result.usedFallback) {
+            setLoadError(`Live pricing unavailable. ${result.fallbackReason} Showing fallback prices.`);
+          }
         }
       } catch (error) {
         console.error("Unable to load plan data", error);
