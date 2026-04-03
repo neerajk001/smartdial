@@ -133,10 +133,9 @@ const Header = () => {
         <button
           aria-label="Toggle menu"
           type="button"
-          className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50 md:hidden"
+          className="inline-flex items-center justify-center p-1 text-slate-700 hover:text-blue-600 md:hidden"
           onClick={() => setOpen((v) => !v)}
         >
-          <span>{open ? "Close" : "Menu"}</span>
           <svg
             className="h-5 w-5"
             viewBox="0 0 24 24"

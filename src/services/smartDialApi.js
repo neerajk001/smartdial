@@ -18,7 +18,7 @@ const DEFAULT_PLANS = [
     cycle: "per user / 6 months",
     discount: "Save 35%",
     eff: "₹130",
-    featured: true,
+    featured: false,
   },
   {
     name: "Yearly",
@@ -27,7 +27,7 @@ const DEFAULT_PLANS = [
     cycle: "per user / 12 months",
     discount: "Save 50%",
     eff: "₹100",
-    featured: false,
+    featured: true,
   },
 ];
 
@@ -140,7 +140,7 @@ const normalizePlansWithMeta = (payload) => {
       featured:
         String(getValue(item, ["popular", "is_popular", "featured"], "")).toLowerCase() === "1" ||
         String(getValue(item, ["popular", "is_popular", "featured"], "")).toLowerCase() === "true" ||
-        name.toLowerCase().includes("half"),
+        name.toLowerCase().includes("year"),
       months: finalMonths,
     };
   });

@@ -1,4 +1,4 @@
-﻿// hero.jsx
+// hero.jsx
 import React from "react";
 import { motion as Motion } from "framer-motion";
 import { ArrowRight, Star, Volume2, VolumeX, Zap } from "lucide-react";
@@ -38,14 +38,14 @@ const Hero = () => {
       {/* Screen-adjustable container */}
       <div className="mx-auto max-w-7xl px-4 min-h-[85vh] md:min-h-screen flex items-center">
         {/* 50/50 Grid */}
-        <div className="grid items-center gap-8 md:gap-12 md:grid-cols-2 py-10 md:py-0">
+        <div className="grid items-center gap-8 md:gap-16 md:grid-cols-12 py-0">
           
           {/* 1. TWEAK: Left column is now the "Sleek Product Window" */}
           <Motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative order-2 md:order-1" // Stays below on mobile
+            className="relative order-1 md:order-2 md:col-span-7 -mt-4 lg:-mt-12 md:-ml-6 lg:-ml-12" // Re-aligned with text top edge
           >
             <div className="rounded-xl overflow-hidden shadow-2xl shadow-blue-900/20 border border-slate-300/50 bg-slate-900">
               {/* Window Header */}
@@ -69,7 +69,7 @@ const Hero = () => {
                   aria-label="SmartDial in action"
                 >
                   <source
-                    src="/6999816_Motion_Graphics_Animation_1920x1080.mp4"
+                    src="/smart-dial.mp4"
                     type="video/mp4"
                   />
                   Your browser does not support the video tag.
@@ -100,13 +100,13 @@ const Hero = () => {
             variants={stagger}
             initial="hidden"
             animate="show"
-            className="order-1 flex flex-col md:order-2" // Stays on top on mobile
+            className="order-2 flex flex-col md:order-1 md:col-span-5" // Text is now order-2 (below video on mobile)
           >
             
 
             <Motion.h1
               variants={item}
-              className="text-2xl sm:text-3xl font-extrabold leading-[1.1] text-slate-900 md:text-5xl lg:text-6xl"
+              className="text-2xl sm:text-3xl font-extrabold leading-[1.15] text-slate-900 md:text-3xl lg:text-4xl xl:text-5xl"
             >
               Smart Dial - Powering Smarter{" "}
               <span className="relative inline-block">
@@ -143,14 +143,14 @@ const Hero = () => {
 
             <Motion.p
               variants={item}
-              className="mt-5 max-w-xl text-base sm:text-lg leading-7 sm:leading-8 text-gray-600 font-semibold"
+              className="mt-5 max-w-xl text-base leading-7 text-gray-600 font-medium"
             >
               A complete mobile and web-based CRM solution designed for DSAs and
               financial teams who work with banks and NBFCs.
             </Motion.p>
             <Motion.p
               variants={item}
-              className="mt-2 max-w-xl text-base sm:text-lg leading-7 sm:leading-8 text-gray-600 font-semibold"
+              className="mt-2 max-w-xl text-base leading-7 text-gray-600 font-medium"
             >
               Manage leads, monitor calls, and track team performance  all in
               one powerful platform.
