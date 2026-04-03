@@ -45,7 +45,7 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative order-1 md:order-2 md:col-span-7 -mt-4 lg:-mt-12 md:-ml-6 lg:-ml-12" // Re-aligned with text top edge
+            className="relative order-1 md:order-2 md:col-span-6 -mt-4 lg:-mt-12 md:-ml-4 lg:-ml-8" // Slightly increased footprint with small negative margins
           >
             <div className="rounded-xl overflow-hidden shadow-2xl shadow-blue-900/20 border border-slate-300/50 bg-slate-900">
               {/* Window Header */}
@@ -100,7 +100,7 @@ const Hero = () => {
             variants={stagger}
             initial="hidden"
             animate="show"
-            className="order-2 flex flex-col md:order-1 md:col-span-5" // Text is now order-2 (below video on mobile)
+            className="order-2 flex flex-col md:order-1 md:col-span-6" // Increased column span to balance the 50/50 grid
           >
             
 
