@@ -3,6 +3,7 @@ import React from "react";
 import { motion as Motion } from "framer-motion";
 import { ArrowRight, Star, Volume2, VolumeX, Zap } from "lucide-react";
 import logo from "../assets/logo.png";
+import smartDialVideo from "../assets/smart-dial.mp4";
 
 // Animation variants (unchanged)
 const stagger = {
@@ -69,7 +70,7 @@ const Hero = () => {
                   aria-label="SmartDial in action"
                 >
                   <source
-                    src="/smart-dial.mp4"
+                    src={smartDialVideo}
                     type="video/mp4"
                   />
                   Your browser does not support the video tag.
