@@ -56,15 +56,15 @@ const Hero = () => {
               </div>
               
               {/* Video Content */}
-              <div className="relative">
+              <div className="relative overflow-hidden bg-slate-900 aspect-video">
                 <video
                   ref={videoRef}
-                  className="w-full h-auto object-cover" // Aspect ratio will be handled by the video file
+                  className="w-full h-full object-cover"
                   autoPlay
-                  muted={muted}
+                  muted
                   loop
                   playsInline
-                  preload="metadata"
+                  preload="auto"
                   poster={logo}
                   aria-label="SmartDial in action"
                 >
